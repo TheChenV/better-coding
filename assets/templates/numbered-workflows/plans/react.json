@@ -1,0 +1,54 @@
+{
+  "stack": "react",
+  "skeletonSkill": "react-page-scaffold",
+  "dirs": [
+    "src/pages/__MODULE_PATH__",
+    "src/pages/__MODULE_PATH__/components",
+    "src/pages/__MODULE_PATH__/hooks",
+    "src/routes",
+    "src/components",
+    "src/lib"
+  ],
+  "configs": [
+    {
+      "path": "index.html",
+      "body": "<!-- Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved. -->\n<!doctype html>\n<html lang=\"zh-CN\">\n  <head><meta charset=\"UTF-8\" /><title>__DISPLAY_NAME__</title></head>\n  <body><div id=\"root\"></div><script type=\"module\" src=\"/src/main.tsx\"></script></body>\n</html>\n"
+    },
+    {
+      "path": "vite.config.ts",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nimport { defineConfig } from 'vite';\n\nexport default defineConfig({ server: { port: Number(process.env.PORT ?? __PORT__) } });\n"
+    }
+  ],
+  "codeFiles": [
+    {
+      "path": "src/pages/__MODULE_PATH__/HealthPage.tsx",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nimport type { ReactElement } from 'react';\n\nexport default function HealthPage(): ReactElement {\n  return (\n    <section>\n      <h1>__DISPLAY_NAME__</h1>\n      <p>status: ok</p>\n    </section>\n  );\n}\n"
+    },
+    {
+      "path": "src/routes/index.tsx",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nimport { lazy } from 'react';\nimport type { RouteObject } from 'react-router-dom';\n\nconst HealthPage = lazy(() => import('../pages/__MODULE_PATH__/HealthPage'));\n\nexport const routes: RouteObject[] = [{ path: '/health', element: <HealthPage /> }];\n"
+    },
+    {
+      "path": "src/main.tsx",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nimport { Suspense } from 'react';\nimport { createRoot } from 'react-dom/client';\nimport { BrowserRouter, useRoutes } from 'react-router-dom';\n\nimport { routes } from './routes/index';\n\nfunction AppRoutes() {\n  return useRoutes(routes);\n}\n\nexport default function App() {\n  return (\n    <BrowserRouter>\n      <Suspense fallback={<p>加载中…</p>}>\n        <AppRoutes />\n      </Suspense>\n    </BrowserRouter>\n  );\n}\n\nconst container = document.getElementById('root');\nif (!container) throw new Error('#root 容器缺失');\ncreateRoot(container).render(<App />);\n"
+    }
+  ],
+  "verifyPaths": [
+    "index.html",
+    "vite.config.ts",
+    "src/main.tsx",
+    "src/routes/index.tsx",
+    "src/pages/__MODULE_PATH__/HealthPage.tsx"
+  ],
+  "declChecks": [
+    {
+      "path": "src/routes/index.tsx",
+      "mustContain": "export const routes"
+    }
+  ],
+  "nextSteps": [
+    "安装依赖：npm install（需先补 package.json 与 react/react-router-dom 依赖）",
+    "本地开发：npm run dev",
+    "类型检查：npx tsc --noEmit"
+  ]
+}

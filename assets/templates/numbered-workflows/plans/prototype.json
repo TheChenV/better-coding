@@ -1,0 +1,55 @@
+{
+  "stack": "prototype",
+  "skeletonSkill": "ui-design",
+  "dirs": [
+    "docs/prd/PRD-__PROJECT_NAME__-交互原型/src/pages",
+    "docs/prd/PRD-__PROJECT_NAME__-交互原型/src/mock",
+    "docs/prd/PRD-__PROJECT_NAME__-交互原型/src/components"
+  ],
+  "configs": [
+    {
+      "path": "docs/prd/PRD-__PROJECT_NAME__-交互原型/README.md",
+      "body": "# __DISPLAY_NAME__ 交互原型\n\n- 页面清单与跳转图：见 PRD 第 4 章，页面数与之严格 1:1\n- 启动方式：npm install && npm run dev\n- 数据：全部假数据，覆盖正常 / 异常 / 边界三类\n- 生产工程分离：原型只住在这个目录，不被当成生产代码继续长\n"
+    },
+    {
+      "path": "docs/prd/PRD-__PROJECT_NAME__-交互原型/package.json",
+      "body": "{\n  \"name\": \"__MODULE_PATH__-prototype\",\n  \"private\": true,\n  \"version\": \"0.0.0\",\n  \"scripts\": { \"dev\": \"vite\", \"build\": \"vite build\" }\n}\n"
+    },
+    {
+      "path": "docs/prd/PRD-__PROJECT_NAME__-交互原型/vite.config.ts",
+      "body": "import { defineConfig } from 'vite';\n\n// base 必须是相对值：默认 '/' 会让 dist/index.html 在 file:// 下把 /assets/* 解析到盘符根，双击必白屏。\nexport default defineConfig({ base: './' });\n"
+    }
+  ],
+  "codeFiles": [
+    {
+      "path": "docs/prd/PRD-__PROJECT_NAME__-交互原型/src/mock/health.ts",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\n// 假数据三态齐：正常 / 异常 / 空，供页面分支点验。\nexport const healthCases = {\n  ok: { status: 'ok', displayName: '__DISPLAY_NAME__' },\n  failed: { status: 'error', message: 'backend unreachable' },\n  empty: { status: 'ok', displayName: '' },\n};\n"
+    },
+    {
+      "path": "docs/prd/PRD-__PROJECT_NAME__-交互原型/预览.html",
+      "body": "<!-- Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved. -->\n<!doctype html>\n<html lang=\"zh-CN\">\n  <head><meta charset=\"UTF-8\" /><title>__DISPLAY_NAME__ 预览</title></head>\n  <body><h1>__DISPLAY_NAME__</h1><p>自包含单文件预览：无 CDN、无外部 import、无网络请求。</p></body>\n</html>\n"
+    }
+  ],
+  "verifyPaths": [
+    "docs/prd/PRD-__PROJECT_NAME__-交互原型/README.md",
+    "docs/prd/PRD-__PROJECT_NAME__-交互原型/package.json",
+    "docs/prd/PRD-__PROJECT_NAME__-交互原型/vite.config.ts",
+    "docs/prd/PRD-__PROJECT_NAME__-交互原型/预览.html",
+    "docs/prd/PRD-__PROJECT_NAME__-交互原型/src/mock/health.ts"
+  ],
+  "declChecks": [
+    {
+      "path": "docs/prd/PRD-__PROJECT_NAME__-交互原型/预览.html",
+      "mustContain": "<!doctype html>"
+    },
+    {
+      "path": "docs/prd/PRD-__PROJECT_NAME__-交互原型/vite.config.ts",
+      "mustContain": "base: './'"
+    }
+  ],
+  "nextSteps": [
+    "逐页补可点原型：每页能点开、异常分支能触达（步骤 P3）",
+    "预览.html 契约校验：无外部 src/href、无 import、无 fetch",
+    "截图证据路径回填环节 1·3 的 G1 记录"
+  ]
+}

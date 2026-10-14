@@ -1,0 +1,51 @@
+{
+  "stack": "go",
+  "skeletonSkill": "go-api-scaffold",
+  "dirs": [
+    "cmd/server",
+    "internal/config",
+    "internal/handler",
+    "internal/service",
+    "internal/repository",
+    "internal/model",
+    "internal/middleware",
+    "migrations",
+    "deploy"
+  ],
+  "configs": [
+    {
+      "path": "go.mod",
+      "body": "module __MODULE_PATH__\n\ngo 1.22\n"
+    },
+    {
+      "path": ".env.example",
+      "body": "PORT=__PORT__\nDISPLAY_NAME=__DISPLAY_NAME__\n"
+    }
+  ],
+  "codeFiles": [
+    {
+      "path": "internal/config/config.go",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\npackage config\n\n// Config 汇总运行期配置，值来自环境变量。\ntype Config struct {\n\tDisplayName string\n\tPort        string\n}\n"
+    },
+    {
+      "path": "cmd/server/main.go",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"__PROJECT_NAME__ ready on port __PORT__\")\n}\n"
+    }
+  ],
+  "verifyPaths": [
+    "go.mod",
+    "cmd/server/main.go",
+    "internal/config/config.go"
+  ],
+  "declChecks": [
+    {
+      "path": "internal/config/config.go",
+      "mustContain": "package config"
+    }
+  ],
+  "nextSteps": [
+    "编译：go build ./...",
+    "跑：go run ./cmd/server",
+    "静态检查：golangci-lint run"
+  ]
+}

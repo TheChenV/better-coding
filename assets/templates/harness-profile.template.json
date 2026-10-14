@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "skillRoot": "{{SKILL_ROOT}}",
+  "skillVersion": "{{SKILL_VERSION}}",
+  "env": {
+    "_comment": "v9.4.0 S2：装机时的运行时事实。nodePath 来自执行器的 process.execPath（诊断「PATH 里的 node 变了/没了」用），selftestExit 是换名前真探活的退出码。数值位刻意不加引号——漏注入会直接炸成非法 JSON（profile-invalid-json），而不是留下一个未替换的双大括号占位串蒙混过关。",
+    "nodePath": "{{NODE_PATH}}",
+    "nodeVersion": "{{NODE_VERSION}}",
+    "probedAt": "{{PROBED_AT}}",
+    "selftestExit": {{SELFTEST_EXIT}},
+    "nodeMinMajor": {{NODE_MIN_MAJOR}}
+  },
+  "git": {
+    "_comment": "v9.5.0 S1：git 状态的唯一机器权威源（manifest#truthSources.projectCurrentState 已把 git 列入）。mode 是**用户的决策位**，脚本只探测不代选：装机恒落 pending，由环节 5 开工前或阶段 B 装配清单问一次后回写；取值域 pending|none|local|remote（判据 git_ready 核这四个值）。repoRoot 允许指向项目根的父目录——monorepo / git worktree 下仓库在上层，旧实现只看项目根故三道门禁集体误报「零拦截力」（spec 取证 2）。布尔与 null 位刻意不带引号：漏注入当场炸成 profile-invalid-json。",
+    "mode": "pending",
+    "repo": {{GIT_REPO}},
+    "repoRoot": {{GIT_REPO_ROOT}},
+    "gitVersion": {{GIT_VERSION}},
+    "trunk": {{GIT_TRUNK}},
+    "remote": {{GIT_REMOTE}},
+    "identityConfigured": {{GIT_IDENTITY}},
+    "gitattributesPinned": {{GIT_PIN}},
+    "probedAt": "{{GIT_PROBED_AT}}"
+  },
+  "project": { "name": "", "description": "", "paradigm": "", "apps": [] },
+  "maturity": { "mrd": false, "prd": false, "techstack": false, "arch": false },
+  "techstack": { "backend": [], "frontend": [], "database": [], "deploy": "" },
+  "appType": "Full-Stack",
+  "skipPrototype": false,
+  "iterateBranch": null,
+  "assembled": { "l0": true, "l1": [], "l2": [] },
+  "sync": {
+    "lastSyncAt": "{{INIT_STAMP}}",
+    "lastSyncSource": "init",
+    "syncCount": 0
+  },
+  "knownDocs": [],
+  "pendingPlaceholders": {
+    "agents.md": {
+      "projectName": { "status": "empty", "autoFillable": true, "signal": "dialog" },
+      "projectIntro": { "status": "empty", "autoFillable": true, "signal": "dialog" },
+      "techStack": { "status": "empty", "autoFillable": true, "signal": "scaffolding+dialog" },
+      "projectStructure": { "status": "empty", "autoFillable": true, "signal": "filesystem" },
+      "layerSpec": { "status": "empty", "autoFillable": true, "signal": "arch-doc" },
+      "namingConvention": { "status": "empty", "autoFillable": true, "signal": "code+dialog" },
+      "keyConstraints": { "status": "empty", "autoFillable": true, "signal": "prd+arch+dialog" },
+      "buildCommands": { "status": "empty", "autoFillable": true, "signal": "scaffolding" },
+      "teamStandards": { "status": "empty", "autoFillable": true, "signal": "dialog" },
+      "memoryIndex": { "status": "empty", "autoFillable": true, "signal": "experience" }
+    },
+    "guidance": {
+      "_comment": "v7.0.0：教程/指令集占位符跟踪废除；PROJECT-LIVE.md 为状态化设计（零【__xx__】占位），无来源参数在提示词手册保留 {占位} 并标待检测，命令预填项由 .qoder/techstack-commands.json 统一跟踪"
+    },
+    "projectLive": {
+      "coverage": "100%",
+      "pendingUpdates": []
+    }
+  },
+  "history": [ { "date": "{{INIT_DATE}}", "action": "init", "detail": "阶段 A 初始化" } ],
+  "incidents": []
+}

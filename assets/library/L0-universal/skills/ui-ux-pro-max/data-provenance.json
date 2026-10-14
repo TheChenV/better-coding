@@ -1,0 +1,205 @@
+{
+  "kind": "absorption-provenance",
+  "upstream": "nextlevelbuilder/ui-ux-pro-max-skill",
+  "upstreamHomepage": "https://uupm.cc",
+  "upstreamVersion": "2.13.0",
+  "absorbedAt": "2026-09-08",
+  "absorbedFromPath": ".claude/skills/ui-ux-pro-max",
+  "license": {
+    "code": "MIT (upstream LICENSE, © NextLevelBuilder) — applies to scripts/ and SKILL.md prose",
+    "data": "NOT uniformly MIT. Font metadata rows cite Google Fonts families whose licences are OFL/Apache-2.0 per family; upstream ships a separate google-font-licenses.json for that. No font binaries are distributed here.",
+    "actionRequired": "commercial use of any named font family must be licence-checked before it ships"
+  },
+  "absorbedFiles": [
+    "LICENSE",
+    "NOTICE",
+    "SKILL.md",
+    "data/app-interface.csv",
+    "data/catalog-summary.json",
+    "data/charts.csv",
+    "data/colors.csv",
+    "data/data-provenance.json",
+    "data/font-licenses-top60.csv",
+    "data/google-fonts-top60.csv",
+    "data/icons.csv",
+    "data/landing.csv",
+    "data/motion.csv",
+    "data/products.csv",
+    "data/react-performance.csv",
+    "data/stacks/angular.csv",
+    "data/stacks/astro.csv",
+    "data/stacks/avalonia.csv",
+    "data/stacks/flutter.csv",
+    "data/stacks/html-tailwind.csv",
+    "data/stacks/javafx.csv",
+    "data/stacks/jetpack-compose.csv",
+    "data/stacks/laravel.csv",
+    "data/stacks/nextjs.csv",
+    "data/stacks/nuxt-ui.csv",
+    "data/stacks/nuxtjs.csv",
+    "data/stacks/react-native.csv",
+    "data/stacks/react.csv",
+    "data/stacks/shadcn.csv",
+    "data/stacks/svelte.csv",
+    "data/stacks/swiftui.csv",
+    "data/stacks/threejs.csv",
+    "data/stacks/uno.csv",
+    "data/stacks/uwp.csv",
+    "data/stacks/vue.csv",
+    "data/stacks/winui.csv",
+    "data/stacks/wpf.csv",
+    "data/styles.csv",
+    "data/typography.csv",
+    "data/ui-reasoning.csv",
+    "data/ux-guidelines.csv",
+    "references/pro-rules.md",
+    "references/quick-reference.md",
+    "scripts/core.py",
+    "scripts/design_system.py",
+    "scripts/reasoning_contract.py",
+    "scripts/search.py",
+    "scripts/validate_data.py"
+  ],
+  "absorbedFilesNote": "48 条 = 44 上游逐字 + 2 本地派生 + 1 本地改编 + 1 本地撰写。逐类：① 44 上游逐字 = data/ 顶层 14 个上游文件（含 catalog-summary.json 与**上游自带的 data/data-provenance.json 数据时效台账**，该件是上游原文件、逐字在场，与 SKILL 根下这份本地台账是两个不同文件，别混）+ data/stacks/ 22 个栈表 + references/ 2 个 + scripts/ 5 个 + 根级 LICENSE 1 个（上游 MIT 正文逐字，v9.12.0 补齐，`cmp` 实测与上游字节全等）。② 2 本地派生 = data/google-fonts-top60.csv + data/font-licenses-top60.csv（后者 v9.12.0 新增，从上游 google-font-licenses.json 裁出随库 60 族的「族名→许可类型」映射；实测分布 OFL 58 / APACHE2 1 / UFL 1）。③ 1 本地改编 = SKILL.md。④ 1 本地撰写 = NOTICE（v9.12.0 新增，本地改编范围与许可提示，非上游内容）。🔴 **本文件自身（skill 根下的 data-provenance.json）刻意不在列表内**——它是本地台账不是吸收件；故本目录磁盘实数 49 = 列表 48 + 本文件 1，这一格差是设计而非漏账。计数纪律：新增/删除本 skill 目录下任何分发件，必须同批改三处——本列表、`manifest.absorbedFrom['ui-ux-pro-max'].absorbedFiles`、本条算式；两处列表长度不等即台账脱账（v9.12.0 全局 review 抓到自己踩过一次：加了 LICENSE/NOTICE/font-licenses 三件却没登记，两处台账停在 45 而列表实数应为 48）。",
+  "localMods": [
+    {
+      "path": "SKILL.md",
+      "change": "上游 215 行改编为 209 行：frontmatter 收敛为本库白名单键（name/description/allowed-tools）、脚本调用路径改为 skill 自身目录占位符、新增 Python 解释器实测事实与「降级直读 CSV」规则、新增 google-fonts 裁剪说明、新增与内置 ui-ux-pro-max-design 的分工、新增字体商用许可提醒。"
+    },
+    {
+      "path": "data/google-fonts-top60.csv",
+      "change": "本地派生件：上游 google-fonts.csv 的热度切片——按第 10 列 Popularity Rank 升序取前 60 个字体族（Roboto rank 2 … Smooch Sans rank 37），1934 数据行裁剪为 60。⚠️ v9.12.0 校正：本条旧版写「按上游文件顺序 = 字母序 ABeeZee…Alumni Sans SC，非热度排序」，描述的是首版脚本的取样 bug（已在 fontSliceRule 记为「已修正」），此处当时未跟着改，与 fontSliceRule 互斥。"
+    },
+    {
+      "path": "scripts/",
+      "change": "逐字保留上游 Python 实现（core.py / design_system.py / reasoning_contract.py / search.py / validate_data.py），未改写为 Node：单文件最大 70937 字节且含 BM25 打分与设计系统聚合规则，等价重写不属「trivial」。本库不新增 PowerShell/shell 孪生：上游 scripts/ 内本就没有 .ps1/.sh，故无孪生被带进来。"
+    },
+    {
+      "path": "scripts/tests/",
+      "change": "删除（见 excludedFiles）。"
+    },
+    {
+      "path": "data/catalog-summary.json",
+      "change": "未改动，但其内记录的 sha256 是上游整包快照指纹；裁剪 google-fonts.csv 后不再自洽，不得用于校验。"
+    }
+  ],
+  "excludedFiles": [
+    {
+      "path": "data/google-fonts.csv",
+      "sizeBytes": 747241,
+      "reason": "730KB 字体大表：体积超预算且逐族许可证不一（OFL/Apache 混合），不随库分发；已按验收要求裁剪为 data/google-fonts-top60.csv。"
+    },
+    {
+      "path": "data/google-font-licenses.json",
+      "sizeBytes": 433127,
+      "reason": "433KB 全量许可证表：体积超预算且逐族许可证类型不一（OFL/Apache2/UFL 混合），不随库分发。🔴 v9.12.0 更正本条理由——旧文写「吸收版不带许可证结论，改为在 SKILL.md 与 notes 里强制商用前逐族核对」，但那是一次没有数据支撑的口头要求：随库那 60 个字族到底各自是什么许可，库里查不到。现改判为「**已分发其裁剪派生件 data/font-licenses-top60.csv**（60 族 × 族名→许可类型，OFL 58 / Apache-2.0 1 / UFL 1）」；本排除项仍然成立（全量表本身仍未入库）。「商用前逐族核对」的要求对**超出该 60 族**的字体依旧有效，见 NOTICE。"
+    },
+    {
+      "path": "data/phosphor-icons-upstream.json",
+      "sizeBytes": 823933,
+      "reason": "824KB 上游图标包全量快照，检索路径不需要（图标候选走 data/icons.csv 的 105 条 curated）。"
+    },
+    {
+      "path": "scripts/tests/ (13 个 test_*.py)",
+      "reason": "上游 CI 测试件，本库无 pytest 运行入口，随库分发只增加体积与维护面。"
+    },
+    {
+      "path": "scripts/tests/fixtures/ (relevance-baseline.json / relevance-cases.json / relevance-thresholds.json)",
+      "reason": "测试夹具，只服务于被删除的 test_catalog_refresh.py 与 test_relevance_evaluator.py。"
+    },
+    {
+      "path": "scripts/tests/fixtures/catalogs/ (10 个 *.json/*.csv)",
+      "reason": "刷新脚本的模拟输入夹具，随 tests 一起删除。"
+    },
+    {
+      "path": ".claude/skills/ui-styling/",
+      "reason": "含 54 个 .ttf 字体二进制（约 5.6MB）：二进制字体需 OFL 逐族处理，本库不分发任何字体文件。"
+    },
+    {
+      "path": ".claude/skills/brand/",
+      "reason": "品牌/CIP 物料生成，属内置 ui-ux-pro-max-design 的职责范围（见 SKILL.md「与内置 ui-ux-pro-max-design 的分工」）。"
+    },
+    {
+      "path": ".claude/skills/design-system/",
+      "reason": "设计系统成品生成，与内置 ui-ux-pro-max-design 重复；本库只提供检索数据与规范。"
+    },
+    {
+      "path": ".claude/skills/design/",
+      "reason": "设计生成类载荷，同上由内置 ui-ux-pro-max-design 承担。"
+    },
+    {
+      "path": ".claude/skills/banner-design/",
+      "reason": "banner 出图能力，属内置 ui-ux-pro-max-design 的分工范围。"
+    },
+    {
+      "path": ".claude/skills/slides/",
+      "reason": "HTML 幻灯片/Deck 生成，属内置 ui-ux-pro-max-design 的分工范围。"
+    },
+    {
+      "path": "cli/",
+      "reason": "上游安装器（npx ui-ux-pro-max-cli，含它自己一份 assets/skills/*）。本库按目录名解析 skill，不需要第三方安装器，且重复副本会让 skill 名冲突。"
+    },
+    {
+      "path": "src/ui-ux-pro-max/templates/ (base/quick-reference.md, base/skill-content.md, platforms/*.json 共 22 项)",
+      "reason": "安装器用的平台模板与 SKILL 正文副本；本库的 SKILL.md 已改编落盘，references/quick-reference.md 也在收录范围内，模板再带一份就是双份事实源。"
+    },
+    {
+      "path": "docs/",
+      "reason": "上游站点文档，非 skill 运行所需。"
+    },
+    {
+      "path": "screenshots/",
+      "reason": "宣传截图（二进制图片）。"
+    },
+    {
+      "path": "gallery/",
+      "reason": "上游展示页 12 项，非运行载荷。"
+    },
+    {
+      "path": "preview/",
+      "reason": "预览产物，非运行载荷。"
+    },
+    {
+      "path": "projects/",
+      "reason": "上游示例工程产物，非运行载荷。"
+    },
+    {
+      "path": "stack/",
+      "reason": "上游栈素材目录，运行时读取的是 data/stacks/*.csv。"
+    },
+    {
+      "path": ".github/",
+      "reason": "上游 CI/issue 配置，属上游仓库自身工程化，与本库无关。"
+    },
+    {
+      "path": ".claude-plugin/, .releaserc.json, README*.md, CLAUDE.md, CONTRIBUTING.md, CODE_OF_CONDUCT.md, SECURITY.md, skill.json",
+      "reason": "上游仓库根的工程与营销文件，不属于 skill 载荷。"
+    }
+  ],
+  "verification": {
+    "dataTopLevelFiles": 15,
+    "dataTopLevelFilesFromUpstreamVerbatim": 14,
+    "dataTopLevelLocalDerivativeFiles": [
+      "data/google-fonts-top60.csv"
+    ],
+    "dataTopLevelEntriesIncludingStacksDir": 16,
+    "dataStacksCount": 22,
+    "csvDataRows": {
+      "styles.csv": 88,
+      "colors.csv": 192,
+      "typography.csv": 74,
+      "charts.csv": 25
+    },
+    "stylesStatusBreakdown": {
+      "active": 50,
+      "supplemental": 29,
+      "deprecated": 9
+    },
+    "binaryOrFontFilesShipped": 0,
+    "knownDegradedSearchPaths": [
+      "--domain google-fonts 返回 File not found（预期行为，改直读 data/google-fonts-top60.csv）"
+    ]
+  },
+  "notes": "字体二进制已全部丢弃（上游 ui-styling/canvas-fonts 的 54 个 .ttf 未进入本库，任何 .woff/.otf/.eot 亦未进入）。本库只保留字体族名与 Google Fonts URL 等文本元数据；这些字体族多数是 OFL、部分是 Apache-2.0，许可证按族而异且未随库分发，因此**商用前必须逐族核对字体许可证**（SKILL.md 已写为硬提醒）。上游代码侧为 MIT，署名与许可见本文件 license 与 upstream 字段。吸收时点 2026-09-08，上游版本 2.13.0。",
+  "fontSliceRule": "按第 10 列 Popularity Rank 升序取前 60；rank 缺失/非数字排最后。首版误按文件行序（=字母序）取前 60 行，等于随机取样，已修正"
+}

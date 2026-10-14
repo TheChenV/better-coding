@@ -1,0 +1,110 @@
+# SPEC-API 契约骨架（机器可读 OpenAPI 3.1）
+# ─────────────────────────────────────────────────────────────
+# 本文件是**真 YAML**，不是 Markdown：复制为 `docs/spec/{NNN}-{slug}/SPEC-API.yaml` 后
+# 按注释填写即可被 `.qoder/scripts/contract-drift.mjs` 解析（环节 6 联调前的机械比对）。
+# ⚠️ 版本纪律：`info.version` 是接口版本的唯一出处。消费方 `deps.yaml` 里的
+#    `pinned_version` 必须**逐字复制**这里的值（含 patch 位），不近似、不省略——
+#    major 不等会被判 breaking_drift 并阻断联调（退出码 1）。
+# 定稿锁定后改版本要走 /spec-delta 变更流程，不能悄悄改。
+openapi: 3.1.0
+info:
+  title: '{API 名称，如 订单契约}'
+  version: '1.0.0'                      # ← 语义化版本 MAJOR.MINOR.PATCH；消费方逐字引用此值
+  description: '{本 API 的核心目的与适用场景}'
+  x-upstream-docs: ['ARCH-{编号}', 'SPEC-BE-{编号}']
+  x-status: '草稿'                        # 草稿 | 评审中 | 已批准（三值由该步自检清单驱动：清单全过即写"已批准"，由产出方落盘时直接写，不等用户口令）
+  x-authors: ['{姓名}']
+  x-created: '{YYYY-MM-DD}'
+  x-updated: '{YYYY-MM-DD}'
+servers:
+  - url: /api/v1                          # 基础路径；协议 HTTP/HTTPS 由部署环境决定
+tags:
+  - name: '{业务域名词，须与 docs/项目交接.md 词汇本一致}'
+    description: '{该组接口的适用场景}'
+paths:
+  '/{资源名}':
+    get:
+      operationId: list{资源名 PascalCase}
+      tags: ['{同上业务域}']
+      summary: '{一句话说明这个端点为谁拿到什么}'
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema: { type: integer, minimum: 1, default: 1 }
+      responses:
+        '200':
+          description: '成功：返回 {资源名} 列表'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/{资源名}Page' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '404': { $ref: '#/components/responses/NotFound' }
+        '500': { $ref: '#/components/responses/ServerError' }
+    post:
+      operationId: create{资源名 PascalCase}
+      tags: ['{同上业务域}']
+      summary: '{新建一条 {资源名}}'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/{资源名}Create' }
+      responses:
+        '201':
+          description: '创建成功，返回带 id 的完整对象'
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/{资源名}' }
+        '400': { $ref: '#/components/responses/BadRequest' }
+        '409': { $ref: '#/components/responses/Conflict' }
+components:
+  schemas:
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string, description: '错误码，取自 ARCH 分配的分段' }
+        message: { type: string }
+        traceId: { type: string }
+    {资源名}:
+      type: object
+      required: [id]
+      properties:
+        id: { type: string }
+        # 字段、索引、约束必须与 SPEC-DDL.sql 一一对应（3·1 的自检标准）
+    {资源名}Create:
+      type: object
+      description: '只列客户端可写字段；id/审计字段由服务端生成'
+    {资源名}Page:
+      type: object
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/{资源名}' } }
+        total: { type: integer }
+  responses:
+    BadRequest:
+      description: '参数不合法（含字段级校验失败）'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Unauthorized:
+      description: '未认证或令牌过期'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: '资源不存在或无权访问'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Conflict:
+      description: '与现有资源冲突（如唯一键重复）'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    ServerError:
+      description: '服务端异常；对外只回 code + traceId，不回栈信息'
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }

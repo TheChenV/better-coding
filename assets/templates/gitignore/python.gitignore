@@ -1,0 +1,42 @@
+# Python 栈（叠在 common.gitignore 之上）
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 虚拟环境（务必忽略：路径写死，换机即坏）
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# 测试与类型检查缓存
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+
+# 本地数据库与转储（含凭据风险，绝不入库）
+*.sqlite3
+*.db
+dump.sql
+local.properties

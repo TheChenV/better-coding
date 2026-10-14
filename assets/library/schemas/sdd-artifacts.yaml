@@ -1,0 +1,244 @@
+# Schema: sdd-artifacts
+# 声明式 artifact 依赖图（母本：AINative spec-driven.yaml 的 unlocks/requires 状态机）
+# 适配 better-coding 9 环节产物链：mrd → prd → arch → spec 六件套 → tasks → prototype → code → test-report → deploy-record → iteration
+#
+# role: reference-only —— 本文件是 artifact 依赖关系的唯一权威源：
+#   1. 供 /harness-next 判定"当前已有哪些产物 → 下一环节/步骤做什么"（artifact 状态机：什么解锁什么）
+#   2. 9.0.0 起 modes/pipelines 渲染视图已删除（reference-only 死码），本文件是 artifact 依赖唯一源
+#   3. 不被运行时直接消费、不落盘项目 .qoder/、不计入 harness-verify Check 2 组件计数
+#
+# 字段说明：
+#   id           artifact 唯一标识（kebab-case）
+#   description  一句话职责
+#   stage        所属环节编号 01-09（Hooks 为横切层不占编号）
+#   outputPath   产物落盘路径模式（{占位} 由参数绑定表推导，禁编造）
+#   instruction  生成指令要点（完整契约以对应 skill 为准，此处不复制正文）
+#   template     依赖模板（对应 spec-templates/，即 manifest.specTemplates 字段）
+#   unlocks      本产物就绪后解锁的下游 artifact
+#   requires     本产物生成前必须就绪的上游 artifact
+#   main_gate    挂载的三道主门禁之一（spec / implement / release）
+
+name: sdd-artifacts
+version: "1.1"
+role: reference-only
+
+artifacts:
+  # ── 环节1 需求澄清 ──
+  - id: mrd
+    description: 市场需求文档（多应用合并一份；回答 WHY 与 MVP 边界）
+    stage: "01"
+    outputPath: docs/prd/MRD-{项目代号}.md
+    instruction: |
+      /create-proposal 步骤1（可配置多专家并行）产出。
+      8 章节齐备；>=3 量化目标；>=2 画像；>=5 端到端场景；模糊语 0；
+      能力域 Provider=Consumer 对称；砍到 MVP。
+      禁写模块拆分/架构分层/P99/QPS/SLA/API/数据模型（越界改前向引用）。
+    template: MRD-template
+    unlocks: [prd, prototype]
+    requires: []
+    main_gate: spec
+
+  - id: prd
+    description: 产品需求文档（按应用维度多份统一 PRD，每应用一份）
+    stage: "01"
+    outputPath: docs/prd/PRD-{应用}.md
+    instruction: |
+      /create-proposal 步骤2 产出。以冻结 MRD 为唯一上游；
+      每应用 PRD 含功能/模块/US/交互流程/验收；US 前缀 US-{APP}-{NNN}；
+      P0/P1 故事各>=2 条 Gherkin；P99/SLA/API/DTO 一律前向引用 ARCH；
+      Section4 交互流程是交互原型工程 1:1 基准。
+    template: PRD-template
+    unlocks: [arch, prototype]
+    requires: [mrd]
+    main_gate: spec
+
+  - id: prototype
+    description: 交互原型工程（仅 Full-Stack；独立可运行目录，非 PRD 子文档）
+    stage: "01"
+    outputPath: docs/prd/PRD-{应用}-交互原型/
+    instruction: |
+      /create-proposal 步骤3（ui-design skill）产出。
+      页面与 PRD Section4 1:1；默认 Vite+Preact+Tailwind+zustand；
+      原型(docs/)与生产(web/)分离。
+      自检：npm build + tsc --noEmit + lint 0 错；路由 100% 覆盖；异常分支可触达。
+      Backend-Only 应用状态=跳过，本 artifact 不生成。
+    template: null
+    unlocks: [code]
+    requires: [mrd, prd]
+    main_gate: spec
+
+  # ── 环节2 架构设计 ──
+  - id: arch
+    description: 架构设计文档 + ADR（选型/模块/数据流/部署容量）
+    stage: "02"
+    outputPath: docs/arch/ARCH-{项目代号}.md
+    instruction: |
+      /create-architecture 产出。C4>=L2（Mermaid）；每项选型>=2 候选对比；
+      >=2 篇 ADR（上下文/决策/后果）；含部署与容量规划、数据模型概要；
+      Full-Stack 须含前端与通信章节；S4 红队验证通过后冻结签批。
+    template: ARCH-template
+    unlocks: [spec-be, spec-fe, spec-api, spec-ddl, spec-test]
+    requires: [prd]
+    main_gate: spec
+
+  # ── 环节3 模块设计（复数单元：按批次驱动、逐模块产出六件套）──
+  - id: spec-be
+    description: 后端模块设计（按批次驱动、逐模块落盘；模块级照单施工依据）
+    stage: "03"
+    outputPath: docs/spec/{NNN}-{slug}/SPEC-BE.md
+    instruction: |
+      按批次产出，逐模块落盘。/create-module-spec 产出；分层与职责边界；
+      异常场景四类覆盖；与 ARCH 分层一致；API 契约先行——接口定义以 spec-api 为唯一权威源。
+    template: SPEC-BE-template
+    unlocks: [tasks]
+    requires: [arch, prd]
+    main_gate: spec
+
+  - id: spec-fe
+    description: 前端模块设计（按批次驱动、逐模块落盘；仅 Full-Stack，只写独有决策）
+    stage: "03"
+    outputPath: docs/spec/{NNN}-{slug}/SPEC-FE.md
+    instruction: |
+      按批次产出，逐模块落盘。/create-module-spec 产出；组件划分/状态管理/路由与数据流；
+      只写前端独有决策（共用内容引用 spec-api 不重复）；Backend-Only 跳过。
+    template: SPEC-FE-template
+    unlocks: [tasks, spec-ui]
+    requires: [arch, prd]
+    main_gate: spec
+
+  - id: spec-api
+    description: API 契约（OpenAPI 3.x YAML，前后端共用同一份）
+    stage: "03"
+    outputPath: docs/spec/{NNN}-{slug}/SPEC-API.yaml
+    instruction: |
+      /create-module-spec 产出。每 API 含路径/方法/请求响应/错误码/示例；
+      operationId 齐备；DTO 在 components/schemas 定义、paths 用 $ref；
+      Provider 与 Consumer 引用同一份契约，联调/集成测试以此为 0 diff 基准。
+    template: SPEC-API-contract.yaml.template
+    unlocks: [tasks]
+    requires: [arch]
+    main_gate: spec
+
+  - id: spec-ddl
+    description: 数据库 DDL（可直接执行的 .sql）
+    stage: "03"
+    outputPath: docs/spec/{NNN}-{slug}/SPEC-DDL.sql
+    instruction: |
+      /create-module-spec 产出。CREATE TABLE + 索引 + 约束 + 注释；
+      建表前含 drop-if-exists；命名/审计字段/逻辑删除/乐观锁/类型映射遵循模板。
+    template: SPEC-DDL-template.sql
+    unlocks: [tasks]
+    requires: [arch, spec-be]
+    main_gate: spec
+
+  - id: spec-test
+    description: 测试设计（测试计划：P0-P2 场景 + 质量门禁阈值）
+    stage: "03"
+    outputPath: docs/spec/{NNN}-{slug}/SPEC-TEST.md
+    instruction: |
+      /create-module-spec 产出。覆盖所有 P0/P1 US；含正常/异常/边界；
+      质量门禁阈值已定义（E2E P0=100%/P1>=95%/契约 0 diff；覆盖率数值以本产物第 4 章（质量门禁 / 4.2 覆盖率要求）定稿值为唯一口径，模板初值须被项目核对后沿用，其它章节不得另写一套）；
+      是环节7 S1 测试计划与 S2 执行的直接输入。
+    template: SPEC-TEST-template
+    unlocks: [tasks]
+    requires: [arch, prd]
+    main_gate: spec
+
+  - id: tasks
+    description: 可执行任务清单（按模块分组、含优先级与依赖）
+    stage: "03"
+    outputPath: docs/spec/{NNN}-{slug}/tasks.md
+    instruction: |
+      /create-module-spec 产出。按依赖排序；每任务含文件路径/实现要点/幂等限流降级关注点；
+      Markdown 复选框跟踪；粒度可独立实现与验证；同应用串行、跨应用并行。
+    template: task-template
+    unlocks: [code]
+    requires: [spec-be, spec-api, spec-ddl, spec-test]
+    main_gate: spec
+
+  # ── 环节4 UI 设计（路径分叉）──
+  - id: spec-ui
+    description: UI 设计规范（编码前冻结界面结构与交互；四态流转不可漏）
+    stage: "04"
+    outputPath: docs/spec/SPEC-UI-{模块名}.md
+    instruction: |
+      /ui-design 产出。定稿记录与还原核对记录都写进 G2/G3 契约；
+      失败态/空态不可漏；每页布局与组件归属；关键交互四态流转；与 spec-fe 数据对应。
+      最高优先级 Guardrail：用户提供设计工程时前端实现必须与设计工程完全一致。
+      纯后端应用状态=跳过。
+    template: SPEC-UI-template
+    unlocks: [code]
+    requires: [spec-fe, prototype]
+    main_gate: implement
+
+  # ── 环节5 开发实现（路由+复数）──
+  - id: code
+    description: 工程代码 + 单元测试 + 迁移脚本（如涉及）
+    stage: "05"
+    outputPath: web/{应用}/ 或后端工程目录
+    instruction: |
+      /implement-feature 产出。
+      按 SPEC 逐层实现（数据-领域-服务-接口），每层验证通过再进下一层；
+      不写 SPEC 外功能；前端五阶段渐进（框架-视觉-交互-数据-优化）；
+      FE 加载 spec-ui 设计系统；自检：编译/测试/Lint 通过；无硬编码密钥。
+    template: null
+    unlocks: [test-report]
+    requires: [tasks, spec-ui]
+    main_gate: implement
+
+  # ── 环节6 联调（复数；联调记录为过程性产物不单独设节点）──
+  # 联调门禁语义挂在 code -> test-report 边的 step_gate 上。
+
+  # ── 环节7 集成测试（复数）──
+  - id: test-report
+    description: 集成测试报告 + Ship Decision（GO/NO-GO）
+    stage: "07"
+    outputPath: docs/test/spec-{业务}-测试报告.md
+    instruction: |
+      /test-runner（批量 /run-tests）产出。SPEC-TEST 用例全执行且关键路径达标；
+      契约测试 0 diff；覆盖率达 SPEC-TEST 第 4.2 章定稿阈值（不在本报告另立数字）；无 Flaky；失败有根因；Must Fix=0；
+      S6 输出 GO/NO-GO 决策与回滚方案。
+    template: null
+    unlocks: [deploy-record]
+    requires: [code, spec-test, spec-api]
+    main_gate: implement
+
+  # ── 环节8 部署上线 ──
+  - id: deploy-record
+    description: 上线记录（含回滚命令）+ 健康检查证据
+    stage: "08"
+    outputPath: docs/spec/上线记录-{日期}.md
+    instruction: |
+      /deploy（发布配 /release）产出。上线清单逐项通过；健康检查通过；
+      回滚命令已验证可行（无回滚预案阻断）；生产无实验性配置与调试代码；
+      敏感值一律环境变量；破坏性操作二次确认。
+    template: null
+    unlocks: [iteration]
+    requires: [test-report]
+    main_gate: release
+
+  # ── 环节9 迭代回顾（分支）──
+  - id: iteration
+    description: 迭代变更产物 + retrospective 经验条目
+    stage: "09"
+    outputPath: docs/changes/{kebab-name}/
+    instruction: |
+      手册 9·1 分诊产出。三分支路由（新功能-/spec-delta 回环节1 走全链；
+      缺陷-bugfix 7 步含 Prove-It；技术重构-/code-simplification 行为不变）；
+      收尾 /retrospective 经验沉淀写 incidents；
+      变更范围最小化；产物 Delta 对齐、版本号语义化、历史归档可回滚。
+      新功能分支回环：proposal Delta 重新解锁 mrd/prd 的增量更新。
+    template: null
+    unlocks: []
+    requires: [deploy-record]
+    main_gate: implement
+
+# apply：产物链的执行推进语义
+apply:
+  requires: [tasks]
+  tracks: docs/spec/{NNN}-{slug}/tasks.md
+  instruction: |
+    读取上下文文件（SPEC 六件套 + ARCH + PRD），逐步完成 pending 任务，边做边标记 [x]。
+    遇到阻塞或需要澄清时暂停。
+    /harness-next 依据本依赖图判定下一环节/步骤：
+    扫描各 artifact 的 outputPath 是否已就绪 → 找到最早未就绪且 requires 全满足的 artifact → 即下一步。

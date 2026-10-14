@@ -1,0 +1,85 @@
+{
+  "_comment": "技术栈 → 命令映射表。由 harness-continuous-sync 规则在技术栈确定后自动读取，用于指令集与 /harness-next 速查的真实命令预填（教程已压缩为流程地图，不再含提示词模板）。",
+  "_usage": "AI 匹配项目技术栈后，查找对应栈的命令，预填到指令集与 /harness-next 速查的命令预填项。",
+  "_lintOwner": "lint 门禁的唯一承担者是 L0 hook pre-commit-lint（执行体在 .qoder/scripts/harness.mjs 的 hookPreCommitLint：按项目栈探测并直接运行该栈的 linter，首个命中即止，探测不到即显式打印「跳过（不阻断）」）。本文件各栈的 lint 字段只用于指令集与 /harness-next 速查的命令预填，v9.0.0 起不再充当任何 hook 的执行体来源，阶段 B 也不为技术栈注册 hook。",
+  "_skeletonSkill": "skeletonSkill = 该栈「模块骨架/脚手架」生成技能的派发目标（自 v9.0.0 起：原 L0 skill create-module-skeleton 已下沉到 L1，栈无关的门禁在本文件的 _skeletonContract，跨栈结构由各栈 scaffold skill 承载）。取值是 L1 skill 目录名（调用时一律用目录名）；\"none\" 表示该栈无 scaffold skill，按 _skeletonContract 的通用门禁以项目既有结构为基准生成，不得凭空发明目录约定。",
+  "_skeletonContract": "模块骨架生成的跨栈通用门禁（唯一规范，五栈 scaffold skill 均指回此处）：① 生成前确认模块信息四要素——模块名称、模块职责（一句话）、所属层级（接入/应用/领域/基础设施）、依赖模块，缺一先问不许猜；② 生成前先读 AGENTS.md 的分层规范与编码规范段（以及 project-layer-dependency / project-coding-standards 类规则），目录与命名以项目既有约定为准，而不是以本栈 scaffold skill 的示例为准；③ 骨架不是空壳——必须包含必要配置与最小实现，做到最小可编译、可启动，只留占位目录不算交付；④ 生成后输出骨架清单（模块信息 / 生成的文件路径表 / 待实现功能 / 下一步），并跑该栈 build 命令验证编译通过。",
+
+  "python": {
+    "skeletonSkill": "python-fastapi-scaffold",
+    "build": "（Python 无需构建）",
+    "test": "pytest",
+    "lint": "ruff check .",
+    "start": "uvicorn main:app --reload",
+    "matchSignal": ["requirements.txt", "pyproject.toml", "setup.py", "FastAPI", "Django", "Flask"]
+  },
+  "python-django": {
+    "skeletonSkill": "none",
+    "build": "python manage.py collectstatic",
+    "test": "python manage.py test",
+    "lint": "ruff check .",
+    "start": "python manage.py runserver"
+  },
+  "typescript": {
+    "skeletonSkill": "ts-node-scaffold",
+    "build": "npx tsc",
+    "test": "npx jest",
+    "lint": "npx eslint .",
+    "start": "npx ts-node .",
+    "matchSignal": ["tsconfig.json", "TypeScript"]
+  },
+  "nodejs": {
+    "skeletonSkill": "none",
+    "build": "npm run build",
+    "test": "npm test",
+    "lint": "npx eslint .",
+    "start": "npm run dev",
+    "matchSignal": ["package.json"]
+  },
+  "react": {
+    "skeletonSkill": "react-page-scaffold",
+    "build": "npm run build",
+    "test": "npm test",
+    "lint": "npx eslint .",
+    "start": "npm run dev",
+    "matchSignal": ["react", "React"]
+  },
+  "java-spring": {
+    "skeletonSkill": "java-module-skeleton",
+    "build": "mvn compile",
+    "test": "mvn test",
+    "lint": "mvn checkstyle:check",
+    "start": "mvn spring-boot:run",
+    "matchSignal": ["pom.xml", "build.gradle", "Spring Boot", "Spring"]
+  },
+  "java-spring-gradle": {
+    "skeletonSkill": "java-module-skeleton",
+    "build": "gradle compileJava",
+    "test": "gradle test",
+    "lint": "gradle checkstyleMain",
+    "start": "gradle bootRun"
+  },
+  "go": {
+    "skeletonSkill": "go-api-scaffold",
+    "build": "go build ./...",
+    "test": "go test ./...",
+    "lint": "golangci-lint run",
+    "start": "go run .",
+    "matchSignal": ["go.mod", "Go"]
+  },
+  "vue": {
+    "skeletonSkill": "none",
+    "build": "npm run build",
+    "test": "npm run test:unit",
+    "lint": "npx eslint .",
+    "start": "npm run dev",
+    "matchSignal": ["vue", "Vue"]
+  },
+  "_fallback": {
+    "_comment": "未匹配到已知技术栈时，保留教程中的原文不替换",
+    "build": "【__已预填：构建命令，待技术栈确定后自动填充__】",
+    "test": "【__已预填：测试命令，待技术栈确定后自动填充__】",
+    "lint": "【__已预填：Lint 命令，待技术栈确定后自动填充__】",
+    "start": "【__已预填：启动命令，待技术栈确定后自动填充__】"
+  }
+}

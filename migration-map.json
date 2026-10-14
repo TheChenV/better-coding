@@ -1,0 +1,1143 @@
+{
+  "version": "9.12.0",
+  "fromVersion": "4.3.0",
+  "_comment": "v3.3.0 → v4.0.0 → v4.1.0 → v4.2.0 → v4.2.1 → v4.3.0 → v7.0.0 → v7.1.0 → v7.2.0 → v7.3.0 → v7.4.0 → v7.4.1 → v8.0.0 迁移映射。migrations 数组前半为 v4.0.0 条目（_of: 4.0.0，适用于 profile.skillVersion <4.0.0 的项目），中段（_of: 4.1.0）为 v4.1.0 条目（进化机制重定向 + 交互层重构的结构性收口），末段前组（_of: 4.2.0）为 v4.2.0 条目（文档体系版：新增全流程教程 + 产出路径口径修正），中后组（_of: 4.2.1）为 v4.2.1 条目（入口模型重构：两级入口），后组（_of: 4.3.0）为 v4.3.0 条目（入口模型终版：子命令路由作废，装配/升级命令化），末组前段（_of: 7.0.0）为 v7.0.0 条目（可视化重构：提示词总表母本 + Canvas 衍生视图 + /live-refresh 命令），中后段（_of: 7.1.0）为 v7.1.0 条目（提示词完整性加固），次末组（_of: 7.2.0）为 v7.2.0 条目（画布迁址 + 拓扑空转拦截），末组（_of: 7.3.0）为 v7.3.0 条目（可视化载体换轨：canvas → 仓库内自包含 HTML，解决面板难找问题），最后组（_of: 7.4.0）为 v7.4.0 条目（面板换轨：手写 SVG + DASH_DATA → Mermaid+ELK 双资产拼接 + SYNC_DATA 契约，节点新增状态徽标），收尾组（_of: 7.4.1）为 v7.4.1 条目（库级教程清理：删除不被运行时消费的 references/大型项目全流程教程.md 并清理 README/manifest 悬空引用，历史条目保留、组件计数不变），v8.0.0 组（_of: 8.0.0，共四条：add / rewrite / change / profile-field）为 SDD 融合重构条目（骨架 8 环节单步骤 → 9 环节 × 多步骤子块（各自可复制提示词 + 形态建议 + next_hint）；环节 1 可配置专家团产 MRD → 按应用多份统一 PRD → Full-Stack 交互原型工程；环节 4 UI 四路径含千问办公 QwenWork；PROJECT-LIVE.md 6 列 → 7 列含 Qoder 形态列与环节主行/缩进步骤子行；新增 schemas/sdd-artifacts.yaml 声明式 artifact 依赖图（pipelines/modes 降级为其渲染视图，消除双源）；组件增量至 rules16/skills31/agents8/commands9/hooks9/specTemplates11），8.1.0 组（_of: 8.1.0）为环节3 模块设计批次化条目（批次拆行/占位→替换/Check 7c 全量行校验/ARCH 1.6 节），8.1.1 组（_of: 8.1.1，共两条：add / change）为选择卡选项质量防线条目（新增 ask-card-option-quality 规则 + ask-card-guard hook 修复「选项值盲选」Bug，组件计数 rules 16→17、hooks 9→10），8.1.2 组（_of: 8.1.2，共一条：add）为面板构建脚本化条目（新建 scripts/build-panel.ps1/.sh 修复 -Command 内联拼接失败与 ripgrep 超长行假阴性，拼接与 SYNC_DATA 更新口径脚本化，harness-verify 仅注释事实修正，组件计数不变）。8.1.3 组（_of: 8.1.3，共两条：change / remove）为 AGENTS.md 单一事实源改造条目（口径收敛为根目录单一事实源 + harness-verify Check 4 主判定对象反转且缺失/缺节升 FAIL + 删除 session-start-context 的 .qoder 副本 fallback + 移除项目 .qoder/AGENTS.md 落盘副本，remove 条目内置「先补根副本→再删副本→重跑 verify PASS」顺序以防 stop-verify 唤醒循环），8.1.4 组（_of: 8.1.4，共一条：change）为选择卡均匀劣化漏检盲区修复条目（二轮 Bug：3 选项全权衡长句且含 Star/Memos 拉丁 token 使 H4 锚点判定 false、H6 与单项违规双落空放行 = 全盲选零拦截；ask-card-option-quality 四字段中间态升级为强制两阶段 + ask-card-guard hook 新增 H7 均匀实质劣化检测（v1.0.0→v1.1.0）；组件计数不变）。8.1.5 组（_of: 8.1.5，共一条：change）为选择卡可见字段承载契约适配条目（Qoder 渲染事实 options[].label 不渲染进 DOM → description【候选值】前缀 + question 末尾值清单双通道，hook 校验扩至 H1-H9 + hook 执行修复，create-proposal/create-architecture/planner/briefing-skeletons 三副本同步，组件计数不变），8.1.6 组（_of: 8.1.6，共一条：change）为环节 1·1 专家团口径修正条目（TL=主 Agent 兼任、默认 6 专家设定内联提示词模板、选择卡契约细节从提示词移除下沉至 create-proposal 编排五要素与 ask-card-option-quality 规则，SKILL.md 版本由 8.1.4 补齐至 8.1.6，组件计数不变），8.2.0 组（_of: 8.2.0，共一条：change）为骨架压缩与口径同步条目（briefing-skeletons.md 84→29 步重写、PROJECT-LIVE.md 模板同代、prototype-scaffolding/ui-design/implement-feature/create-proposal 四 skill 对齐新编号、sdd-gates-checklist 门禁检查项下沉，组件计数不变），8.2.1 组（_of: 8.2.1，共一条：change）为最小必要修复条目（对抗审计后从 v8.3.0 收敛，0 新增资产；stop-verify hook 无 BOM 写入修复跨平台故障链、回写归因精确化、telemetry 取值钉住、编码指引单一事实源化、冗余指令删除、Linux/Mac 口径统一、A.2 内嵌参考脚本、面板标题变更程序成文、体积常量改量级表述，组件计数不变），8.3.0 组（_of: 8.3.0，共两条：add / change）为阶段 A 加固条目（新增 phase-a-init.ps1/.sh 阶段 A 执行器与 harness-profile.template.json 共 3 个资产；提问优先级裁决修「零提问 vs 确认后执行」规则冲突；复制前 SHA256 比对防静默覆盖用户定制；A.2 需重抄正文物化为脚本；对账排除 .qoder/skills/better-coding 自身；Check 1 占位符扩 {{TOKEN}} 且模板机械字段 token 化；新增 Check 7d live_profile_drift（FAIL 级）；stop-verify hook 改文本级定点回写 + 写前回读校验；AI 现写脚本纪律成文；能力计数单源化；组件计数不变（finalCounts 不变）），8.4.0 组（_of: 8.4.0，共一条：change）为提示词手册自包含升级条目（新增 briefing-skeletons『提示词自包含契约』：六段式 + 内容归属矩阵 + 用户语言禁词表；29 步提示词全量重写；1·1 专家设定回归内联（create-proposal 表降为兜底源）；harness-verify 双平台 Check 7c 多行解析 + 新增 7e/7f/7g；0 新增资产，组件计数不变），8.5.0 组（_of: 8.5.0，共一条：change）为扩展名换轨与 L0 规则层收敛条目（44 个 rules/*.mdc → *.md、documentation-sync 并入 spec-before-code、mock-switch-convention 下沉 integrate-modules，rules 17→15、落盘 18→16），9.0.0 组（_of: 9.0.0，共一条：remove）为脚本层单语言化条目（13 个 hook 孪生 + harness-verify/build-panel/phase-a-init 三对 .ps1/.sh 全部删除，hook 与脚本只有一个 Node 入口；scripts 自此进 finalCounts=5）。fromVersion 表示本映射文件编制时的基准版本；条目实际是否执行按版本号逐项判定（升级回源协议 U.2），即仅执行归属版本高于项目 profile.skillVersion 的条目（如项目仍处 6.0.0，则仅执行 7.0.0 及以后条目）。升级回源协议（references/upgrade-protocol.md U.2/U.4）消费本文件：按 migrations 逐项列出动作 → 用户确认 → 执行 → harness-verify 校验终值。升级前 .qoder/ 备份至 .qoder/.backup/（沿用现有协议）。",
+  "migrations": [
+    {
+    "_of": "9.12.0",
+    "type": "change",
+    "assets": [
+      "性质声明：本版是**缺陷修复批**，来自《better-coding-评估报告.md》全量 60 项中的第一期 52 项（致命 1 + 高危 5 + 中危 6 + 低危 12 + 文档账实 22 + 内容互斥 6 + 决策删除 1 + 结构性披露 2 + 报告自修 3 + 实施期新增 N-1/N-2/N-3）。零新增判据、零新增组件维度、零阈值改动——8000/45KB/160-1200/900-300 与 30000ms 一个没动；步骤提示词正文一字未加（1·1 已 1160/1200）。",
+      "P0-1（唯一致命项）harness-verify 的 prototype_visual_floor 里 package.json 裸 JSON.parse：一份坏 package.json 让整条判据抛出、连带 46 行输出全部丢失（实测 status 行与判据行总数 = 0），等于一个无关文件的字节问题击穿整个门禁系统。现 try/catch 收口，解析失败降级为「改按 <svg> 计数」并把警告写进**该行的 detail 而不是 hits**（免得 JSON 病伪装成视觉缺陷），行尾追加「本行是未验证不是已通过」。🔴 这一类「未全部验证」的措辞纪律是本库自订的，本批全程遵守",
+      "P0-2 numbered-workflow 的 --workflow 唯一模糊命中分支缺失：all.filter 返回数组，命中 1 条时既不 fallthrough 也无 return，`hit.slice(0,3).join('、')` 在 undefined 上抛 TypeError——用户写 `01` / `create-directories` 这类**恰好唯一**的合法简写时，看到的是崩溃堆栈而不是执行。补 `if (Array.isArray(hit) && hit.length === 1) return hit[0];`；实测 01 / create-directories / 01-create-directories 三种写法全部正确解析",
+      "C组 中危 6：C1 相对 targetDir 双层嵌套（段 C 以 cwd=项目根 执行落盘件，而落盘件 `R = p => path.join(VARS.targetDir, p)` 会二次解析——归一后的绝对路径必须**写回** values，只 resolve 不改写等于没修）；C2 substitute 增 carrier 参数，JSON 载体改用 `JSON.stringify(v).slice(1,-1)`（原 JS 口径把 `'` 转义成 `\\'`，在 JSON 里是非法 escape，projectName 含撇号即被误报「栈计划解析失败」）；C3 🔴 **评估报告原建议 `shell:false` 经实测不可用**（Node v24/win32 下对 `.cmd` 垫片 spawnSync{shell:false} → EINVAL，而 binIn/which 按 PATHEXT 返回的正是垫片），改为路径双闸（越界 + shell 元字符）+ prettier 走 `process.execPath` 与 `prettier/bin/prettier.cjs` JS 入口，三条分支实跑验证（含 `&` 的文件名跳过且零执行、根外路径跳过、干净路径放行）；C4 panel.sha256 缺失时**照样**先存 .bak（`last && …` 让「没有戳」退化成「不保护」，而没戳恰恰无从判断是否被手改）；C5 logsDir 双口径按用户裁定**只补注释不改行为**；C6 retiredComponents 名单 1→9 项回填（原单靠 hc-tdd-cycle 一格，等于「>= 谓词看不见陈旧残留」这个结构性盲区只补了一格；九个名字已逐一实测在本库 assets/library 下不存在）",
+      "D组 低危 12（🔴 报告 chapter 八 原本一条都没给建议，是报告自身缺陷 R-1）：D1 文档漂移门禁改用 gitFace 逐级上溯 + 8000ms 超时（旧 `existsSync(root/.git)` 只看一层，monorepo 下 gitDecided 永假、精确判定退化成 7 天 mtime 猜测）；D2 pre-merge-review 的 `main/master` 硬编码改为 trunk 优先序（gitFace 早就探到了主干名，trunk 叫 develop 时两发 diff 全空、变更统计静默消失）；D3 manifest 裸 parse 改走 `die('manifest-invalid-json')`——🔴 该库有「原因枚举三处同批」纪律，故代码 + phase-a-checklist 枚举行 + A.5 白话表三处一并扩，`report_reason_coverage` 实测仍绿；D4 `stage_main_rows` / `md_escape_hazard` 补进 AUDIENCE.artifact（10→12，此前它们触发时掉进「未归类判据」点名）；D5 build-panel 的 .tmp 清扫加年龄过滤（>1h）并跳过本 pid——那是**用户级共享缓存**，无差别删光会毁掉另一个项目正在写的半成品（实测：2 小时前的被删、当下的存活）；D6 assertWritable 在 win32 上按小写比较（`.Qoder/` 变体实测已被拦）；D7 `--stack` 不再硬门槛（values.json 写了就够用，两处都写由既有一致性把关、两处都缺由 VAR_TABLE 报占位符）；D8/D9 两份栈计划的死引用（python 有 requirements 里的 fastapi 却无 `app = FastAPI()`，指 `main:app` 必然启不动；react 的 index.html 引 `/src/main.tsx` 而计划不产出它，且路由用 `lazy()` 无 Suspense 边界）——补件同时进 codeFiles **与 verifyPaths**，否则 04 号工作流验不到新文件；D10 harness-verify 未知旗标从静默忽略改为 exit 2（拼错 `--brief` 曾照样输出整表 PASS）；D11 删一个空语句体的 if；D12 🔴 `.gitattributes` 承重两行有 4 份硬编码而 manifest 自述「只在本文」——**不让钩子热路径运行时读 manifest**（用户级安装形态下 manifest 可合法缺席，读不到即 die 会把 pre-commit-lint 变成新故障源），改为给 `literal_single_source` 加第③段机检三份字面量与台账同值，并做反向验证：改台账一行 → 该判据当场红并点名三个文件",
+      "E组 内容互斥 6：E1 覆盖率七个值（60/70/75/80/85/90/100）定源 SPEC-TEST 第 4.2 章——🔬 实施后复扫发现真实落点有 **~20 处**（各栈 test skill、examples、run-tests），逐点重写属 P3-39 重构不属修缺陷，故改为在权威源本身加「单源声明」把 L0/L1 写死数字统一降格为「未定稿前的缺省初值」，1 处止住 20 处打脸；E2 错误信封四口径定源 SPEC-API，L0 改指向、SPEC-BE 表头注「逐字取自 SPEC-API」、L2 优先级声明上提文件头（🔴 实施中我先误写成「本文件 > SPEC-API」，与刚定的权威源互相打脸——正是本报告批评的缺陷型，当场纠正为 SPEC-API > 本文件 > L0）；E3 删孤儿 `spec-example.md`（🔴 报告与方案的路径都写错成 `assets/library/L2-project/`，实际在 **`assets/templates/L2-project/specs/`**；删前实测全库 0 引用）；E4 `ts-build` 令跑全库不存在的 `scripts/verify-build.mjs`，改为实测可跑的一行内联判定（dist 缺失 exit 1、有文件输出计数两分支已验）；E5 L0 函数 ≤50 行 ↔ react-component 150 行按测量对象分列；E6 java-spring-layer「Service 含所有业务逻辑」加三层/DDD 条件句",
+      "H组（用户裁定：删掉项目宪法模板并清掉相关描述）：删 `spec-templates/constitution-template.md`。🔴 **方案原写「7 处引用点」，实测 9 处**——漏掉的两处都比模板本身要紧：`sdd-gates-checklist.md:171` 是 release 门禁里一条**无人能勾**的可勾选项，`upgrade-protocol.md:22` 是升级协议里的模板计数。同批改 `L0_specTemplates` 与 `finalCounts.specTemplates` 11→10（两本台账同步、不动 migrations 历史条目）、phase-a-checklist 两处计数、phase-b-protocol 名单。反向确认 spec-aligned-review / sdd-artifacts / create-adr 均无对宪法的引用，不留悬指。🔴 存量项目 `docs/harness-templates/constitution-template.md` **不会被自动删除**：`component_counts` 用 `>=` 谓词，12 ≥ 10 照样 PASS ⇒ 升级后它是静默孤儿；处置见本条升级动作，**不自动删用户目录下任何文件**",
+      "B2/B2b 文档账实 22 项（含 MIT 正文 / NOTICE / 字体许可映射三件新增、rules 期望值 17 的算式订正、largeAssetGuidance 的实测字节与文件名订正、字体切片顺序、telemetry 三分区口径、prompt 长度死数字删除、块头跨行闭合、tools/ 标注等）+ 实施期新增 N-1（platform-profile 把平台**未实现**的 `scope` 当可用能力陈述——一手官方 skill 原文 \"A scope block is parsed, reported as a warning, and then ignored. Do not write one.\"，而方案初版照 phase-a-init 的宣称去补 scope 块，等于交付一份「看着生效、其实不改任何东西」的配置）与 N-2（规则 glob 的逗号多形态漏记；🔬 2026-10-14 用探针项目实测，宿主自写的加载记录显示 `**/*.qbeta, **/*.qgamma` 被正确拆开 ⇒ 16 条规则一直在正常注入，原「改成缩进列表」的判断作废）",
+      "N-3 字节卫生：`references/naming-convention.md` 与 `stage-agent-skill-map.md` 带 UTF-8 BOM 已剥除。🔴 值得记一笔的是**为什么报告没抓到**：本库 `byte_hygiene` 判据明确断言「BOM 0」，但它只在装机后的项目侧跑、从不回扫库自己，所以库内 BOM 一路绿灯到人工字节扫描才现形——判据设计正确、射程缺一半。库外扫描器 `tools-verify/check-bytes.mjs` 补这一格",
+      "F组 结构性披露 2：F1 `/harness-upgrade` 不再要求整读 227KB migration-map（≈72k token），配一条按 `_of` 抽取子集的一行命令。🔴 实施中实测出**比较器本身的坑**：把版本号当字符串比、或「各段连接后右补零」比，都会把 9.4.0 判成高于 9.10.0（命中 15 条含 9.1~9.5 全部历史）；正解是逐段补零到 3 位再比，四个基线（9.4.0/9.10.0/9.11.0/9.12.0）重验后收敛为 11/1/0/0 条。F2 `always_on_budget` 补 token 口径回显（CJK×1 + 其余×0.35，±10%）——**只加披露不改判定**，cap 仍按 body-chars 比",
+      "台账（🔴 本版真正的高风险项是记账本身——修缺陷的人最容易顺手新增脱账）：三处版本 → 9.12.0（manifest / SKILL.md metadata / migration-map），buildDate → 2026-10-14，migrations 85→86。**分发集 240 → 245**：+3 仓库卫生件（LICENSE / .gitignore / .gitattributes，公开发布所需；🔴 实测不进阶段 A 复制清单，每项目装配数仍 125）+3 许可件（ui-ux-pro-max 的 LICENSE/NOTICE/data/font-licenses-top60.csv）、−1 宪法模板、−1 spec-example.md，🔻 但台账宣称的 240 本身是旧的——v9.11.0 条目称「分发集 240 不变 / 零新增落盘件」，实际该批新增 `CHANGELOG.md`（自 manifest#description 析出）未入账，磁盘当时已是 241。按本库纪律**不回改历史条目**，在此校正。每项目装配落盘 `copied` 123 → **125**（宪法 −1、许可件 +3）；`skills-allfiles` 71 → 74；阶段 A 落盘 `docs/harness-templates/` 12 → 11；`L0_specTemplates` 与 `finalCounts.specTemplates` 11 → 10；`always_on_budget` 6266 → 6296 / 8000（+30 字，全批唯一动常驻面的一处，余量 1704）；`retiredComponents` 名单 1 → 9；`AUDIENCE.artifact` 10 → 12；die() 原因枚举与 A.5 白话表同步 +1。判据 **仍 46 条**（本批一条未增未删）",
+      "CHANGELOG.md:3 的出处声明失实（N-5，本版一并修）：原文称「本文件内容**逐字**来自 manifest.json 的 description 字段原值」，而实测 manifest#description 现为 85 字的库描述、不含任何版本史，CHANGELOG 的 v9.11.0 条目在 description 里一个字都找不到。该句只在「v9.11.0 之前」成立，现在它是一条活的假话——改口径为「v9.11.0 起本文件独立维护，description 已回归库描述」",
+      "存量项目升级动作：① 重跑阶段 A 或 /harness-upgrade，一次性回刷 `.qoder/scripts/`（harness.mjs / harness-verify.mjs / phase-a-init.mjs / build-panel.mjs 四件都有代码级修改）与 `.qoder/rules/`（code-complexity-limit / api-design-principles / ask-card-option-quality 三条改文）——只回刷脚本不回刷规则，或反之，都会让账实两侧各说各话；② 🔴 **可选清理**：`docs/harness-templates/constitution-template.md` 不会被自动删除（`component_counts` 的 `>=` 谓词天然看不见残留），请项目属主自行确认后手动删除，本库不代删用户文件；`docs/harness-templates/` 的期望数从 12 降到 11 后，留着它也只是多一个没人引用的模板；③ 跑 harness-verify 期望 `status: PASS`，重点看 `literal_single_source`（新增的行尾钉对账）、`retired_component_residue`（分母从 9 项里出）、`always_on_budget`（6296/8000）、`report_reason_coverage`（枚举与白话表两侧同步 +1）；④ `manifest-invalid-json` 是新原因，若项目侧文档抄过旧的原因枚举，需一并补该行；⑤ 已知局限如实登记：🔴 **本版仍只在 Windows 实测**（本机 win32 / Node v24.18，无 Linux/macOS 可跑，报告 chapter 六 的该标注无法由本批消除）；E1 的覆盖率单源化是「声明式」而非「机器可核对」，散写数字仍在 ~20 处里，真正抽成 manifest 结构化字段挂 P3-39；N-4（六份栈计划的版权行模板 `Copyright (c) __YEAR__-__DATE__` 渲染成 `2026-2026-10-14` 重复串，17 处命中）本版**未修**，属新发现待裁定"
+    ]
+  },
+    {
+      "_of": "9.11.0",
+    "type": "change",
+    "assets": [
+      "S0 口径纠偏（ui-design 保真度分层表 1·3 行的关注点列重写 + 新增界定行）：旧文「色彩粗粒度、图标占位、不涉品牌色」里的「图标占位」被真环境执行成 Unicode 字形顶替图标（原型 <svg> 出现 0 次、无图标库依赖，回收站用 ␡ 渲染成英文字面 DEL），而 ui-ux-pro-max 规则优先级 4 明写「应避免 emoji 当图标」——规则在场无人执行。现界定「低保真＝视觉决策尚未定稿，不是可以不好看」，并把步骤 P3 没有承担者的「美化不可省」换成六条底线 + 界面文案纪律，每条当场写明承担者（①-⑤ 机检 / ⑥ 与文案走收口卡）",
+      "S1 新增步骤 P2.5 取设计基调：读 PRD「视觉取值来源」行（v9.11.0 起该行才真被消费）→ 跑 ui-ux-pro-max 检索 --design-system --persist --output-dir 项目根 → 产 design-system/{项目代号}/MASTER.md（必须含 Color/Type/Layout 带 ASCII 框线图/Principles 四块，缺一即本步未完成），路径登记进既有 profile.knownDocs（不新增字段）。🔴 属主裁定优先于库推荐：实测库给 notebase 的奶油 #FFFBEB+琥珀 #D97706 正是上游设计 skill 点名的「AI 生成页默认特征 #1」，盲从即端出通稿；解释器禁 python3（Windows 商店别名退出码 49）、必带 -B、全不可用则降级直读 CSV 属设计内路径",
+      "S5 新增两维度投入度判定（P2.5 第 0 步）：体系底座（ui-ux-pro-max）恒开，独一性与文案按品类调档，信号混合或读不出品类 → 发选择卡问属主、**不设默认值**（撞「探测 ≠ 决策」）；结论含依据原话记 MASTER 顶部一行。刻意不新增判据——投入度是语义判断，撞 v9.4.0 R2「脚本不猜语义」。路由从旧版「品类二选一」改判为「两维度调权重」，依据是上游 frontend-design 新版实测（9390B/71 行，自带品类感知与「简报的话永远优先」），旧版那张二选一表对它不成立",
+      "S2 新判据 prototype_visual_floor（45→46，归 AUDIENCE.artifact 9→10）：一条判据机检八件（底线①真 SVG ②字阶≥4 ③间距阶≥4 ④a圆角阶≥3 ④b海拔阶≥2 ⑤正文 max-width 且两份交付物同宽 + 地板⑥焦点可见 ⑦有动效声明才要求 prefers-reduced-motion）。门控与 preview_self_contained 同形（无 预览.html 即 SKIP）以免初态自红；一律 Buffer 直读不走 readText 的 CRLF 归一；目录判定复用既有 isDir（新造的 isDirectory 重复定义已在实施中删除）。🔴 底线⑤写法必须三种都认（CSS max-width / JSX maxWidth / Tailwind max-w-*）——只认 CSS 会把正确做了的 Tailwind 项目误判为未做，bench 实跑复现并修掉",
+      "S3 入口唯一：a) plans/prototype.json 的 configs 补一份 vite.config.ts 含 base 相对值（默认 / 会让 dist/index.html 在 file:// 下把 /assets/* 解析到盘符根、双击必白屏），并登记进 verifyPaths 与 declChecks；02-write-configs 按 PLAN.configs 泛化写入故零脚本改动，存量项目重跑撞「已存在且不同」→ 不覆盖并 exit 1 属既有设计。b) 删 ui-design 宏步骤 4E 的「或直接双击入口 HTML」并写明禁令（该词全库无定义，字面最像入口的 index.html 必白屏）。c) 🔴 扩 preview_self_contained 扫描对象到原型目录下除 node_modules/dist 外的全部 .html 并新增绝对路径检测，**不新增判据行**——其报错文案本就写着「离线双击会白屏」，同症状拆两条会让一处病两处红；门控与判定强度一字未动",
+      "S4 新增 1·3 视觉收口卡（ui-design 步骤 P4）：3 张实拍截图 + 8 问逐条有结论 + 属主不合格时记「拒于第几问 + 原话」进 docs/项目交接.md，环节 4 Step 1 才读得到。动因是真环境两轮返工每轮判据全绿、系统里查不到属主拒过。🔴 明写不接受 AI 自评视觉已达标、不接受用 prototype_visual_floor 的 PASS 代替本卡。第 ⑥⑦⑧ 问一律走框外（母本 1·3 框内余量仅 88 字）",
+      "台账：manifest/migration-map/SKILL.md metadata 三处版本 → 9.11.0；README §八 现版本条目下移为历史。分发集 240、copied 123、componentCounts 六维、always_on_budget 6266/8000 全部不变（本批零新增组件、零新增落盘件、往常驻面零文字）；migrations 84→85。🔴 frontend-design 本体不入库：Apache-2.0 条款已补齐在场但 LICENSE 的 APPENDIX 被裁、无署名许可方，写不出真实 data-provenance.json——只吸收它的方法成库内纪律，挂账 D1；另挂 D2（Tailwind 内建字阶不加豁免）、D3（布局采方法弃模板）、D4（投入度判错无门禁可见）"
+    ]
+  },
+    {
+      "_of": "9.4.0",
+      "type": "change",
+      "assets": [
+        "S1 运行时门槛成文（SKILL.md 阶段 A 新增第 0 步 + 提问优先级裁决三类→四类）：以退出码探 node（禁止单用 command -v，本平台 python3 商店别名实测退出码 49 是前车之鉴），不达标即零落盘并发三选一卡；明写本库无 no-Node 降级路径。同时把「运行时缺失」列入允许发卡的第 ④ 类——否则与 P1 零提问互相拉扯（v8.x 踩过 P1/边界#4 同型冲突）",
+        "S2 真探活替换恒真行（phase-a-init + harness.mjs selftest + profile.env）：旧 `node=OK` 射程 0（脚本正跑在 Node 上）却占预检通过位。现改为不计数的自证行 + 一次 `spawn(process.execPath, [库内 harness.mjs, 'selftest'])` 真探活；刻意跑库内源文件而非 staging 副本（字节由 SHA256 记账保证等同），故门槛落在**任何写入之前** → 失败即目标项目零落盘（实测注入：阈值改 999 与 selftest 改 exit 3 两例均 PHASE-A-COPY-FAIL:runtime-too-old / :runtime-missing 且 .qoder 未创建）。原因枚举扩两条，**未新增第四个令牌**。装机事实记 profile.env（nodePath/nodeVersion/probedAt/selftestExit/nodeMinMajor），数值位不带引号以免占位串蒙混",
+        "S3 心跳判据加期限（harness-verify）：rules_loaded_stamp / verify_stamp 旧版无心跳即 `PASS (SKIP)` 永不红，等于把「宿主 spawn 不到解释器」这一整类故障（实测退出码 127，阻断契约只认 2 ⇒ 全部 hook 零拦截力且不报错）判成通过。现按装机时刻距今 > 24h 判 FAIL 并给「node 进系统 PATH → 重启 Qoder」处置；不用会话数计期（心跳本身就是会话计数源，无心跳时无从计数）。同批把「有心跳却无 verify.stamp」由 WARNING 升 FAIL（心跳存在 ⇒ 装机那会话的 Stop 早跑过，留痕缺席只能是 stop-verify 真没起来）——**收紧非放宽**。汇总新增 extra 行「已验 N｜未验证 M」，未验证不再与通过同色",
+        "S4 运行时前置写入 AGENTS 模板（assets/templates/AGENTS.md.template）：接手者不必到报错才知道框架靠 Node；阈值与 hook 数一律引用 manifest#runtime 与 settings.json，不在文档复制计数",
+        "S5 首次同步脚本化（phase-a-init 新增 firstSync() + AGENTS 模板标记注释 + sync-scope.scriptedFirstSync）：执行器在 S0 就 readdirSync 过根目录、却在 sync-scope 里宣布 derivable=['agents.projectStructure'] 然后派给 AI——实测代做净产出 1 字段 + 3 标签、代价约 25 次工具调用，而**改动前校验器已 36 项全绿**。现由脚本渲素树 + 记 profile(filled/history) + 写代做清单；`lastSyncSource` 保持 init（撤销旧实测中被改贴的 manual-refresh 假标签）。判定用模板里的 `<!-- harness:auto:projectStructure -->` 标记而非中文提示语（两处各写一份=第二事实源）。失败一律如实降级为「未代做」并落盘清单，不伪装完成。⚠️ spec 原列第三项「刷 footer 同步日期」实施时判为空动作（日期已由 token 注入），故不做也不声称",
+        "S6 三处文档同步 + 删除「养成习惯」理由（SKILL.md 步2 / phase-a-checklist A.4.5 / live-refresh 细则步骤1）：三处逐字同一句防过度泛化硬约束——只有「阶段 A 首次同步 + 空项目」允许脚本代做步骤 1 的确定性动作。原文「即使无项目信息也必须完整跑 3 步，为建立执行模式」已删；驱动力改由 6 类强制检查点 + sync-detector + Check 7d 三处已在场的机制承担，不靠初态陪跑",
+        "S7 三处不再落盘（phase-a-init 删 mkdir 两项 + 删 wiki_plan 复制块 + 防回潮哨兵；phase-a-checklist A.2 新增负清单）：docs/test/、references/ui/、.qoder/repowiki/wiki_plan.yaml 从未进过 A.2 清单/reconcile 8 维/36 判据（三处脱账），用户裁定删行为而非补记账。顺带消掉一个契约例外——wiki_plan 原为直接 copyFileSync 到目标、绕过 staging 与原子换名。模板留库（唯一带平台约束的 wiki 样板）。⚠️ 哨兵按实施纠正设计：只判**本次是否创建**（基线快照取在任何写入之前），spec 原写「磁盘终态存在即 FAIL」会让「用户已产出 docs/test 后重跑初始化」判成假故障。实测注入：把 docs/test 加回预建清单 → PHASE-A-COPY-FAIL:stray-dir-residue；正常装机三路径均不存在",
+        "S8 涟漪分诊（run-tests / ui-design / harness-continuous-sync 各加统一句「不假定阶段 A 已建」）：实测 21 个引用文件里只有这 3 个是真写入方或以其有无为判据，另 2 个候选（harness-next、live-refresh 细则）是读判方——给读判方加「目录自建」反而误导，故 spec 原列 5 处收窄为 3 处（分诊规则：只看谁会往里写，不看谁提及路径）",
+        "S9 prompt_length_bounds 呈现纠偏（harness-verify）：旧 PASS 行把「14 项越出目标带」埋在括号中段，扫读者只见 PASS。现计数提到行首。判据等级一字未动（目标带仍非失败级、160/1200 硬带照旧）",
+        "S10 面板初态示意升机器判据（harness-verify Check 7 面板块）：细则一直要求「无 ARCH 时三图带『示意』前缀」却无人核。新增**逐图**判据（context/container/component 各段须含示意）——写成「总数>0」即假判据（初态实测 21 处，删一处永不红，与已删的 V2 恒真/V5 自证同型）。两个实测坑记进注释：成品里 `context:` 顶格无缩进（按两空格找会永久假红）、偏移不得手算",
+        "实施记录（口径冲突，未抹平）：① spec 预测 copied 122→121，实测仍 122——wiki_plan 从来不经 planned 通道，不计入 copied；② spec §5 预测「未验证 2」，实测 3（preview_self_contained 也是 SKIP）；③ `costBudget.perProjectAssemblyFiles` 保持 125 未改：按「排除库副本与 logs」口径复测仍 124，与「删一个文件应减一」不符 ⇒ 该指标的测量配方在库内从未成文，在口径成文前改数等于拿猜数当预算。三项均已回写实施 spec，未回头调低任何判据以求绿",
+        "存量项目迁移：重跑阶段 A 或 /harness-upgrade 回刷（AGENTS.md 需删旧节才能拿到「运行时前置 + 已填项目结构」；已存在 profile 不覆写 env，心跳期限改用回退链）。注意 S3 收紧后，若宿主确实 spawn 不到 node，两轮会话内 rules_loaded_stamp / verify_stamp 会由黄转红——那是本次整改要暴露的，不是新故障"
+      ]
+    },
+    {
+      "_of": "9.3.0",
+      "type": "change",
+      "assets": [
+        "S1 verify_stamp 口径统一（harness-verify）：无 SessionStart 心跳时判 SKIP 而非 WARNING，与 rules_loaded_stamp 同口径。实测阶段 A 当轮两行结论不一致，报告里唯一那条黄字就是它，用户会误判初始化没干净",
+        "S2 新建件时间戳归一（phase-a-init）：换名循环区分 isNew，仅对本次新建的文件 utimesSync 到运行时刻。此前 copyFileSync 保留库源老 mtime，docs/项目交接.md 显示模板生成日、按修改时间排序会被判「没生成」；覆盖件不在此列",
+        "S3 .gitattributes 回显理由（phase-a-init）：追加时打印 [gitattributes] 行并说明「非 git 仓库时为将来 git init 预备，防 core.autocrlf 改写 LF 脚本」。预检刚报「非 git 仓库跳过」紧接着静默写 git 配置文件，看着像自相矛盾",
+        "S4 脚本层改走 planFrameworkFile（phase-a-init）：普通路径的 templates/scripts/* 与 contract-drift.mjs 原用 planFile，「与库不同」被判用户定制并跳过 → 老用户升级后重跑阶段 A 仍跑旧校验器、新判据落不进去。改走框架通道（不同即按旧构建回刷），被换下内容由既有备份循环存进 .qoder/logs/backup/scripts/ 时间戳目录；deps-template.yaml 保持 planFile（它是 docs 下用户可改文档）",
+        "S5 sync-scope 条件化首次同步（phase-a-init + SKILL.md 步2 + phase-a-checklist A.4.5 + live-refresh 细则步骤1）：落 .qoder/logs/sync-scope.json，声明 derivable / notDerivable / aiDecided / skipRender / reason，只算脚本能判的磁盘事实。三步流程一条不删，只收渲染范围——空项目上手册 22 段无可绑定事实、面板三图无拓扑依据，读掉 81KB 手册再原样放回是纯仪式。落 logs 故不参与任何计数扫描、零台账影响",
+        "S6 build-panel 新增 V8 数据块 lint（仅更新模式）：对 AI 手写的三段 Mermaid 源码查 7 项。动机实测：V1/V3/V4/V6/V7 全是字符串级检查、不执行 JS，一个 rgba() 逗号色值或未闭合 subgraph 会让浏览器渲染成错误框而五项自验全绿；反之初始化当轮三图是模板占位图，开浏览器截图零信息量 → 撤销 phase-a-checklist A.4 与 live-refresh 里的浏览器人工核对项，改机器判。首发警告级不改退出码，零误报一轮后升 FAIL",
+        "S7 harness-verify 呈现三分面 + --brief：项目状态 11 项 / 文档产物 8 项 / 库一致性 17 项，末尾加一行分组摘要。一条判据都不跳（实测全跑 278ms，砍判据是白亏；延续 --fast 不跳判据那条诚实）。单行格式 name STATUS (detail) 逐字节不变，stop-verify 按它解析；未归类的新判据按库一致性计并点名，防止加了判据却漏归组",
+        "S8 事实源归属成文（README 新增〇节 + manifest.truthSources）：组件数量与版本看 manifest#componentCounts + migration-map#finalCounts；项目当前状态看该项目 .qoder/harness-profile.json；migrations 数组是历史留痕不答「现在是什么」。此前这三句在库里从未成文。明确禁止放进 docs/harness-templates/（该目录随阶段 A 落进每个用户项目，会造出第三份事实源拷贝）",
+        "S9 新增 literal_single_source 判据（跨文件字面量同源一致），作为「收重复表述」之前必须先装的报警器。实测抓出两件事：① SKILL.md 声称 componentCounts 与 finalCounts 两处一致，但两本账键名不同域（短键 rules/skills 对长键 L0_rules/L0_skills），此前这句话无法机器兑现 → 本行按显式映射表比 7 个共有维度；② 文档写 V1/V3/V4/V6/V7 而脚本已加 V8 即为漂移。本行所属的收敛已同批完成：对账判据先实测能红（它当场抓出 checklist 漏写 V8）再动正文，SKILL.md 由 210 行收敛到 153 行，删的六处重复各改为指向唯一权威文件（计数与版本→manifest/migration-map；步数与八标签→briefing-skeletons 与手册不变式；指令引用→新设「指令引用规范（全文唯一表述）」一节；执行器内部 13 步→phase-a-checklist；面板三事实→panel-engine-rebuild；3 步同步细则→live-refresh 细则节），frontmatter 的检索用描述保持原样未动",
+        "⑨ 附带修掉 stop-verify 的归因缺陷（实测中发现，非本批引入）：它用 tail(res.text,2000) 保尾截头，而 FAIL 行通常在前（maturity_vs_disk 是第 9 行）→ 模型收到的「请修复以下问题」整段是 PASS 噪声、真正的红被切掉。改为按行筛出状态行与全部 FAIL/WARNING 行、筛空才退回 tail 兜底。注入一条 FAIL 实测：修前 stderr 搜不到判据名，修后点名 maturity_vs_disk 且仍 exit 2",
+        "配套修掉一条本次自己引入的假绿：literal_single_source 原只认 vCheck 形式，而 V8 故意用 say() 打印（走 vCheck 会计入 vFailures 改退出码，与「首发警告级」矛盾）→ 检测落空、整条 ② 判据静默空转。改为同时认两种实现形状"
+      ]
+    },
+    {
+      "_of": "4.0.0",
+      "type": "remove-replaced-by-builtin",
+      "assets": [
+        "skills/systematic-debugging",
+        "skills/writing-plans",
+        "skills/verification-before-completion",
+        "skills/dispatching-parallel-agents",
+        "skills/write-skill"
+      ],
+      "builtinReplacement": [
+        "systematic-debugging",
+        "writing-plans",
+        "verification-before-completion",
+        "dispatching-parallel-agents",
+        "create-skill/writing-skills"
+      ],
+      "action": "删除项目 .qoder/ 中的复制版；指令集对应条目改为标注 'Qoder 内置'；systematic-debugging 场景叠加 references/debugging-supplement.md 补丁"
+    },
+    {
+      "_of": "4.0.0",
+      "type": "rename",
+      "pairs": {
+        "tdd-cycle": "hc-tdd-cycle",
+        "git-workflow": "branch-workflow",
+        "code-review": "spec-aligned-review",
+        "code-reviewer": "spec-review-agent",
+        "grill-with-docs": "precode-alignment"
+      },
+      "action": "重命名目录/文件并更新全部引用（agents 绑定/commands/指令集/教程/modes/pipelines）"
+    },
+    {
+      "_of": "4.0.0",
+      "type": "merge",
+      "assets": [
+        "skills/check-architecture"
+      ],
+      "into": "skills/architecture-governance",
+      "action": "删除被并方；/govern-arch 保留并吸收范围选择与 PASS/FAIL 报告格式"
+    },
+    {
+      "_of": "4.0.0",
+      "type": "rule-merge",
+      "assets": [
+        "rules/no-hardcoded-secrets.mdc"
+      ],
+      "into": "rules/code-security-basics.mdc",
+      "action": "密钥管理细则并入 code-security-basics（final 语义保留），删除原规则文件"
+    },
+    {
+      "_of": "4.0.0",
+      "type": "rule-trigger-downgrade",
+      "assets": [
+        "rules/api-design-principles.mdc",
+        "rules/documentation-sync.mdc",
+        "rules/git-commit-message.mdc",
+        "rules/code-comment.mdc"
+      ],
+      "action": "trigger: always_on → model_decision（常驻预算治理）"
+    },
+    {
+      "_of": "4.0.0",
+      "type": "hook-rewrite",
+      "assets": [
+        "hooks/*"
+      ],
+      "action": "全量覆盖（hooks 视为 SKILL 托管资产；v4.0.0 改为 stdin JSON 输入 + exit 2 阻断契约；新增 sync-detector 与 stop-verify；用户定制需迁移到 settings.json 附加项）"
+    },
+    {
+      "_of": "4.0.0",
+      "type": "add",
+      "assets": [
+        "skills/ui-design",
+        "skills/web-e2e-test",
+        "skills/context-handoff",
+        "skills/merge-conflicts",
+        "skills/quick-spec",
+        "skills/retrospective",
+        "skills/spec-delta",
+        "spec-templates/constitution-template.md",
+        "hooks/sync-detector.hook.ps1",
+        "hooks/stop-verify.hook.ps1"
+      ],
+      "action": "新增落盘；指令集与教程附录登记"
+    },
+    {
+      "_of": "4.0.0",
+      "type": "profile-field",
+      "assets": [
+        "harness-profile.json"
+      ],
+      "action": "新增 incidents: [] 字段（Ratchet 经验回流）；保留 history 与 sync 历史"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "remove",
+      "assets": [
+        "hooks/post-edit-format.hook.ir.yaml",
+        "hooks/pre-commit-lint.hook.ir.yaml",
+        "hooks/pre-merge-review.hook.ir.yaml",
+        "hooks/pre-push-test.hook.ir.yaml",
+        "hooks/session-start-context.hook.ir.yaml",
+        "hooks/block-dangerous.hook.ir.yaml",
+        "hooks/audit-log.hook.ir.yaml",
+        "hooks/sync-detector.hook.ir.yaml",
+        "hooks/stop-verify.hook.ir.yaml"
+      ],
+      "action": "删除项目 .qoder/hooks/ 中的 9 个 *.hook.ir.yaml（hook 契约已固化于 HOOKS-ASSEMBLY.md，不再需要中间表示文件）"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "remove",
+      "assets": [
+        "L1-techstack/java/hooks/checkstyle.hook.ir.yaml",
+        "L1-techstack/python/hooks/python-lint.hook.ir.yaml",
+        "L1-techstack/typescript/hooks/eslint-check.hook.ir.yaml"
+      ],
+      "action": "删除 L1 技术栈目录中的 3 个 *.hook.ir.yaml（多宿主契约已固化于 templates/hooks/HOOKS-ASSEMBLY.md，不再需要中间表示文件）"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "merge",
+      "assets": [
+        "commands/arch-check",
+        "commands/run-test",
+        "commands/git-commit-all"
+      ],
+      "into": [
+        "skills/architecture-governance",
+        "skills/run-tests",
+        "skills/branch-workflow"
+      ],
+      "action": "删除三个 command 文件，能力并入对应 skill；/别名兼容保留：/arch-check → /govern-arch、/run-test → /run-tests、/git-commit-all → /branch-workflow（Step 3a 快捷路径）"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "rewrite",
+      "assets": [
+        "docs/SDD-HarnessCoding教程.md",
+        "docs/TDD-HarnessCoding教程.md",
+        "rules/harness-continuous-sync.mdc",
+        "references/sdd-gates-checklist.md"
+      ],
+      "action": "双教程压缩为流程地图（删除挖空提示词回填段落，环节入口即 / 指令，命令预填项由 techstack-commands.json 统一跟踪）；双教程处置遵循升级回源协议「教程（SDD/TDD）」条款：未改 = 整份替换为新版流程地图，改过 = 保留用户版并在文末追加新版流程地图引用，校验对旧版教程降级为 WARNING 不 FAIL；harness-continuous-sync.mdc 由 6 步压缩为 3 步（废除原步骤 2「教程提示词回填」，另追加漂移提示处理与遥测记录）；sdd-gates-checklist.md 由 9 道门禁压缩为 3 道（spec/implement/release）"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "add",
+      "assets": [
+        "commands/harness-next.md",
+        "skills/harness-analyze/",
+        "hooks/sync-detector.hook.sh",
+        "hooks/stop-verify.hook.sh",
+        "settings.json: hooks.UserPromptSubmit 注册 session-start-context（once: true）与 sync-detector"
+      ],
+      "action": "新增落盘；指令集登记 /harness-next（commands）与 /harness-analyze（skills）；sync-detector 新增代码-规格漂移提示分支（不阻断）"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "rule-trigger-downgrade",
+      "assets": [
+        "rules/api-design-principles.mdc → model_decision",
+        "rules/architecture-continuous-governance.mdc → model_decision",
+        "rules/code-comment.mdc → glob",
+        "rules/code-complexity-limit.mdc → model_decision",
+        "rules/code-naming-convention.mdc → glob",
+        "rules/code-review-standards.mdc → model_decision",
+        "rules/code-security-basics.mdc → model_decision",
+        "rules/dependency-management.mdc → model_decision",
+        "rules/documentation-sync.mdc → model_decision",
+        "rules/error-handling-principles.mdc → model_decision",
+        "rules/git-commit-message.mdc → model_decision",
+        "rules/testing-principles.mdc → model_decision"
+      ],
+      "action": "12 条规则 trigger 由 always_on 降级；仅 spec-before-code、verification-with-evidence 保留 always_on（常驻预算治理）"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "change",
+      "assets": [
+        "manifest.json",
+        "skills/spec-delta/SKILL.md",
+        "hooks/sync-detector.hook.ps1 + .sh"
+      ],
+      "action": "manifest L0_commands 7→4；spec-delta 新增代码-规格双向收敛（converge）能力；同步机制新增遥测（profile.telemetry.ruleHits + incidents.refCount/lastUsed），规则生命周期由 /better-harness 审计时依据遥测执行（晋升/降级候选，不自动执行）"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "profile-field",
+      "assets": [
+        "harness-profile.json"
+      ],
+      "action": "新增 telemetry: { ruleHits: {} } 字段（规则命中计数，驱动规则生命周期审计）；保留 history 与 sync 历史"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "change",
+      "assets": [
+        "AGENTS.md.template",
+        "AGENTS.md 落盘位置",
+        "docs/spec/ 布局约定",
+        "harness-continuous-sync.mdc",
+        "phase-a-checklist.md"
+      ],
+      "action": "AGENTS.md 模板对齐 agents.md 开放标准（Setup 命令/代码风格/测试说明/禁区四段式主干 + Qoder 扩展段落）；落盘改为根目录 AGENTS.md（标准）+ .qoder/AGENTS.md（增强副本）双写同源，monorepo 就近优先；规格布局新增「一功能一目录」docs/spec/NNN-slug 约定（NNN 三位递增，兼容旧扁平文件，迁移自愿）；同步规则/阶段 A 清单/教程路径约定段/双教程同步措辞"
+    },
+    {
+      "_of": "4.1.0",
+      "type": "add",
+      "assets": [
+        "SKILL.md frontmatter metadata（version/author/tags）",
+        "SKILL.md Qoder 平台能力映射节（Quest/专家团/RepoWiki/会话衔接/模型切换/与 /better-harness 分工 + 7 agent 映射表）",
+        "harness指令集.md 2.6 平台能力分区（另为 2.2/2.3 加「以当前环境实际检测为准」标注）",
+        "session-start-context.hook.ps1 RepoWiki 提示（另改优先读取根目录 AGENTS.md）",
+        "phase-b-protocol.md B.5 内置能力检测可执行动作"
+      ],
+      "action": "新增落盘；平台能力类表述统一标注「以当前环境实际可用为准，可能随 Qoder 版本变化」；内置能力检测差异写入装配报告建议项不阻断"
+    },
+    {
+      "_of": "4.2.0",
+      "type": "add",
+      "assets": [
+        "docs/大型项目全流程教程.md（阶段 A 落盘至项目 docs/）",
+        "README.md（库级入口，不落盘项目）"
+      ],
+      "action": "新增大型项目全流程剧本教程：阶段 A 随双教程一并落盘至 docs/，升级处置适用教程处置条款（未改 = 整份替换、改过 = 保留 + 文末追加新版引用）；README.md 仅为 SKILL 库级入口文档，不复制到项目；manifest.json tutorialNames 扩充为 3 份文档，教程不计入组件计数（finalCounts 不变）"
+    },
+    {
+      "_of": "4.2.0",
+      "type": "change",
+      "assets": [
+        "skills/create-adr/SKILL.md（产出路径）",
+        "skills/create-module-spec/SKILL.md（产出路径）"
+      ],
+      "action": "产出路径口径修正：create-adr 产出由 docs/adr/ 改为 docs/arch/adr/（ADR 归入架构文档目录）；create-module-spec 产出由扁平 SPEC-*.md 改为 docs/spec/NNN-slug/ 六件套（SPEC-BE.md / SPEC-API.yaml / SPEC-DDL.sql / SPEC-FE.md / SPEC-TEST.md / tasks.md）；旧扁平布局兼容有效，迁移自愿"
+    },
+    {
+      "_of": "4.2.1",
+      "type": "change",
+      "assets": [
+        "SKILL.md（frontmatter description/argument-hint + 输入解析与路由节 + 子命令路由表）",
+        "README.md（5 分钟上手改 /better-coding init + 两级入口小节）",
+        "assets/templates/docs/harness指令集.md（1.0 SKILL 级入口安装即可用五行表）",
+        "assets/templates/docs/大型项目全流程教程.md（幕 0 输入与文末两级入口说明）",
+        "assets/library/L0-universal/commands/harness-next.md（头部兜底说明）",
+        "manifest.json（instructions 补子命令键 + triggerMode 两级入口）",
+        "references/phase-a-checklist.md（A.5 报告补装配后可用命令提示）"
+      ],
+      "action": "入口模型重构（两级入口）：一级为指令面板唯一注册斜杠指令 /better-coding，子命令 init/assemble/upgrade/next 以消息文本路由，自然语言别名等效，无参数/无法识别时按 .qoder/harness-profile.json 存在性自动判定绝不报错；二级为阶段 A 装配后的项目级命令（/start-dev、/check-project、/security-scan、/harness-next）与 skills 指令；旧式写法 /harness-init、/harness-assemble、/harness-upgrade 不再作为独立指令，仅作自然语言/消息文本匹配关键词保留（/harness-next 作为项目级命令的引用保持）；组件计数不变（finalCounts 不变）"
+    },
+    {
+      "_of": "4.3.0",
+      "type": "add",
+      "assets": [
+        "commands/harness-assemble.md",
+        "commands/harness-upgrade.md"
+      ],
+      "action": "新增两个项目命令文件落盘 .qoder/commands/（随阶段 A，升级回刷时补拷）；指令集 1.4 登记 /harness-assemble（阶段 B 演进式装配）与 /harness-upgrade（升级回源，定位已安装 SKILL 库读取对应协议执行）"
+    },
+    {
+      "_of": "4.3.0",
+      "type": "change",
+      "assets": [
+        "SKILL.md（删 argument-hint，输入解析与路由节改写为状态检测与入口，触发判定表更新）",
+        "manifest.json（instructions 删子命令键、triggerMode 改纯命令模型、L0_commands 4→6）",
+        "references/phase-a-checklist.md（A.2/A.4 commands 4→6，A.5 报告清单补两条）",
+        "assets/templates/scripts/harness-verify.ps1 + harness-verify.sh（Check 2 commands 期望计数 4→6）",
+        "README.md 与 assets/templates/docs/*（子命令/两级入口表述清零，命令清单表 6 条）",
+        "assets/library/L0-universal/commands/harness-next.md（头部兜底说明）"
+      ],
+      "action": "入口模型终版（纯命令模型）：作废 4.2.1 的 /better-coding 子命令文本路由（init/assemble/upgrade/next），/better-coding 回归纯安装/初始化入口（触发即执行阶段 A，等效自然语言“初始化 Harness”；裸调用/意图不明时按 .qoder/harness-profile.json 存在性做状态检测菜单，绝不报错）；装配与升级命令化（/harness-assemble → 阶段 B 演进装配、/harness-upgrade → 升级回源），命令文件随阶段 A 落盘 .qoder/commands/；manifest L0_commands 4→6，harness-verify 期望 commands 计数 4→6；旧式写法 /harness-init 不再保留任何引用，/harness-assemble、/harness-upgrade 由自然语言关键词升格为独立项目命令"
+    },
+    {
+      "_of": "7.0.0",
+      "type": "rewrite",
+      "assets": [
+        "docs/PROJECT-LIVE.md"
+      ],
+      "action": "指导中心结构迁移（v6 6 分区 → v7 4 分区 + 页脚）：按新模板重建分区骨架；旧 current 区即用简报数据与 paradigm 区环节信息并入新 workflow 提示词总表（8 环节含义+状态+可复制提示词）；旧 topology 分区内容迁入 Canvas 数据块（仅当有 ARCH 依据时，禁止编造）；新增 telemetry 分区（← profile）；context 分区内容与手工修正完整保留；分区标记改为 workflow/snapshot/telemetry/context/footer"
+    },
+    {
+      "_of": "7.0.0",
+      "type": "add",
+      "assets": [
+        "docs/PROJECT-LIVE.canvas.tsx（assets/templates/docs/ 同名模板）",
+        "commands/live-refresh.md"
+      ],
+      "action": "新增落盘：Canvas 可视化衍生视图（架构拓扑 C4 三层 + 技术栈详情，DASH_DATA 数据块由同步再生成，拓扑三层初态为空态引导）+ 第 7 个项目命令 /live-refresh（手动兜底刷新，本质=手动执行一次 3 步同步）；画布顶部小字提示手动刷新方式"
+    },
+    {
+      "_of": "7.0.0",
+      "type": "change",
+      "assets": [
+        "rules/harness-continuous-sync.mdc（步骤 1 增 Canvas DASH_DATA 再生成 + 提示词总表渲染规格，简报渲染纪律改提示词渲染纪律，同步报告增画布行）",
+        ".qoder/briefing-skeletons.md（整体回刷：单环节简报引擎 → 全量提示词总表逐行渲染引擎，补含义说明列与多模块拆行规则）",
+        "scripts/harness-verify.ps1 + harness-verify.sh（Check 7 改校 5 分区标记 + workflow mermaid/提示词代码 + canvas DASH_DATA 标记；Check 7b 拓扑滞后改扫画布空态；Check 2 commands 期望计数 6→7）",
+        "SKILL.md（frontmatter/概述/触发判定表/同步骨架/边界/完成自检）",
+        "README.md（能力表/承诺表/文档地图/上手指南/版本号）",
+        "manifest.json（version 7.0.0、commands 数组 +live-refresh、L0_commands 7、guidanceFiles 增画布、guidanceSync/continuousSync targets）",
+        "references/phase-a-checklist.md（A.2 落盘清单 + A.4 校验 + A.5 报告）",
+        "references/phase-b-protocol.md（B.5/B.6 分区口径）",
+        "references/upgrade-protocol.md（PROJECT-LIVE.md 分区级处置条款 + 画布处置）",
+        "commands/harness-next.md（导航输出改引用提示词总表）",
+        "AGENTS.md.template（可用能力段指向提示词总表与画布）"
+      ],
+      "action": "全套联动回刷（升级回源协议既有两态处置：未改直接覆盖、改过保留用户版 + 提示差异）；升级完成后立即执行一次 /live-refresh（或 3 步同步）重建提示词总表与画布数据，运行 harness-verify 确认 status: PASS"
+    },
+    {
+      "_of": "7.1.0",
+      "type": "change",
+      "assets": [
+        ".qoder/briefing-skeletons.md（整体回刷：逐环节对齐技能契约补全输入参数——环节 3 补 {PRD路径}、环节 4 补 {PRD路径}；每环节新增「参数清单」行；提示词文风统一为复制即完整可执行）",
+        "rules/harness-continuous-sync.mdc（提示词渲染纪律新增替换式渲染 + 渲染后逐参数对账，静默丢弃参数视为渲染失败；复数拆行逐行同适用）",
+        "scripts/harness-verify.ps1 + harness-verify.sh（新增 Check 7c 提示词参数完整性，FAIL 级，骨架无参数清单行时 SKIP；Check 7b 路径过期扫描从仅 输入文档： 扩展至 设计依据/测试计划/API 契约/用例依据 全标签）",
+        "commands/harness-next.md（下一步提示词渲染同步逐参数对账纪律）",
+        "SKILL.md + manifest.json（版本号 7.1.0）"
+      ],
+      "action": "提示词完整性加固（修复：母本模板环节 2 行源头丢失 {MRD路径}、骨架环节 3/4 与技能契约输入不一致、渲染无对账、校验无兜底）；骨架库回刷沿用升级回源两态处置；升级后立即执行一次 /live-refresh（或 3 步同步）按新骨架重渲提示词总表（环节 2 补 MRD、环节 3/4 补 PRD），运行 harness-verify 确认 status: PASS 且 prompt_params 检查通过"
+    },
+    {
+      "_of": "7.2.0",
+      "type": "migrate",
+      "assets": [
+        "PROJECT-LIVE.canvas.tsx（落盘位置自 docs/ 迁至项目作用域 canvases 目录 ~/.qoder/projects/<工作区路径中 / \\ : 替换为 ->/canvases/，保留 DASH_DATA 数据；旧位置文件迁移后删除）"
+      ],
+      "action": "画布迁址（修复：Qoder Canvas 预览面板只渲染项目作用域 canvases 目录，v7.0/v7.1 落盘 docs/ 导致面板永远以代码状态打开）；伴生状态文件（如 PROJECT-LIVE.canvas.status.json）由 Canvas 运行时自行管理，手工创建的一并删除；同步规则/命令/模板/文档中的路径引用已同步回刷"
+    },
+    {
+      "_of": "7.2.0",
+      "type": "change",
+      "assets": [
+        "scripts/harness-verify.ps1 + harness-verify.sh（拓扑滞后检查自 Check 7b 拆为独立 Check 7a 并升级 FAIL 级；匹配正则修复为兼容 JS 对象字面量 nodes: []（旧 '\"nodes\":\\s*\\[\\]' JSON 引号式无法命中模板实际写法，拓扑空转仍报 PASS）；画布存在性检查路径改指项目作用域 canvases 目录）",
+        "rules/harness-continuous-sync.mdc（画布段落新增落盘位置推导规则与禁落仓库条款；新增「拓扑推导不可跳过」强制条款：ARCH 已产出时禁止只更 meta/project/techstack 而保留拓扑空态；同步报告画布行重推时列各层节点数）",
+        "assets/templates/docs/PROJECT-LIVE.canvas.tsx（头部注释增落盘位置与推导规则说明）",
+        "references/phase-a-checklist.md + phase-b-protocol.md + upgrade-protocol.md + 大型项目全流程教程.md、commands/live-refresh.md + harness-next.md + check-project.md、templates/PROJECT-LIVE.md + AGENTS.md.template + briefing-skeletons.md、SKILL.md + README.md + manifest.json（画布路径引用与打开方式描述同步回刷）"
+      ],
+      "action": "拓扑空转拦截（修复：环节 2 产出 ARCH 后同步只更 meta/project/techstack 跳过拓扑推导，而 verify 因正则缺陷无法告警，形成假绿灯）；升级后立即执行一次 /live-refresh：按新位置落盘/迁移画布并基于现有 ARCH 重推拓扑，运行 harness-verify 确认 status: PASS 且 canvas_topo_lag 检查通过"
+    },
+    {
+      "_of": "7.3.0",
+      "type": "migrate",
+      "assets": [
+        "PROJECT-LIVE.canvas.tsx → docs/PROJECT-LIVE.html（可视化载体换轨：删除项目作用域 canvases 目录（~/.qoder/projects/<工作区路径中 / \\ : 替换为 ->/canvases/）内的旧画布与伴生状态文件（如 PROJECT-LIVE.canvas.status.json），及 v7.0/v7.1 残留在 docs/ 的旧画布；从新模板生成仓库内 docs/PROJECT-LIVE.html，尽量保留旧 DASH_DATA 数据并转写为合法 JSON）"
+      ],
+      "action": "可视化载体换轨（修复：Qoder Canvas 预览面板只渲染项目作用域 canvases 目录，用户难以找到并打开面板）：新载体为仓库内自包含单文件（浏览器双击直接打开，零外部依赖离线可用）；数据契约不变（DASH_DATA:BEGIN/END 标记之间的数据块由 3 步同步整体再生成），拓扑纪律原样保留；迁移后立即按现有 ARCH/profile 重推一次数据块（ARCH 已产出时拓扑非空）"
+    },
+    {
+      "_of": "7.3.0",
+      "type": "change",
+      "assets": [
+        "assets/templates/docs/PROJECT-LIVE.html（新增：深色玻璃风格固定渲染引擎 + 内联 SVG，C4 三层泳道/分组框/三色边/节点点击详情/缩放平移，空态引导；删除 PROJECT-LIVE.canvas.tsx 与 PROJECT-LIVE.canvas.status.json 模板）",
+        "scripts/harness-verify.ps1 + harness-verify.sh（Check 7/7a 检查对象改指 docs/PROJECT-LIVE.html；删除 encoded-workspace/canvases 路径推导；Check 7a 正则改命中引号式 \"nodes\": []（HTML 数据块为合法 JSON）；检查名 canvas_topo_lag → panel_topo_lag）",
+        "rules/harness-continuous-sync.mdc（画布段落改写为 HTML 面板：落盘仓库内，再生成对象改为标记间 JSON 块；同步报告与打开方式表述回刷）",
+        "references/phase-a-checklist.md + phase-b-protocol.md + upgrade-protocol.md + 大型项目全流程教程.md、commands/live-refresh.md + harness-next.md + check-project.md + hooks/session-start-context.hook.ps1、templates/PROJECT-LIVE.md + AGENTS.md.template + briefing-skeletons.md、SKILL.md + README.md + manifest.json（面板路径引用与打开方式描述同步回刷；版本号 7.3.0）"
+      ],
+      "action": "全套联动回刷（升级回源协议既有两态处置：未改直接覆盖、改过保留用户版 + 提示差异）；升级完成后立即执行一次 /live-refresh（或 3 步同步）重建提示词总表与 HTML 面板数据，运行 harness-verify 确认 status: PASS 且 panel_topo_lag 检查通过"
+    },
+    {
+      "_of": "7.4.0",
+      "type": "migrate",
+      "assets": [
+        "docs/PROJECT-LIVE.html（v7.3.0 DASH_DATA 手写 SVG 面板 → v7.4.0 Mermaid+ELK 拼接面板：提取旧面板 DASH_DATA 标记间的可用数据作为拓扑事实参考，按 references/panel-engine-rebuild.md §2 用新模板（PROJECT-LIVE.template.html）+ 引擎（PROJECT-LIVE.bundle.js）重新拼接，并立即按现有 ARCH/提示词总表状态重推一次 SYNC_DATA 数据块（含节点状态徽标））"
+      ],
+      "action": "面板换轨（根治手写坐标布局问题：AI 同步只写声明式 Mermaid 拓扑，布局交给 ELK 算法）：数据契约由 DASH_DATA JSON 改为 SYNC_DATA 标记间数据块（DIAGRAMS 三段 Mermaid 源码 + LEGENDS/ACARDS/techStacks）；拓扑纪律原样保留；新增节点状态徽标四值（待开发/进行中/已完成/存在Bug，由提示词总表逐模块状态 + harness-profile.incidents 推导，bug 优先，禁止编造）；迁移后自查：面板含 SYNC_DATA 标记与 __mermaidElk 引擎、无 {{PROJECT_NAME}}/bundle 占位残留、无 DASH_DATA 回潮；ARCH 已产出时拓扑含真实连线（Check 7a FAIL 级兜底）"
+    },
+    {
+      "_of": "7.4.0",
+      "type": "change",
+      "assets": [
+        "assets/templates/docs/PROJECT-LIVE.template.html + PROJECT-LIVE.bundle.js（新增：结构壳 + 8MB Mermaid/ELK 引擎双资产；删除 v7.3.0 的 PROJECT-LIVE.html 单模板）",
+        "references/panel-engine-rebuild.md（新增：拼接步骤/占位符契约/引擎升级与回退口径，SKILL 库级不落盘）",
+        "scripts/harness-verify.ps1 + harness-verify.sh（Check 7 改校 SYNC_DATA 标记 + __mermaidElk 引擎 + 占位残留 + DASH_DATA 旧契约回潮；Check 7a 口径改为 ARCH 存在但 SYNC_DATA 区无 --> 边即 FAIL）",
+        "rules/harness-continuous-sync.mdc（面板段改写：再生成对象改为 SYNC_DATA 数据块；新增拓扑书写契约与状态标注推导规则；状态变化列入重推触发条件；同步报告列各图节点数与各状态计数）",
+        "references/phase-a-checklist.md + phase-b-protocol.md + upgrade-protocol.md（新增 U.4.5 面板引擎比对）+ 大型项目全流程教程.md、commands/live-refresh.md + harness-next.md + check-project.md + hooks/session-start-context.hook.ps1、templates/PROJECT-LIVE.md + AGENTS.md.template、SKILL.md + README.md + manifest.json（面板契约与状态徽标描述同步回刷；版本号 7.4.0）"
+      ],
+      "action": "全套联动回刷（升级回源协议既有两态处置：未改直接覆盖、改过保留用户版 + 提示差异；项目内面板按 U.4.5 引擎比对处置，尽量保留旧数据块回填）；升级完成后立即执行一次 /live-refresh（或 3 步同步）重建提示词总表与面板数据（含状态徽标），运行 harness-verify 确认 status: PASS 且 panel_topo_lag 检查通过"
+    },
+    {
+      "_of": "7.4.1",
+      "type": "remove",
+      "assets": [
+        "references/大型项目全流程教程.md（SKILL 库级叙事走查教程，不落盘项目、不被任何运行时流程消费）"
+      ],
+      "action": "删除库级教学材料 大型项目全流程教程.md：该文件为案例驱动（星圈社区平台）的叙事走查教程，assets/ 内无任何 skill/command/rule/hook/模板引用，删除不影响 SKILL 任何运行时功能；连带清理悬空引用——README.md 文档地图教程行 + 建议阅读顺序句尾、manifest.json description 中「大型项目全流程教程为 SKILL 库级教学材料」子句；migration-map 历史条目（v4.2.0/v4.2.1/v7.2.0/v7.3.0/v7.4.0）如实保留不改写（记录当时版本行为）。全流程入门心智模型改由 README.md 与 docs/PROJECT-LIVE.md 提示词总表承接。组件计数不变（finalCounts 不变）。"
+    },
+    {
+      "_of": "8.0.0",
+      "type": "add",
+      "assets": [
+        "skills/prototype-scaffolding（trigger /prototype-scaffolding：交互原型工程脚手架，SDD 环节 1·步骤 3 执行引擎，仅 Full-Stack 应用；以统一 PRD 的 Section4 交互流程为唯一输入，产可运行原型工程目录 docs/prd/PRD-{应用}-交互原型/（非单 HTML、非 PRD 子文档）；编排 Qoder 内置 ui-ux-pro-max-design / ui-designer，不复制内置能力）",
+        "skills/integrate-modules（trigger /integrate-modules：模块联调编排，SDD 环节 6 执行引擎；以主模块 A 为中心启动其依赖模块服务，每模块一个并行专家，按 Mock 台账逐个切换为真实调用，契约测试循环至 100% 通过；三条铁律：先建 Git 检查点、一次只改一个调用、优先让 A 适配依赖）",
+        "agents/ui-to-code（UI 视觉还原 Agent，环节 4 路径 C 执行者：VL 视觉分析 → 渐进编码 → 浏览器验证 → 视觉差异 P0-P3 分级 → 差异修复 7 步流水线多轮迭代，交付 P0+P1 清零且视觉相似度≥阈值，maxIterations: 5 硬上限）",
+        "rules/mock-switch-convention.mdc（L0 规则：Mock/真实调用切换约定——Mock 台账必登记、切换一次一个、契约测试证据驱动，服务环节 6 联调与 integrate-modules skill）",
+        "commands/integrate（项目命令 /integrate：环节 6 联调入口，编排 integrate-modules skill，打通模块间真实调用、契约测试循环至全绿、产出集成报告并归档合并）",
+        "commands/iterate（项目命令 /iterate：环节 9 迭代入口，变更分诊三路路由（新功能 /spec-delta、缺陷 bugfix、技术重构 /simplify）+ Prove-It 闭环 + retrospective 经验沉淀收尾）",
+        "schemas/sdd-artifacts.yaml（位于 assets/library/schemas/，reference-only 声明式 artifact 依赖图：9 环节 × 步骤 × artifact × depends_on × 4 级门禁（L0 trigger / L1 step_gate / L2 phase_gate / L3 main_gate）；为 artifact 依赖唯一权威源，pipelines/*.yaml 与 modes/*.yaml 降级为由它渲染的视图，消除双源；库级不落盘 .qoder/）",
+        "references/naming-convention.md（库级参考文档：核心术语统一（环节/步骤/门禁/产物/装配/同步）+ 编号规则 + 门禁 4 级体系 + 横切层 Hooks 编号 + 文件路径约定，不落盘）",
+        "references/stage-agent-skill-map.md（库级参考文档：9 环节 × agent × skill × Qoder 形态建议映射表，供提示词总表「Qoder 形态」列与面板节点渲染取数，不落盘）"
+      ],
+      "action": "新增 9 项资产：其中 6 项落盘项目 .qoder/（skills/prototype-scaffolding、skills/integrate-modules、agents/ui-to-code、rules/mock-switch-convention.mdc、commands/integrate、commands/iterate），3 项为 SKILL 库级 reference-only（schemas/sdd-artifacts.yaml、references/naming-convention.md、references/stage-agent-skill-map.md）不落盘项目。落盘项按升级回源协议既有两态处置（未改直接覆盖、改过保留用户版 + 提示差异，差异记入 history）；commands/integrate 与 commands/iterate 落盘后 .qoder/commands 计数 7→9（harness-verify Check 2 的 commands 为精确相等校验，期望值同步改 9）；rules/mock-switch-convention.mdc 使库 L0 rules 计数 15→16、落盘 .qoder/rules 16→17（harness-verify 的 rules 期望值 = 库 L0 16 + 1 条自维护 harness-continuous-sync = 17，口径差 1 属预期）；skills 29→31、agents 7→8。新增 skill/agent/command 落盘后须从 frontmatter 提取 description 补录一句话说明进 AGENTS.md 可用能力段与 PROJECT-LIVE.md（禁编造），并执行一次 3 步同步。schemas/sdd-artifacts.yaml 升级时整体回刷不做内容级合并（它是 artifact 依赖唯一权威源，与项目级定制无关），随 /harness-next 与 3 步同步判定 artifact 就绪度时被读取；naming-convention.md 与 stage-agent-skill-map.md 仅供 AI 命名与形态列取数，同样随 /harness-next 判定消费、不落盘。"
+    },
+    {
+      "_of": "8.0.0",
+      "type": "rewrite",
+      "assets": [
+        "templates/briefing-skeletons.md（8 环节单步骤骨架 → 9 环节 × 多步骤子块骨架：共 84 个「【环节N·步骤k 名称】」子块，逐环节 3/4/4/24/19/11/6/4/9；每子块含含义说明 + 参数清单 + 可复制提示词 + 形态建议 + next_hint 下一步衔接；环节 1 改为可配置专家团产 MRD → 按应用多份统一 PRD → Full-Stack 交互原型三步；环节 4 改为 S0 四路径决策（A ui-ux-pro-max-design 默认 / B Figma MCP / C Image2Code·ui-to-code / D 千问办公 QwenWork）；环节 5 改为 S0 应用类型路由（后端 Coding Loop / 前端 5 阶段渐进 / 全栈并行）；环节 6 改为 integrate-modules 编排的 11 步联调（含 Git 检查点/Ratchet 回流）；环节 9 改为 S0 三路分诊（新功能 / 缺陷 / 重构）+ Prove-It 闭环 + retrospective）",
+        "templates/docs/PROJECT-LIVE.md（提示词总表 6 列 → 7 列：# | 环节·步骤（token N·k）| 状态 | 含义说明（为什么做）| 提示词（复制即用）| Qoder 形态 | 产出物；每环节先出环节主行（# = 环节号，粗体环节名 + main_gate 标注），其下按骨架步骤子块展开为缩进步骤子行（└ N·k 步骤名）；N·k 为步骤 token（N=环节号、k=步骤号、·=中点），token 恒在第 2 列，绝不嵌入提示词反引号内（供 harness-verify Check 7c 按命令名 + 步骤 token 双条件行定位去碰撞）；产出型步骤逐模块拆行、校验型步骤折叠单行（行数由 M×S 收敛为 M+(S-1)）；环节 4/5/9 折叠式渲染：初态只渲路由步（4·1 / 5·1 / 9·1），选定路径/分支后只展开选中序列；Backend-Only 应用环节 4 整体跳过（⊘））",
+        "templates/docs/PROJECT-LIVE.template.html（流程图环节节点 8 → 9（补联调与迭代回顾）；新增可选 classDef ui-artifact / prototype 用于交互原型与设计工程类节点着色；SYNC_DATA 数据块契约（DIAGRAMS/LEGENDS/ACARDS/techStacks）、节点状态徽标四值与引擎 PROJECT-LIVE.bundle.js 均不变）",
+        "pipelines/sdd-full.yaml（stage 序列补 integrate（环节 6 联调）与 iterate（环节 9 迭代）两个 stage；并标注 pipelines 为 reference-only 渲染视图，artifact 依赖权威源为 schemas/sdd-artifacts.yaml，不再自带 artifact 副本）",
+        "skills/create-proposal（环节 1 多步骤化：阶段=MRD 走可配置专家团协同（TL 复用 planner + N 领域专家以独立 subagent 并行，idea-refine 多轮发散收敛 + grill-me 每问 ≥2 候选与量化影响，追问优先选择卡分批 ≤4 问）产出统一 MRD（多应用合并一份、8 章节）；阶段=PRD 以冻结 MRD 为唯一上游按应用维度产多份统一 PRD（每应用一份，拒绝文档级拆分，含 Section4 交互流程作为交互原型唯一输入）；产出自检与同步步骤保留）",
+        "skills/ui-design（环节 4 改写为 Step0 四路径决策树（A 内置 ui-ux-pro-max-design 默认零配置 / B Figma MCP / C Image2Code·ui-to-code agent / D 千问办公 QwenWork）+ 基于环节 1 冻结交互原型做高保真视觉深化 + 产出 SPEC-UI（必选）/ references-ui 设计工程（可选）/ 视觉 diff 报告（可选）；编排内置 ui-designer / design-system-capture / design-qa / accessibility-review，遵守「编排不复制」纪律）"
+      ],
+      "action": "整体回刷（两态：未改直接覆盖、改过保留用户版 + 提示差异，差异记入 history）。**升级后存量项目须按新 7 列 + 9 环节主行/步骤子行结构整体重渲 docs/PROJECT-LIVE.md 的 workflow 分区（managed-dynamic，不做行级合并，旧 6 列单步骤行一律作废），并从新模板 PROJECT-LIVE.template.html + 引擎 PROJECT-LIVE.bundle.js 重新拼接生成 docs/PROJECT-LIVE.html（按 references/panel-engine-rebuild.md §2，尽量提取旧 SYNC_DATA 数据块回填，占位符残留自检通过后才替换项目内文件）**。templates/briefing-skeletons.md 落盘为 .qoder/briefing-skeletons.md，是总表渲染引擎基准，必须与 PROJECT-LIVE.md workflow 区结构同代（否则 harness-verify Check 7c 提示词参数完整性会按旧骨架误判）。pipelines/modes/schemas 为 reference-only 不落盘。回刷完成后立即执行一次 /live-refresh（或 3 步同步）重建提示词总表与面板数据块，运行 harness-verify 确认 status: PASS、panel_topo_lag 通过、prompt_params 无 FAIL。"
+    },
+    {
+      "_of": "8.0.0",
+      "type": "change",
+      "assets": [
+        "manifest.json（version 7.4.1 → 8.0.0、buildDate 刷新；components.L0.* 增量至 rules16 / skills31 / agents8 / commands9 / hooks9 / specTemplates11；新增 components.schemas（值 sdd-artifacts）；componentCounts 与 componentCountsNote 同步；modesPipelinesRole 补注「渲染视图，artifact 依赖权威源为 assets/library/schemas/sdd-artifacts.yaml」；description 追加 v8.0.0 变更说明子句，并将残留的 8 环节/7 个项目命令口径全量改为 9 环节 × 多步骤子块/9 个项目命令）",
+        "scripts/harness-verify.ps1 + harness-verify.sh（$expectedCounts：commands 7→9（精确相等）、skills 29→31、rules 16→17、agents 7→8；改动A：Check 7c 行定位新增步骤 token（N·k）AND 条件，消除同命令多步骤（如 1·1 / 1·2 均为 /create-proposal）撞行；改动B：sh 侧环节号字符类 [1-8] → [0-9]，覆盖环节 9；改动C：骨架块头正则捕获环节号与步骤号（^【环节(\\d)(?:·步骤(\\d+))?[^】]*】）；harness-verify.sh 仅 L423 缺陷修复：Check 7b 终止字符类改为 POSIX 括号表达式合法写法——`]` 置于字符类首位（[^]）作字面量、`[` 以 \\[ 作字面量，修掉旧写法 \\[\\] 中 `]` 提前闭合字符类导致的 grep「Invalid content of \\{\\}」报错，使 Linux/Mac 的 prompt_path_stale WARNING 扫描恢复有效（bash -n 已通过））",
+        "SKILL.md（frontmatter description 与 metadata.version → 8.0.0；入口模型 7 → 9 个项目命令（补 /integrate、/iterate）、29 → 31 skills；Qoder 平台能力映射表补千问办公（QwenWork）与「Qoder 形态列」两行；agent 映射表 7 → 8 行（补 ui-to-code）；同步协议表与边界条款的指令引用一律改真实 trigger（如 /architect、/implement、/review、/tdd、/retro、/spec-delta））",
+        "README.md（能力表 7 → 9 命令入口、29 → 31 L0 skills；组件规模与装配分层一览改 16 rules / 31 skills / 8 agents / 9 commands / 9 hooks / 11 spec 模板 + 1 schemas；提示词总表描述改 9 环节 × 多步骤子块 + 7 列 + Qoder 形态列；主用指令表改为「真实 trigger（主用）/ skill 名（归属）」；平台能力组合表补千问办公（QwenWork）与 Qoder 形态列；文档地图与版本段落 → 8.0.0）",
+        "spec-templates/MRD-template + PRD-template + SPEC-BE-template + SPEC-FE-template + SPEC-UI-template（MRD 补 8 章节结构与专家团追问留痕位（grill-me 每问 ≥2 候选 + 量化影响）；PRD 改为「按应用一份统一 PRD」含 Section4 交互流程（交互原型唯一输入）；SPEC-BE 扩至 11 章并补 Mock 台账与契约测试证据位（对齐 mock-switch-convention 与环节 6 联调）；SPEC-FE 整编为 5 章并加「只写本业务独有决策」去重约束（视觉/契约/选型/流程前向引用 SPEC-UI/SPEC-API/ARCH/PRD）；SPEC-UI 补四路径决策记录与视觉 diff（P0-P3）验收位）",
+        "references/sdd-gates-checklist.md（门禁条目按 9 环节重排，补环节 1（MRD 冻结 / PRD 按应用齐备 / Full-Stack 交互原型可运行）与环节 6（契约测试 100% 通过 + Git 检查点可回退）门禁项；4 级门禁体系（L0 trigger / L1 step_gate / L2 phase_gate / L3 main_gate）口径统一；三道主门禁 spec/implement/release 不变）",
+        "modes/sdd.yaml + tdd.yaml + hybrid.yaml（stage 列表补 integrate/iterate，artifact 依赖改为引用 schemas/sdd-artifacts.yaml 而非自带副本（消除双源）；reference-only 定位不变）",
+        "rules/harness-continuous-sync.mdc（渲染规则改 9 环节 × 多步骤子块：环节主行 + 缩进步骤子行、步骤 token N·k 只写第 2 列不入反引号、产出型拆行/校验型折叠、环节 4/5/9 折叠式渲染；Qoder 形态列取数来源 references/stage-agent-skill-map.md；artifact 就绪度取数来源 schemas/sdd-artifacts.yaml；always-on 属性与 3 步同步流程不变）",
+        "agents/architect.md + developer.md + ops-agent.md + planner.md + spec-review-agent.md + test-runner.md + security-auditor.md + ui-to-code.md（frontmatter phases 由 1-8 口径改为 1-9 环节口径并重映射：planner 环节 1、architect 环节 2/3/4、developer 环节 5、ui-to-code 环节 4、test-runner 环节 7、ops-agent 环节 6/8、security-auditor 环节 7、spec-review-agent 环节 3/5/7）",
+        "agents/developer.md（除 phases 外额外补：环节 5 应用类型路由后的路径职责概述、环境检查（init.sh/Mock 开关）、主 agent 编排红线（Coding Loop：禁主 agent 写业务代码/禁手动建源文件/禁直接跑 build）+ Worker 模式约束、phases:[5]）",
+        "skills/spec-delta + skills/precode-alignment + skills/quick-spec + commands/harness-next（全库真实 trigger 引用统一 sweep：/create-architecture→/architect、/implement-feature→/implement、/hc-tdd-cycle→/tdd、/code-simplification→/simplify、/retrospective→/retro、/spec-aligned-review→/review；harness-next 另补 schemas/sdd-artifacts.yaml + profile.schemas.activeArtifactGraph 消费步骤与 /integrate、/iterate 速查）"
+      ],
+      "action": "全套联动回刷（升级回源协议既有两态处置：未改直接覆盖、改过保留用户版 + 提示差异）。校验脚本 .ps1 与 .sh 必须同代升级（否则 Windows 与 Linux/Mac 的期望计数与 Check 行为分叉）；SKILL.md / README.md / manifest.json 三处能力计数与 9 环节口径必须与 migration-map.finalCounts 一致；指令引用一律用真实 trigger（以各 skill/command frontmatter 的 trigger 字段为准，不用 skill 名）。升级完成后立即执行一次 /live-refresh（或 3 步同步）重建提示词总表与 HTML 面板数据块，运行 harness-verify 确认 status: PASS，且 Check 2 组件计数（commands 精确 =9、skills =31、agents =8、rules =17 含自维护）、Check 7/7a/7b/7c 全部通过。"
+    },
+    {
+      "_of": "8.0.0",
+      "type": "profile-field",
+      "assets": [
+        "harness-profile.json"
+      ],
+      "action": "新增 6 个字段（缺失补默认值、已有值保留，history 与 sync 历史完整保留，不做结构重建）：① appType（应用类型，枚举 Backend-Only / Full-Stack，默认 null 待检测）——决定环节 4 是否整体跳过（⊘）与环节 5 S0 路由到哪条路径，必须由脚手架信号或用户声明推导，禁止编造；② skipPrototype（布尔，默认 false）——为 true 时环节 1·步骤 3 交互原型不渲染，Full-Stack 应用需用户显式确认后才可置 true；③ mrdPanelMode（环节 1 需求面板模式，枚举 full / lite / frontier，默认 full = 可配置专家团并行（full=MRD 6专家+7轮/PRD精简4专家；lite=3专家+3轮；frontier=单agent前沿式））——token 受限或专家团不可用时降级 frontier（前沿式一轮问完 + 推荐答案）；④ mrdPanelSize（专家数量，整数，默认 6，取值区间 3-6）——供专家团并行 subagent 派发规模；⑤ mrdPanelRoles（专家种类清单，字符串数组，默认 6 类：产品/架构/业务/运营/安全/测试）——由 AI 从一句话想法推导领域专家并标注「待确认」，禁止编造；⑥ schemas.activeArtifactGraph（字符串，默认值 assets/library/schemas/sdd-artifacts.yaml）——reference-only 指向当前生效的 artifact 依赖图，库级不落盘，仅记录消费来源供 /harness-next 与 3 步同步判定 artifact 就绪度。上述字段均为渲染/路由输入，写入后由 3 步同步消费；harness-verify 不因字段缺失而 FAIL（按「待检测」处置）。"
+    },
+    {
+      "_of": "8.1.0",
+      "type": "change",
+      "assets": [
+        "assets/templates/briefing-skeletons.md（环节3·步骤1 复数单元从逐模块改为批次（依赖拓扑分层，Provider-first）：提示词参数 {模块名}→{模块清单}，执行契约改批次并行+占位→替换+阈值判据；环节2·步骤4 step_gate 补模块间依赖矩阵；环节3·步骤4 step_gate 升格两遍校验+4 项完整 gate；参数绑定表补 {模块清单} 环节3 语义；渲染纪律摘要同步批次语义（按批次/模块拆行、批次 1/N、不变式批次数口径））",
+        "assets/library/L0-universal/spec-templates/ARCH-template.md（新增 1.6 节模块级设计前置信息：模块间依赖矩阵/共享 DTO 枚举归属表/错误码分段分配/事件 Topic 命名与载荷归属；质量门禁清单补对应项）",
+        "assets/library/L0-universal/skills/create-module-spec/SKILL.md（批量能力：入参模块清单可选多值；新增 Step1.5 模块清单确认与批次划分；Provider-first+占位→替换协议；Step7 tasks.md 限定骨架级；Step8 扩展清单级 API 对称预检；输出格式改逐模块汇总表）",
+        "assets/templates/docs/PROJECT-LIVE.md（环节3 行批次语义：3·1 按依赖拓扑分批；收敛公式 M×S→批次数+(S-1)；不变式同步）",
+        "assets/templates/rules/harness-continuous-sync.mdc（复数单元拆行规则增批次语义：环节3 批次=依赖拓扑分层默认单批单行；同步报告措辞兼容批数）",
+        "assets/templates/scripts/harness-verify.ps1 + harness-verify.sh（Check 7c 修复：labelList 增补模块清单；复数拆行 First-1/head -1 改为全部匹配行逐一校验——修复 1/M 覆盖缺口）",
+        "references/stage-agent-skill-map.md（环节3 行批次化：S1#N→S1 批次/拆批，Qoder 形态改批内并行；阅读指南批次语义、S4 step_gate 对齐两遍校验 4 项、路径A S1a-S5a 与 FE-S1..S10 编号漂移修复、统计摘要 agents 8/skills 31）",
+        "assets/library/schemas/sdd-artifacts.yaml（version 1.0→1.1；spec-be/spec-fe description 措辞改为批量驱动、逐模块落盘）",
+        "references/sdd-gates-checklist.md（spec 门禁补模块间依赖矩阵校验项）",
+        "references/naming-convention.md（复数单元编号格式改按批次/模块拆行：环节3 示例 模块1/N→批次1/N；拆行表达措辞同步）",
+        "references/phase-a-checklist.md（建议下一步措辞：多模块环节逐模块拆行→复数环节按批次/模块拆行）",
+        "SKILL.md（frontmatter description 渲染措辞批次化：产出型步骤按批次/模块拆行；metadata.version 8.0.0→8.1.0）",
+        "manifest.json + README.md（版本号 8.0.0→8.1.0；README 能力描述批次措辞同步（按批次/模块拆行、环节3 按依赖拓扑分批默认单批单行）、README 版本标注更新为 v8.1.0；manifest description 补 v8.1.0 子句、guidanceDesign 现行措辞批次化、buildDate 刷新；组件计数不变（finalCounts 不变））"
+      ],
+      "action": "环节3 模块设计执行粒度优化（批次调用+批内并行+Provider 先行）与 Check 7c 覆盖缺口修复；渲染层与治理同步（PROJECT-LIVE 批次语义收敛公式与环节3 行、复数条款清单型合并渲染+拆批例外、同步报告兼容批数、skill-map 环节3 批次化与编号漂移修复、schemas 1.0→1.1、渲染纪律摘要与编号约定/阶段A清单措辞同步、本条目新增、manifest+README 版本 8.1.0）。升级走既有两态处置；骨架与 PROJECT-LIVE 同代约束不变。升级完成后立即执行一次 /live-refresh（或 3 步同步）重建提示词总表，运行 harness-verify 确认 status: PASS 后方视为升级完成。存量 ARCH 无 1.6 节时，环节3 由 AskUserQuestion 人工确认模块清单/批次/NNN 预分配继续，或引导回环节2 按 ARCH-template 1.6 节补齐后重新冻结。"
+    },
+    {
+      "_of": "8.1.1",
+      "type": "add",
+      "assets": [
+        "rules/ask-card-option-quality.mdc（L0 全局 always-on 规则：选择卡渲染契约四要素——label=具体答案值≤16字 / description=理由权衡量化影响 / 超长截评价不截值 / 四字段中间态固定映射；把单一定义点从 create-proposal 内部上移到全局规则层，覆盖全 9 环节选择卡/追问触点）",
+        "hooks/ask-card-guard.hook.ps1 + hooks/ask-card-guard.hook.sh（PreToolUse / matcher=AskUserQuestion：启发式 H1长度超限/H2句读成句/H3评价词/H4值锚点缺失/H5长度倒挂/H6跨选项一致性，三级判定+边际带护栅防误报；默认警告模式 exit0+additionalContext，ASK_CARD_GUARD_BLOCK=1 切 exit2 硬阻断；自身异常兜底 exit0；.sh 侧依赖 python3，缺失时降级放行；双版本同时入库，Windows 落盘 .ps1、Linux/Mac 落盘 .sh）",
+        "templates/hooks/settings.json.template + settings.linux.json.template（PreToolUse 数组各新增 matcher=AskUserQuestion 条目注册 ask-card-guard，两模板均 2 条目：Bash + AskUserQuestion）"
+      ],
+      "action": "新增 1 条 L0 规则 + 1 个 hook（双版本），落盘项目 .qoder/rules/ 与 .qoder/hooks/，并按新 settings 模板在 .qoder/settings.json 的 PreToolUse 补注册 matcher=AskUserQuestion 条目。落盘后计数：库 L0 rules 16→17、.qoder/rules 17→18（harness-verify rules 期望值同步改 18）；hooks 9→10（Windows .qoder/hooks 为 10 个 .ps1，Linux/Mac 为 10 个 .sh，其中 ask-card-guard/stop-verify/sync-detector 三个必须为含真实逻辑的库内 .sh 版本，harness-verify hooks 期望值同步改 10）。本次新增的动因（incident 性质，type=bug）：MRD 生成 grill-me 追问中 AskUserQuestion 选择卡的 option.label 缺失具体答案值（如「编辑器形态选哪种？」的②③选项只有评价性文字无路线名），用户盲选；根因为 5 因合力（主因—纪律只挂在「常规前沿」分支，「关键争议」分支无引用且实战经验#7构成反向指令；次因—长候选下 label 字段争位无 tie-breaker、正反例未覆盖技术路线类长值；助因—TL(planner) subagent 上下文无该纪律、调用侧提示词只强调附推荐答案未提选项含值）；影响面—全库 48 个选择卡/追问触点中 42 个零约束，环节2 架构设计风险高于故障点；处置 kind=hook+rule+doc，target=ask-card-guard / ask-card-option-quality.mdc，status=implemented。验证证据：ask-card-guard 实测 PowerShell 30 PASS/0 FAIL（警告模式 exit0+387ms、硬阻断 exit2+371ms、全合规零误报、畸形/空输入兜底 exit0）、bash 18 PASS/0 FAIL + WSL 端到端 B1-B8 全通、ps1↔python 输出字节级一致、两个 settings 模板 ConvertFrom-Json VALID 且 PreToolUse 各 2 条目。实施中发现并修复真实缺陷：.sh 侧原仅靠 PYTHONIOENCODING=utf-8 前缀保证编码，该环境变量跨进程/跨宿主边界会丢失（WSL interop 只转发 WSLENV 白名单）导致 stdin 按本地 ANSI 码页解码、CJK 载荷解坏、json.loads 失败后静默走兜底 return 0（hook 变 no-op 且无征兆），已改为 python 内部显式 reconfigure(encoding=utf-8) 钉死三条流；另 H6 原口径「同批 clean≥1 且 weak≥1」在长度微差场景会硬阻断误报，已改为三级判定+边际带护栅。"
+    },
+    {
+      "_of": "8.1.1",
+      "type": "change",
+      "assets": [
+        "skills/create-proposal/SKILL.md（核心理念区新增红线提升显著性；关键争议分支补交叉引用使其与常规前沿对称；实战经验#7「两种形态不混用」限定为「问题组织方式」；删除「命名类决策」自我窄化子标题；补技术路线类正反例；降级条款补选项值要求；失败处理表补盲选项处置）",
+        "skills/create-architecture/SKILL.md（首次引入选择卡纪律（此前全文 0 处）；Step3 新增「选型拍板选择卡」子节含选项构造契约 4 条 + 9 维度高频选型预置合规 label 模板表；Step6 ADR 补纪律引用）",
+        "agents/planner.md（核心原则新增「选项值可见」）；skills/create-proposal「TL与执行机制」新增「交互纪律显式下发」条款；skills/precode-alignment 交叉引用由逐项列举 3 条（漏选项值可见）改为整体引用",
+        "templates/briefing-skeletons.md（仅环节1·步骤1 提示词锚点 1 行：「每个问题附推荐答案和理由」→「每个选项标签以具体答案值开头并标注推荐项，理由与量化影响写入描述」，同时承载选项含值与推荐答案两个要求）",
+        "templates/hooks/HOOKS-ASSEMBLY.md（事件模型修正：4 事件→官方 23 事件、宿主原生支持 SessionStart；补 matcher 语法/stdin 输入契约/exit2 阻断语义/JSON 精细控制/hook 四种类型/Windows 必须 PowerShell 原生（bash hook exitCode=127 静默退化 no-op）/编码须在代码内钉死不可只依赖环境变量；新增 ask-card-guard 专项说明章节，hook 总数 9→10）",
+        "scripts/harness-verify.ps1 + harness-verify.sh（Check 2 $expectedCounts：rules 17→18、hooks 9→10，两脚本逐 Check 对齐；Check 5 为事件级键存在性校验（PreToolUse/PostToolUse/Stop），无 matcher 硬编码清单，无需改动）",
+        "references/phase-a-checklist.md（A.2 rules 17 个/hooks 10 个含双版本说明；A.4 rules 18/hooks 10（hook 数=文件数，Windows 计 .ps1、Linux/Mac 计 .sh）+新增 PreToolUse 含 AskUserQuestion 自检项；A.5 报告 18 rules + 10 hooks）；references/phase-b-protocol.md（Hooks 激活表 L0 hooks 9→10 补 ask-card-guard）；templates/docs/PROJECT-LIVE.md（snapshot 分区装配概要 18 rules / 10 hooks，rules = 17 L0 + 1 自维护）；templates/AGENTS.md.template（可用能力段 18 rules + 10 hooks）",
+        "manifest.json + README.md + SKILL.md（版本号 8.1.0→8.1.1；components.L0.rules 补 ask-card-option-quality、hooks 补 ask-card-guard；componentCounts/finalCounts rules 16→17、hooks 9→10；componentCountsNote/finalCountsNote 口径差说明 17→18 并补 hooks 双版本文件数口径；manifest description 补 v8.1.1 子句；README 组件规模/装配分层/版本段补 v8.1.1；SKILL.md 能力计数段同步）"
+      ],
+      "action": "选择卡纪律全库联动强化与计数台账同步。升级走既有两态处置（未改直接覆盖、改过保留用户版 + 提示差异）；校验脚本 .ps1 与 .sh 必须同代升级。升级完成后：① 确认 .qoder/rules/ask-card-option-quality.mdc 与 .qoder/hooks/ask-card-guard.hook.ps1（Linux/Mac 为 .sh）已落盘；② .qoder/settings.json 的 PreToolUse 补注册 matcher=AskUserQuestion 条目（参照新 settings 模板）；③ 执行一次 /live-refresh（或 3 步同步）刷新 AGENTS.md 可用能力计数与 PROJECT-LIVE.md snapshot 分区；④ 运行 harness-verify 确认 status: PASS 且 Check 2 报告 rules=18/18、hooks=10/10。"
+    },
+    {
+      "_of": "8.1.2",
+      "type": "add",
+      "assets": [
+        "scripts/build-panel.ps1 + scripts/build-panel.sh（新增：PROJECT-LIVE.html 面板构建脚本，完整拼接 / SYNC_DATA 数据块注入双模式，内置 V1-V7 自验，随阶段 A 复制到项目 .qoder/scripts/）",
+        "references/panel-engine-rebuild.md（§2 拼接步骤改脚本调用并给出可复制命令；新增 §3 SYNC_DATA 数据块更新流程与 §4 执行禁忌章节；§5 回退口径保持编号（upgrade-protocol U.4.5 引用依赖）；原引擎升级/兼容性修复顺延为 §6/§7；§1 占位符契约实测事实修正）",
+        "references/phase-a-checklist.md（A.2 校验与面板构建脚本清单补 build-panel.ps1/.sh 复制项；PROJECT-LIVE.html 落盘条目改「脚本构建」口径并附禁忌提示；A.4 新增 build-panel 存在自检项并修正 /*__MERMAID_BUNDLE__*/ 表述）",
+        "SKILL.md（阶段 A 概述与新增「面板构建方式」提示改 build-panel 脚本口径，附两条执行禁忌提示）",
+        "scripts/harness-verify.ps1 + harness-verify.sh（仅注释修正：v8.1.1 修复注释中「bundle.js 内部 minified 代码合法包含该字符串（dayjs $set、KaTeX ParseError 等多处）」表述按实测改写，检测逻辑零改动）",
+        "manifest.json（continuousSync 补 buildPanelScript/buildPanelScriptSh 登记）"
+      ],
+      "action": "面板构建脚本化（修复一次真实构建故障，incident 性质 type=bug）：① 症状——用 powershell -Command 内联拼接 PROJECT-LIVE.bundle.js（约 8.46MB）报 MissingExpressionAfterToken，$bundle 变量在 -Command 参数解析阶段被展开内联进命令行、总长远超 PowerShell 解析限制；用 Qoder Grep 工具（ripgrep 引擎）搜 __mermaidElk 返回 0 匹配（假阴性），实测 bundle.js 中 mermaid 实际出现 134 次仅命中 1、function 实际 28,385 次仅命中 5、elk 实际 426 次命中 0，且该跳行为全文件级而非仅最后一行超长所致。② 根因——-Command 参数对变量做解析期展开，8MB 内容进命令行必超限；ripgrep 对超长 minified 行的匹配不可靠且不限于单行。③ 处置（kind=script+doc，target=build-panel.ps1/.sh + panel-engine-rebuild 执行禁忌，status=implemented）——新建 build-panel.ps1（318 行）/ build-panel.sh（371 行，bash+内嵌 python3，参数/自验/报告/退出码与 ps1 严格对齐）：-File 脚本文件执行替代 -Command 内联；[IO.File]::ReadAllText/WriteAllText + UTF8 无 BOM + .Replace() 字面量替换；双模式（完整拼接 / SYNC_DATA 数据块注入，后者供 /live-refresh 避免直接编辑 10MB 成品）；内置 V1-V7 自验（引擎注入/占位符精确对账 M==N/项目名替换/体积±5%/SYNC_DATA 成对/无 BOM），全部用 .NET/python 字符串方法，严禁 grep/ripgrep/Select-String；文档三处拼接口径统一指向脚本（panel-engine-rebuild.md 主战场 + phase-a-checklist A.2/A.4 + SKILL.md），并修正事实性错误——实测当前 bundle 内 /*__MERMAID_BUNDLE__*/ 出现 0 次，历史「dayjs/KaTeX 等多处合法包含」表述有误，成品校验不做该占位符全文检测，是否残留由 build-panel V2 精确对账（产物计数 M == 实际 bundle 计数 N，N 可为 0）在构建期兜底。④ 验证证据——ps1 完整拼接 exit 0 / 925ms / 8,510,370 bytes（体积分毫不差）；SYNC_DATA 更新模式标记间精确替换；失败路径 exit 1 / exit 2 正确；sh 缺 python3 响亮失败 exit 1；ps1 与 sh 产物 SHA256 字节级一致；harness-verify 两脚本改后重跑语法检查通过且 diff 确认仅注释行变化。⑤ 补充实测——GNU grep -qF 与 PowerShell .Contains() 在真实 10MB 产物（最长行 327,608 字符）上均正确命中（GNU grep 3.1 / WSL），harness-verify 检测逻辑无需加固；__mermaidElk 位于 bundle.js 第 7201 行（行长 6,485 字符，非最后一行），最长行为第 4140 行（327,608 字符）。"
+    },
+    {
+      "_of": "8.1.3",
+      "type": "change",
+      "assets": [
+        "manifest.json（decisions.agentsLocation 口径改为根目录 AGENTS.md 单一事实源；version 8.1.2→8.1.3、buildDate 刷新）",
+        "assets/templates/AGENTS.md.template（落盘位置口径改为根目录 AGENTS.md 单一事实源，删除双写同源表述，保留 monorepo 就近优先语义）",
+        "assets/templates/rules/harness-continuous-sync.mdc（步骤 1 AGENTS.md 更新要点口径改为根目录单一事实源）",
+        "references/phase-a-checklist.md（A.2 落盘清单改为仅落盘根目录 AGENTS.md；A.4 校验项改为主判根目录文件存在且无占位符）",
+        "assets/templates/scripts/harness-verify.ps1 + harness-verify.sh（Check 4 主判定对象反转为根目录 AGENTS.md，缺失/缺节升级为 FAIL；本条目仅登记动作，脚本改动由并行任务落地）",
+        "README.md（文档地图 AGENTS.md 行改单一事实源口径；版本段补 8.1.3）",
+        "assets/library/L0-universal/hooks/session-start-context.hook.ps1（注释口径改单一事实源；删除根目录 AGENTS.md 缺失时回退读取 .qoder/AGENTS.md 的 fallback 分支）",
+        "references/upgrade-protocol.md（四类资产升级策略表 AGENTS.md 行注明合并对象为根目录单副本）",
+        "assets/library/L0-universal/commands/harness-upgrade.md（U.3-U.4 回刷措辞改为根目录 AGENTS.md 双向合并（单一事实源，单副本）+ PROJECT-LIVE.md 分区级处置，修正 v5.0.0 已废弃的「指令集」术语）"
+      ],
+      "action": "AGENTS.md 收敛为根目录单一事实源；Check 4 主判定对象反转为根目录文件且缺失/缺节升级为 FAIL；删除 session-start-context 的 .qoder 副本 fallback（单一事实源后 .qoder 副本不复存在，fallback 会读取死副本造成内容漂移假象）。决策依据：Qoder IDE 官方文档（docs.qoder.com/zh/user-guide/rules）与 CLI 官方文档（docs.qoder.com/zh/cli/memory）均确认仅加载项目根目录 AGENTS.md（.qoder/AGENTS.md 不在 CLI 加载清单），agents.md 开放标准亦为项目根目录，且实测两副本逐字节相同无差异化内容。历史条目纪律：migration-map 中 v4.1.0 等历史双写条目如实保留不改写（记录当时行为）"
+    },
+    {
+      "_of": "8.1.3",
+      "type": "remove",
+      "assets": [
+        ".qoder/AGENTS.md（项目落盘副本，v4.1.0 双写同源遗留产物）"
+      ],
+      "action": "删除项目 .qoder/AGENTS.md，升级动作必须严格按以下顺序执行：① 先确保根目录 AGENTS.md 存在且内容与副本同源（缺失则从 SKILL 模板回填）→ ② 再删除 .qoder/AGENTS.md → ③ 重跑 harness-verify 确认 status: PASS（Check 4 新口径）。必须内置该顺序的原因：Check 4 升级为 FAIL 后，stop-verify hook（asyncRewake）会对 verify FAIL 触发唤醒修复、/harness-upgrade 的 U.5 要求 PASS 才算升级完成，存量项目若先删后补会进入唤醒循环",
+      "notes": "风险预告：Check 4 WARNING→FAIL 新增两条阻断/唤醒路径——stop-verify asyncRewake（verify FAIL → exit 2 唤醒）与 U.5 校验（PASS 才算升级完成）；均以「先补根副本后删副本」动作规避"
+    },
+    {
+      "_of": "8.1.4",
+      "type": "change",
+      "assets": [
+        "rules/ask-card-option-quality.mdc（四字段中间态由「描述映射」升级为「强制两阶段」——先提取候选值再映射渲染 + 渲染后自检值可见性；正反例补第三类「全选项缺值」二轮真实故障样本；新增「均匀劣化警示」章节）",
+        "skills/create-proposal/SKILL.md（TL与执行机制「交互纪律显式下发」条款扩为两条：选项值可见契约要点 + 四字段中间态强制步骤（附正反例）；grill-me「格式要求」补中间态前置与全批缺值整体重写纪律）",
+        "hooks/ask-card-guard.hook.ps1 + hooks/ask-card-guard.hook.sh（v1.0.0→v1.1.0：新增 H7 均匀实质劣化检测——同一 question 内坏选项 ≥2、清洁项 =0、单项违规 =0 即全盲选拦截；报告分支扩为 H6→H7→单项违规三级；双版本同代升级，.ps1 为事实源）",
+        "templates/hooks/HOOKS-ASSEMBLY.md（ask-card-guard 专项说明启发式摘要 H1-H6→H1-H7、判定口径补 h7 公式、来源 Bug 补二轮故障根因与「有拉丁 token 不等于有值锚点」教训、边际带护栅口径扩至 H6/H7）",
+        "manifest.json + SKILL.md（版本号 8.1.3→8.1.4；manifest description 补 v8.1.4 子句；组件计数不变（finalCounts 不变））"
+      ],
+      "action": "选择卡均匀劣化漏检盲区修复（二轮 Bug，incident 性质 type=bug）：症状——grill-me 追问「产品分发与运营路线怎么走？」3 个选项 label 全是权衡长句、路线名全部缺位（如「维护成本约每周 5-10 小时；换取社区增长指标（首年 Star ≥1,500）…」），用户全盲选；hook 未拦截。根因——label 含 Star/Memos 拉丁 token 使 H4 锚点判定 false（有 token 即不判缺锚），与 H1/H2/H3 风格命中叠加仅构成 h6Bad 而非 violated；3 选项全劣化时 clean=0 → H6 不成立、confirmed=0 → 单项违规不成立，两路判定双落空被放行。处置（kind=hook+rule+doc，target=ask-card-guard H7 / ask-card-option-quality 强制中间态，status=implemented）——hook 新增 H7 均匀实质劣化检测补盲区；规则把四字段中间态升级为强制两阶段并补均匀劣化警示；create-proposal 下发条款补中间态步骤。升级走既有两态处置（未改直接覆盖、改过保留用户版 + 提示差异）；.ps1 与 .sh 必须同代升级。升级完成后：① 确认 .qoder/rules/ask-card-option-quality.mdc 与 .qoder/hooks/ask-card-guard.hook.ps1（Linux/Mac 为 .sh）已刷新为 v1.1.0；② 运行 harness-verify 确认 status: PASS（组件计数不变，rules=18/18、hooks=10/10 口径保持不变）。"
+    },
+    {
+      "_of": "8.1.5",
+      "type": "change",
+      "assets": [
+        "rules/ask-card-option-quality.mdc（改写为可见字段承载契约：渲染事实（options[].label 不渲染进 DOM，用户可见 = question 文本/字母徽标/description）+ 四要素——① description 以【候选值】开头（【{候选值}】{量化影响}；{推荐理由}）② question 末尾附单行值清单（选项：A=… B=… C=…（推荐），与字母徽标按序对应）③ label 仍以候选值开头并标注推荐（辅助约束，供回显与「其他」比对）④ 降级三信号（用户报告看不到选项值/「其他」重打完整答案值/卡片未按契约携带冗余值）视同工具不可用强制文本编号降级，编号项以答案值开头、锚点与 A · 惯例统一）",
+        "hooks/ask-card-guard.hook.ps1 + hooks/ask-card-guard.hook.sh（校验启发式扩至 H1-H9：H8 description 缺【值】前缀、H9 question 缺末尾值清单；含 hook 执行修复；双版本同代升级，.ps1 为事实源）",
+        "templates/hooks/settings.json.template（PreToolUse matcher=AskUserQuestion 注册条目随 H1-H9 校验口径同步）",
+        "templates/hooks/HOOKS-ASSEMBLY.md（ask-card-guard 专项说明启发式摘要扩为 H1-H9，补渲染契约双通道与降级三信号口径）",
+        "skills/create-proposal/SKILL.md（红线段与核心理念区改写为可见字段承载契约（保留红线地位）；交互方式纪律第 3 条改新契约双通道（落地后果示例保留）；降级条款触发条件扩三信号；subagent 显式下发条款补渲染契约要点与新契约四要素；失败处理表盲选项行扩缺【值】前缀/缺清单同样立即重发；三副本同步）",
+        "skills/create-architecture/SKILL.md（Step3 选型拍板卡契约段改新格式：选项构造契约补渲染事实与 description【方案名】前缀/question 末尾清单两条；预置模板表 description 列改【值】前缀占位；新增 question 模板（末尾清单占位）与 A·/B· 锚点 ↔ 清单字母一一对应纪律；三副本同步）",
+        "agents/planner.md（核心原则「选项值可见」改写为新契约一句概括 + 指向规则文件；三副本同步）",
+        "templates/briefing-skeletons.md（环节1·步骤1 提示词锚点改「description 以【候选值】开头 + question 末尾附 A/B/C 值清单」表述；三副本同步）",
+        "manifest.json（version 8.1.4→8.1.5、buildDate 刷新、description 补 v8.1.5 子句；组件计数不变（finalCounts 不变））；migration-map.json（本条目登记）"
+      ],
+      "action": "选择卡可见字段承载契约全库联动（渲染契约适配：Qoder 平台渲染事实 options[].label 不渲染进 DOM，仅靠 label 值锚点防线仍可盲选，答案值必须经 description【候选值】前缀与 question 末尾值清单双通道进入可见字段）。升级走既有两态处置（未改直接覆盖、改过保留用户版 + 提示差异）；.ps1 与 .sh 必须同代升级；skills/create-proposal、skills/create-architecture、agents/planner.md、templates/briefing-skeletons.md 均为三副本资产（SKILL 库内 + .qoder 直落副本 + .qoder/skills/better-coding 快照副本），升级时必须三副本同步回刷并逐字节一致（SHA256 比对）。升级完成后：① 确认 .qoder/rules/ask-card-option-quality.mdc 与 .qoder/hooks/ask-card-guard.hook.ps1（Linux/Mac 为 .sh）已刷新；② 运行 harness-verify 确认 status: PASS（组件计数不变，rules=18/18、hooks=10/10 口径保持不变）；③ 后置检查 hooks.log 中 ask-card-guard exitCode=0（hook 正常执行无异常）；④ 实测一轮选择卡追问确认 description 以【候选值】开头且 question 末尾附值清单。"
+    },
+    {
+      "_of": "8.1.6",
+      "type": "change",
+      "assets": [
+        "assets/templates/briefing-skeletons.md（环节1·步骤1 提示词锚点改为内联默认 6 专家设定的单行新提示词；含义/注意/自检同步口径；速查表环节1 行改主 Agent 任 TL）",
+        "assets/templates/docs/PROJECT-LIVE.md（1·1 核心使命与提示词改主 Agent 兼任 TL 口径，提示词与骨架锚点同代逐字一致）",
+        "assets/library/L0-universal/skills/create-proposal/SKILL.md（Step 1A 引言与参数表、配置确认前置跳过条款、「TL 与执行机制」重写为编排五要素（v8.1.1/8.1.4/8.1.5 三轮选择卡契约成果保留）、专家设定表扩为关注点/主要产出/输出结构 3 列、MRD 冻结清单 TL 行、失败处理表 planner 行改专家 subagent）",
+        "assets/library/L0-universal/spec-templates/MRD-template.md（8.1 专家团配置表 TL 行改主 Agent 兼任）",
+        "assets/library/L0-universal/rules/ask-card-option-quality.mdc（subagent 传播条款移除 TL）",
+        "SKILL.md（frontmatter version 8.1.4→8.1.6；平台能力映射表需求环节行与 agent 映射表 planner 行口径修正）",
+        "README.md（平台能力组合表需求环节行同口径改写；两处版本标注 8.1.6；版本段补 v8.1.6 摘要）",
+        "references/stage-agent-skill-map.md（环节1 S1 Agent 列 planner(TL)+N专家 → 主Agent(TL)+N专家）",
+        "manifest.json（version 8.1.5→8.1.6、buildDate 刷新、description 末尾追加 v8.1.6 子句；组件计数不变（finalCounts 不变））",
+        "migration-map.json（本条目登记）"
+      ],
+      "action": "环节 1·1 专家团口径修正（MRD 专家团编排重定义）：① 决策依据——planner subagent 无 Write 无法落盘 MRD；TL-subagent 纯转发层造成双倍 token 与信息损失；主 Agent 合并落盘与既有「专家只读产草稿」契约自洽；范本=环节 6·5/7·6（主 Agent 编排多 subagent）；专家设定内联提示词、选择卡契约从提示词移除下沉均由用户决策确认。② 复盘——8.1.5 条目漏更 SKILL.md 版本致 8.1.4/8.1.5 不同步，本次由 8.1.4 补齐至 8.1.6。③ 升级时三副本资产（create-proposal、briefing-skeletons）同代回刷，docs/harness-templates/MRD-template.md 存量副本需按 spec-templates 两态策略回刷；/live-refresh 重渲、harness-verify PASS。④ 组件计数不变（finalCounts 不变）。历史条目（8.1.5 及更早）中「TL 复用 planner」表述如实保留不改写。"
+    },
+    {
+      "_of": "8.2.0",
+      "type": "change",
+      "assets": [
+        "assets/templates/briefing-skeletons.md（骨架由 84 步压缩为 29 个步骤子块，逐环节 3/2/2/6/4/3/2/2/5；环节 1·3 升格 UI 路线主决策点——决策卡双写 profile.ui.designRoute+evidence，环节 4 的 4·1 降级复检步 + A/B/C/D 四路径执行 + 4·6 收口；环节 6 由 11 步压缩为 6·1-6·3、环节 7 为 7·1-7·2、环节 9 收敛为 9·1-9·5；路径 B 前置补 Node>=20+npx；测试报告路径统一 docs/test/spec-{业务}-测试报告.md；9·3 注意条款 web-e2e-test→/e2e-test（trigger 真实引用修复第 4 处））",
+        "assets/templates/docs/PROJECT-LIVE.md（提示词手册同代：9 环节 × 29 个步骤子块，1·3 决策卡双写语义与骨架逐字一致）",
+        "assets/library/L0-universal/skills/prototype-scaffolding/SKILL.md（1·3 决策卡双写 designRoute+evidence 编排语义）",
+        "assets/library/L0-universal/skills/ui-design/SKILL.md（Step0 四路径决策改为消费 1·3 决策卡，4·1 复检语义）",
+        "assets/library/L0-universal/skills/implement-feature/SKILL.md（5·1 路由 + 5·2 后端/5·3 前端/5·4 全栈新编号）",
+        "assets/library/L0-universal/skills/create-proposal/SKILL.md（6 专家设定下沉为唯一权威源、1·1 提示词仅引用；旧步骤 token 清理）",
+        "references/sdd-gates-checklist.md（门禁检查项下沉至对应步骤子块，checklist 保留 3 道主门禁入口索引）",
+        "references/phase-a-checklist.md + references/naming-convention.md + references/stage-agent-skill-map.md（环节/步骤编号对齐 29 步骨架同步回刷）",
+        "assets/library/schemas/sdd-artifacts.yaml + assets/library/L0-universal/skills/run-tests/SKILL.md + assets/library/L0-universal/commands/harness-next.md + assets/templates/rules/harness-continuous-sync.mdc（测试报告路径统一 docs/test/spec-{业务}-测试报告.md，4 个运行时消费者同步）",
+        "SKILL.md + README.md + manifest.json + migration-map.json（版本 8.1.6→8.2.0；能力口径改 29 个步骤子块；manifest description 开头追加 v8.2.0 子句；组件计数不变（finalCounts 不变））"
+      ],
+      "action": "骨架压缩与口径同步（84→29 步）：briefing-skeletons.md 为唯一权威源重写（29 个步骤子块，环节分布 3/2/2/6/4/3/2/2/5），PROJECT-LIVE.md 模板与提示词手册同代重渲；prototype-scaffolding/ui-design/implement-feature/create-proposal 四 skill 对齐新编号与新步骤名（trigger 语义不变：7·1=/create-test 生成、7·2=/run-tests 执行、9·4=/simplify）；sdd-gates-checklist.md 门禁检查项下沉至步骤子块（L1 step_gate / L2 phase_gate 就地可查，主门禁 3 道不变）；测试报告路径统一 docs/test/spec-{业务}-测试报告.md（sdd-artifacts.yaml/run-tests/harness-next/harness-continuous-sync.mdc 四运行时消费者同步）、3 个 references 环节编号对齐回刷、9·3 注意条款 web-e2e-test→/e2e-test（trigger 真实引用修复第 4 处）。升级走既有两态处置（未改直接覆盖、改过保留用户版 + 提示差异）；briefing-skeletons.md 与 PROJECT-LIVE.md 模板为单源权威资产，改过也建议以新版覆盖并人工核对差异（用户定制步骤提示词可迁移至新骨架对应子块）。升级完成后：① 确认 .qoder/briefing-skeletons.md 为 29 步骨架；② /live-refresh 重渲提示词手册（workflow 区按新骨架逐环节逐子块刷新）；③ 运行 harness-verify 确认 status: PASS（组件计数不变，rules=18/18、hooks=10/10 口径保持不变）。"
+    },
+    {
+      "_of": "8.2.1",
+      "type": "change",
+      "assets": [
+        "assets/library/L0-universal/hooks/stop-verify.hook.ps1（M1：L56 改无 BOM 写入 [System.IO.File]::WriteAllText(...UTF8Encoding $false)，修复跨平台 profile 解析故障链；落盘资产，未改直接覆盖/改过保留用户版+提示差异）",
+        "assets/templates/AGENTS.md.template（M2：L149 改可实现语义——AI 依 profile.sync.lastVerify 填写；落盘资产，两态处置）",
+        "assets/templates/rules/harness-continuous-sync.mdc（M3+M7：L85/L103 回写主体归因精确化为 stop-verify hook 并消除自相矛盾；telemetry 渲染规格钉住校验通过次数严格读 profile.sync.syncCount 禁止 AI 手写计数；always-on 规则副本须同代回刷）",
+        "assets/templates/docs/PROJECT-LIVE.md（M7：telemetry 行标签正名为'校验通过次数（profile.sync.syncCount）'；三副本资产，存量项目已渲染产物由下次 3 步同步再生成收敛，不回改用户产物）",
+        "assets/templates/hooks/HOOKS-ASSEMBLY.md（M6：阶段 A 第 3 条补占位版说明与互指；落盘资产，两态处置）",
+        "references/phase-a-checklist.md（M4/M5/M6/D9/D12：编码指引单一事实源化 + 删除冗余日期替换指令 + Linux/Mac 占位版口径统一并显式披露 + A.2 内嵌经验证参考脚本正文 + A.4 头部补机器覆盖项说明；reference-only 不落盘）",
+        "references/panel-engine-rebuild.md（D10/D11/D13：§2 补 -ProjectName 取值优先级 + 新增 §8 面板标题变更程序 + §2 示例路径改抽象前缀；reference-only 不落盘）",
+        "SKILL.md（M4：编码要求改指向 phase-a-checklist A.2 单一事实源；M8：体积常量改约 8-10MB 量级表述；version 8.2.0→8.2.1）",
+        "README.md（M3：L163 归因修正为 stop-verify hook 回写 profile；版本段追加 v8.2.1 条目）",
+        "manifest.json（version 8.2.0→8.2.1、buildDate 刷新、description 开头追加 v8.2.1 子句；组件计数不变（finalCounts 不变））；migration-map.json（本条目登记）"
+      ],
+      "action": "最小必要修复（对抗审计后从 v8.3.0 方案收敛，0 新增资产、约 15 处单行级编辑）：M1 stop-verify.hook.ps1 无 BOM 写入修复跨平台 profile 解析故障链（Windows PS 5.1 Set-Content -Encoding UTF8 写 BOM → Linux/Mac python json.load 失败 → Check 3 误报 + hook.sh 回写停摆）；M2 AGENTS.md.template 不可实现指令改可实现语义；M3 回写主体归因精确化为 stop-verify hook（消除 L85↔L103 自相矛盾）；M4 编码指引单一事实源化（SKILL.md 指向 checklist A.2，A.2 删 Set-Content 推荐改 .NET WriteAllText）；M5 删除冗余日期替换指令（managed-dynamic 分区已被再生成覆盖）；M6 Linux/Mac 占位版口径统一 + settings 行指向已存在模板 + A.5 显式披露项；M7 telemetry syncCount 三源漂移修复（渲染规格钉住取值 + 标签正名）；M8 体积常量改量级表述；D9 A.2 内嵌经验证参考脚本正文（26 行，单一作用域+-File+显式递归+robocopy 退出码）；D10 -ProjectName 取值优先级成文；D11 面板标题变更 3 步程序 + Check 7a 陷阱警告；D12 A.4 头部机器覆盖项说明；D13 路径口径改抽象前缀。升级动作：① /harness-upgrade 回刷 stop-verify.hook.ps1 与 harness-continuous-sync.mdc（落盘资产两态处置）；② 重跑 harness-verify 期望 PASS；③ 修正已带 BOM 的 .qoder/harness-profile.json（去 BOM 重写：python -c \"import json,codecs; d=json.loads(codecs.open('.qoder/harness-profile.json','r','utf-8-sig').read()); open('.qoder/harness-profile.json','w',encoding='utf-8',newline='\\n').write(json.dumps(d,ensure_ascii=False,indent=2))\"，因旧版 hook 已写入 BOM，Linux/Mac 侧 python json.load 会失败）；④ 下次 3 步同步时 telemetry '校验通过次数' 按新规格读 profile.sync.syncCount 收敛；⑤ Linux/Mac 项目按 A.5 新披露项补记 7 个占位 hook（无实际拦截力）。组件计数不变（finalCounts 不变）。"
+    },
+    {
+      "_of": "8.3.0",
+      "type": "add",
+      "assets": [
+        "scripts/phase-a-init.ps1 + scripts/phase-a-init.sh（新增：阶段 A 执行器——目录先行 → L0 六类与种子/脚本受保护复制 → 机械字段 token 注入 → harness-profile.json 生成 → build-panel 拼接 → 计数对账 → 摘要输出；退出码 0/1/2；随 templates/scripts 一并落盘 .qoder/scripts/；.ps1 为事实源，.sh 为 bash + 内嵌 python3 等价实现）",
+        "assets/templates/harness-profile.template.json（新增：profile 唯一生成源，含 {{SKILL_VERSION}} 与 {{INIT_DATE}} 两 token；A.3 的 50 行 JSON 由文档内嵌改为模板物化，字段语义仍由 A.3 下方两节承载）"
+      ],
+      "action": "新增落盘：阶段 A 由「AI 重抄 80 行正文」改为「调用库内执行器」，一次完成复制/注入/生成/拼接/对账；profile 与两份文档的机械位由脚本注入，AI 不再手填日期与校验位；phase-a-init 对账口径与 harness-verify Check 2 统一（skills 排除 better-coding 自身）。组件计数不变（finalCounts 不变；assets/templates/scripts 顶层文件数 4→6，脚本与模板不进六类计数）"
+    },
+    {
+      "_of": "8.3.0",
+      "type": "change",
+      "assets": [
+        "SKILL.md（新增「提问优先级裁决」节并据此改写边界#4 为阶段 A 非阻断/阶段 B 须确认；阶段 A 段改 5 步执行序并指向 phase-a-init；能力计数段删复制数字改指单源；体积段 LFS 指引扩至库侧 bundle；完成自检补 token 残留与无静默覆盖两项；frontmatter version 8.2.1→8.3.0）",
+        "references/phase-a-checklist.md（A.1 补哈希保护复制与清单不等待确认；A.2 内嵌复制正文换为脚本调用 + 参数表 + 防静默覆盖 + 对账口径 + AI 现写脚本纪律 + Linux/Mac 分支，旧正文入折叠归档并标禁止照抄；A.3 改模板生成并删内嵌 JSON；A.4 排除口径改写并新增四项自检；A.4.5 步骤 1 声明机械字段已注入；A.5 报告补 customized_skipped/profile_preserved 行）",
+        "scripts/harness-verify.ps1 + scripts/harness-verify.sh（Check 1 占位符字符类扩展 {{TOKEN}}（ps1 用转义大括号、sh 用 [{] [}] POSIX 写法），中文括号态自然语言提示语不纳入 FAIL；新增 Check 7d live_profile_drift（FAIL 级）：PROJECT-LIVE.md footer/telemetry 与 AGENTS.md 的同步日期、校验通过次数、最近校验结论与 profile.sync.lastSyncAt/syncCount/lastVerify.status 等值断言，profile 无 sync 权威值时 SKIP 兼容存量项目；双脚本逐断言对齐，sh 侧管道均带 || true 兜底防 set -euo pipefail 静默中止）",
+        "assets/templates/AGENTS.md.template + assets/templates/docs/PROJECT-LIVE.md（机械字段改 {{SYNC_DATE}}/{{INIT_DATE}}/{{VERIFY_STATUS}}/{{VERIFY_DATE}}/{{VERIFY_DETAIL}} token，由 phase-a-init 注入；自然语言提示位保持原样不动）",
+        "assets/library/L0-universal/hooks/stop-verify.hook.ps1 + stop-verify.hook.sh（PASS 回写改文本级定点替换：仅动 sync.lastVerify 与 syncCount，写前在内存完成回读与目标值断言，不通过即放弃写入（profile 保持原样不损坏）；不再 ConvertTo-Json -Depth 10 / json.dump 整文件重写，消除每会话全文件 diff 噪音与深度截断风险；紧凑与展开两种 profile 形态均可命中）",
+        "assets/templates/rules/harness-continuous-sync.mdc（遥测段补「hook 回写后的文档跟进」强制条款：三处文档机械位刷回 profile 权威值，与 Check 7d 互为闭环；补机械位由脚本注入、AI 不手填说明；always-on 规则副本须同代回刷）",
+        "README.md（新增「七、库维护约定」：唯一编辑源、双副本一致性校验命令、计数台账单源、非本项目 hook 噪音甄别、改脚本两条铁律；验证方式段补 phase-a-init 命令；三步起步第 1 条补零提问与复跑保护；版本段追加 v8.3.0；原「七、版本与升级」顺延为八）",
+        "assets/library/L1-techstack/*/hooks/*.ps1（附带修复：checkstyle/python-lint/eslint-check 三个 Java/Python/JS 栈 hook 此前无 BOM，含中文注释会在 PS 5.1 下按 GBK 解码导致解析失真；本次按库内编码口径统一补齐，已逐文件断言非 ASCII 字节存在）",
+        "manifest.json + migration-map.json（version 8.2.1→8.3.0、buildDate 刷新、description 开头追加 v8.3.0 子句、continuousSync 补 phaseAInitScript/phaseAInitScriptSh/profileTemplate、componentCountsNote 与 finalCountsNote 补 skills 排除口径与 scripts 4→6；组件计数不变（finalCounts 不变）；本两条目登记）"
+      ],
+      "action": "阶段 A 加固（三项根因缺陷修复 + 门禁补强 + 文档单源化）。升级动作：① /harness-upgrade 回刷 harness-verify.ps1/.sh、stop-verify.hook.ps1/.sh、harness-continuous-sync.mdc、两个模板、phase-a-init 双脚本（落盘资产两态处置：未改直接覆盖、改过保留用户版并提示差异）；② 存量项目 AGENTS.md 与 docs/PROJECT-LIVE.md 中旧模板残留的中文括号态机械位（（当前日期）/（由 AI 自动更新）/（待首次校验）），由下一次 3 步同步按 profile 权威值改写为实际值；未改写前 Check 7d 会因无法定位 ISO 日期报 FAIL 并提示 /live-refresh——这是把旧版「忘填日期也能 PASS」的假完整性收敛为真实状态的预期行为，不是数据损坏；③ 运行 harness-verify 期望 status: PASS 且报告含 live_profile_drift 行；④ 复跑 phase-a-init 验证幂等与防覆盖（identical_skipped 增长、用户定制文件入 customized_skipped、已有 profile 报 profile_preserved）。旧版 hook 已将 profile 重排为展开形态的项目无需回排，定点回写对两种形态均生效。组件计数不变（finalCounts 不变）。"
+    },
+    {
+      "_of": "8.4.0",
+      "type": "change",
+      "assets": [
+        "assets/templates/briefing-skeletons.md（新增『提示词自包含契约』三表：六段式格式 / 内容归属矩阵 / 用户语言禁词表与白名单 / 字数带 / 专家团内联规范；29 个步骤子块的「可复制提示词」全量改写为六段式多行块，参数清单与提示词双向对账（1·1 +{项目代号}、1·2 +{应用}、4·6 +{模块名}、5·3 +{tasks路径}、6·3 +{日期}、7·1 去掉 {测试计划路径} 输入语义）；渲染纪律新增第 8 条）",
+        "assets/templates/docs/PROJECT-LIVE.md（母本：29 个 ```text fence 由骨架逐字回刷；区块输入物/产出物 27 行路径完整化；新增「名词与路径速查」与 9 个环节「做完拿到什么 · 怎么验」折叠块；体积 62KB→110KB）",
+        "assets/templates/rules/harness-continuous-sync.mdc（workflow 渲染规格追加六段要约；「禁止渲染执行契约」改为「内部编排协议禁止、注意事项/自检标准以用户语言进入提示词」；细则仍指 briefing-skeletons 唯一基准，always-on 预算增量 <500 字）",
+        "assets/templates/scripts/harness-verify.ps1 + harness-verify.sh（同代升级：Check 7c 改多行块解析 + labelList 扩充 输入物/参考模板/产出物；新增 Check 7e prompt_selfcontained / 7f prompt_plain_language / 7g expert_panel_inline，均 FAIL 级，旧版手册无 #### 区块时 SKIP）",
+        "assets/library/L0-universal/commands/harness-next.md（输出格式由「一行指令」改为整段六段式提示词，并补禁词口径）",
+        "assets/library/L0-universal/skills/{create-proposal,create-architecture,create-module-spec,implement-feature,ui-design,integrate-modules,create-test,run-tests}/SKILL.md（入参优先与兜底口径：提示词显式给出时以提示词为准，未给出用默认值；对外表述改用户语言；create-proposal 的「专家设定」表由权威源降为默认兜底源，1·1 重新内联 6 位专家）",
+        "SKILL.md / README.md / manifest.json / migration-map.json / references/{phase-a-checklist,phase-b-protocol,sdd-gates-checklist}.md（口径与台账：5 字段后补六段式说明、新增 Check 7e/7f/7g 登记、README 硬编码版本改单源）"
+      ],
+      "action": "提示词手册可读性与自包含升级（0 新增资产，finalCounts 不变）。升级回刷顺序：① 回刷 briefing-skeletons.md 与 rules/harness-continuous-sync.mdc；② 回刷 scripts/harness-verify.ps1+.sh 与 commands/harness-next.md；③ 回刷 8 个 skill 的入参优先条款；④ 整体重渲项目内 docs/PROJECT-LIVE.md 的 workflow 区（旧手册提示词为单行/四行式，7e 会按新口径判 FAIL，属预期，必须由同步重渲而不是手改）；⑤ 跑 harness-verify 直至 status: PASS 且新增三行（prompt_selfcontained / prompt_plain_language / expert_panel_inline）存在；⑥ 双副本刷齐（根库与 .qoder/skills/better-coding 差集为空）。存量定制保护：若用户改过手册提示词，重渲前先比对并列出差异请用户裁定，不静默覆盖。"
+    },
+    {
+      "_of": "8.5.0",
+      "type": "change",
+      "extensionCanonical": ".md",
+      "pre8_5EntriesReplayViaAlias": true,
+      "assets": [
+        "assets/library/L0-universal/rules/ 与 assets/templates/rules/ 下 44 个 *.mdc → *.md（git mv 保历史）。新版运行时只加载小写 .md 且扫描器不做 toLowerCase，此前这批规则**从未注入过**，本次换轨后才真正进上下文",
+        "assets/library/L0-universal/rules/documentation-sync.md（删除，正文并入 spec-before-code.md：文档同步义务表 6 行 + 滞后不超过一个迭代 + CHANGELOG 随版本 + 活文档节奏；强制规则 3 写成「以 Spec 为准修正代码，或走 Spec 变更流程」双出口并列，避免只留单出口措辞造出歧义）",
+        "assets/library/L0-universal/rules/mock-switch-convention.md（删除，3.2KB 正文下沉 assets/library/L0-universal/skills/integrate-modules/SKILL.md 的《Mock 开关约定》一节：5 条强制规则 + 三行阶段切换表 + 切换纪律 + 5 条禁止）",
+        "manifest.json（rules 列表去掉两条已合并项、componentCounts.L0_rules/L0_rules_core 17→15）、migration-map.json（finalCounts.rules 17→15）、harness-verify.ps1/.sh（rules 期望 18→16 并去掉旧名）、README.md、references/{phase-a-checklist,phase-b-protocol}.md、commands/integrate.md、skills/integrate-modules、modes/sdd.yaml（引用与计数同步，共 25 处）",
+        "assets/templates/scripts/harness.mjs + rules.stamp + SessionStart 心跳（InstructionsLoaded 落戳，供集合差证明规则真的加载）",
+        "references/upgrade-protocol.md U.3b（历史条目按 manifest.rulesExtensions 做 .mdc/.md 别名重放；两种都不存在记 SKIPPED (renamed-away)，不 FAIL、不阻断升级）"
+      ],
+      "action": "扩展名换轨 + L0 规则层收敛（rules 17→15，落盘 .qoder/rules 18→16；always_on 正文实测 5,452 字符 / 预算 8,000）。升级动作有严格顺序，**先回刷脚本再信任扩展名变更**：① 跑 `node .qoder/scripts/phase-a-init.mjs --repush-scripts-only` 把 assets/templates/scripts/ 的 .mjs 整层回刷到项目 .qoder/scripts/（脚本层是 SKILL 托管框架代码，与库不同即按「库升级前的旧构建」处理：强制覆盖，被换下的原内容留 .qoder/logs/backup/scripts/ 时间戳持久备份；两份 settings 模板仍按 U.4 两态判定，改过则只报差异待人工确认。自 v9.0.0 起脚本层进组件计数 scripts=5，但计数只数文件数、检不出内容陈旧，所以不回刷则项目仍跑旧的单扩展名过滤，*.mdc 计数归零会被误报成\"缺 16 条规则\"）；② 重跑阶段 A（复制与对账走别名层，用户定制文件按 SHA256 保护）；③ 项目内 rules/*.mdc 与库内同名 .md 内容一致即删旧件，改过则保留并在装配报告标注\"存量定制未迁移\"；④ documentation-sync 与 mock-switch-convention 两条：项目内若被改过则不删，标注\"已合并但保留定制副本\"；⑤ 迁移后跑 harness-verify，rules 计数与 always_on_budget 两侧必须给出一致数字（新库口径 16，用户自加规则按实际）。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "remove",
+      "assets": [
+        "assets/library/L0-universal/hooks/ 下 13 个孪生 hook 脚本（10 个 .hook.ps1 + 3 个 .hook.sh）全部删除：全部 hook 只有一个可执行入口 node .qoder/scripts/harness.mjs hook <子命令>。旧实现行为真值已删除前冻结在开发侧 tools/fixtures/（hook-baseline/ 20 格、ask-card-baseline.json 16 格、stop-verify-baseline.json 7 形），此后等价性闸门比对的是那份历史事实而不是新实现自己",
+        "assets/templates/scripts/harness-verify.ps1 + harness-verify.sh（V1-V19 全落在 harness-verify.mjs 一份；SIGPIPE 假 FAIL 与 PowerShell 编码两类缺陷的载体消失）",
+        "assets/templates/scripts/build-panel.ps1 + build-panel.sh（build-panel.mjs 逐字节等价已实测：真实 8.5MB 引擎拼接 SHA256 相同、SYNC_DATA 更新模式三例产物与报告相同）",
+        "assets/templates/scripts/phase-a-init.ps1 + phase-a-init.sh（phase-a-init.mjs 单执行器：S0 四件套预检 + 原子锁 + 哈希保护复制 + staging 原子换名）",
+        "项目侧连带：.qoder/scripts/ 下残留的 .ps1 与 .sh —— harness-verify V1 现会把它们报成「残留已删资产」FAIL",
+        "两份 settings 模板的 command 全部收敛为 node .qoder/scripts/harness.mjs（此前 Windows 侧写死 powershell.exe，非 Windows 项目拿到 0 个生效 hook）"
+      ],
+      "action": "脚本层单语言化（破坏性变更，版本号 major 升到 9.0.0）。升级顺序不可颠倒：① 跑 `node <SKILL 安装位>/assets/templates/scripts/phase-a-init.mjs --project-root <项目根> --repush-scripts-only`：脚本层强制回刷（5 个 .mjs 与库不同即按库升级前的旧构建覆盖，被换下的原内容留在摘要点名的 .qoder/logs/backup/scripts/ 时间戳目录，比对后再删），两份 settings 模板按 U.4 两态判定、改过则只报差异并由 /harness-upgrade 人工确认后覆盖（否则项目仍跑旧校验器，而旧 hook 注册的入口文件已不存在）；② 删除 .qoder/scripts/ 下残留的 .ps1/.sh；③ 需要回刷六类组件时再重跑一次阶段 A 全量复制（六类仍按 SHA256 两态保护，用户定制不被覆盖）；④ 跑 harness-verify 直至 status: PASS，component_counts 行须给出 scripts=5/5、rules=16/16、hooks=10/10。非 Windows 侧本轮未实测（用户许可内仅在 Windows 取证），macOS/Linux 项目升级后须自行确认 SessionStart 心跳与 rules.stamp 集合差真的有落盘，再信任 hook 通道。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "merge",
+      "assets": [
+        "assets/library/L0-universal/skills/merge-conflicts/SKILL.md（删除，91 行正文全量并入 skills/branch-workflow/SKILL.md 的 Step 4a：冲突全景盘点 + 逐文件理解双方意图 + 逐 hunk 四态判定表（并集/取 HEAD/取来源/重做）+ 整文件选边禁令 + 每文件解决后立即验证 + 全量验证收尾与逐 hunk 判定报告 + >10 文件止损线与二进制例外；来源标注 mattpocock resolving-merge-conflicts 随并入保留）",
+        "skills/branch-workflow（description 宣告冲突处置职责并登记兼容别名 /merge-conflicts；触发条件新增 /merge-conflicts 与“git merge/rebase/pull/cherry-pick 产生冲突”两条）",
+        "agents/developer.md（skills 绑定 merge-conflicts→branch-workflow，绑定技能条目改指 Step 4a）、manifest.json（components.L0.skills 去掉 merge-conflicts）、migration-map.json（finalCountsNote 补 −1 子句、本条目登记）、README.md（trigger 同名口径与 /merge-conflicts 列举同步）"
+      ],
+      "action": "L0 冗余聚类合并 G5（发布链）：merge-conflicts 并入 branch-workflow。升级动作：① 存量项目 .qoder/skills/merge-conflicts/ 是落盘资产，按 U.4 两态判定处置——未改过则整目录删除，改过则保留并提示该目录已在 v9.0.0 并入 branch-workflow Step 4a、请自行确认后删除，不静默删用户定制；② 回刷 .qoder/skills/branch-workflow/（正文已变）与 .qoder/agents/developer.md；③ 旧 /merge-conflicts 触发词转为兼容别名，用户侧若有引用该命令名的按键宏或文档，改指 /branch-workflow；④ 跑 harness-verify 期望 status: PASS，skills 期望值随 manifest 收敛。计数联动由 tools/sync-component-counts.mjs 单源生成，不手改。",
+      "_note": "同批纪律口径：Step 4 原有的“冲突过于复杂（>5 个文件）考虑放弃 rebase”保留为换策略指引，Step 4a 的 >10 止损线是放弃整次合并；两条阈值针对的动作不同，不互相覆盖。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "merge",
+      "assets": [
+        "assets/library/L0-universal/skills/security-review/SKILL.md（删除。按 §4.3 冲突处置裁定，OWASP 逐项清单与依赖审计**不并入**——已由 Qoder 内置 security-scan 承担，复刻即重复建设；真正无替代的两件事落到 skills/spec-aligned-review/SKILL.md：① 规格轴新增「安全需求逐条对齐」行（PRD/ARCH 声明的鉴权模型/数据分级/加密范围/审计留痕逐条核证据，缺项按 Major 起判，不得用标准轴安全性维度合格抵销）；② 3.2 安全性新增「三层边界防护」表（入口/业务/数据）与职责切分句：机器可判交给内置扫描器，本轴只判差集）",
+        "skills/spec-aligned-review（description 登记兼容别名 /security-review；触发条件新增一条）",
+        "agents/security-auditor.md（绑定 security-review→spec-aligned-review，安全扫描改指内置 security-scan 并披露 subagent 无 Skill 工具面这一边界）、agents/spec-review-agent.md（去掉 security-review 绑定，场景表「安全审查」改为安全需求逐条对齐）、L2-project/agents/project-reviewer.md、references/sdd-gates-checklist.md（2 处安全轴联动）、references/stage-agent-skill-map.md（2 处）、templates/briefing-skeletons.md 与 docs/PROJECT-LIVE.md（同名句各 1 处）、manifest.json（components.L0.skills 去掉 security-review）、README.md（trigger 同名口径 16→15 / 14→13 并去掉 /security-review 列举）"
+      ],
+      "action": "L0 冗余聚类合并 G4（审查面）：security-review 退役，L0 skills 30→29。升级动作：① 存量项目 .qoder/skills/security-review/ 按 U.4 两态判定处置——未改过则整目录删除，改过则保留并提示其职责已在 v9.0.0 拆给「内置 security-scan + spec-aligned-review 规格轴」，不静默删用户定制；② 回刷 spec-aligned-review、security-auditor、spec-review-agent 与 references/ 两份表；③ 旧 /security-review 触发词转为 spec-aligned-review 的兼容别名，凡按键宏或自建文档引用该命令名，改指 /spec-aligned-review，需要机器扫描时改用内置 /security-scan；④ 跑 harness-verify 期望 status: PASS，skills 期望值随 manifest 收敛。计数联动由 tools/sync-component-counts.mjs 单源生成，不手改。",
+      "_note": "本条目同时是一次「与内置能力去重」的口径变更：凡是内置已提供的机械扫描（安全、语法、格式化），库侧只保留内置做不了的判定；引用内置能力一律写其目录名而不是本库斜杠命令。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "merge",
+      "assets": [
+        "assets/library/L0-universal/skills/create-test/SKILL.md（删除，256 行正文的**构造纪律**并入 skills/run-tests/SKILL.md 新增的 Step 1a：被测定义五要素表（签名/归属/依赖/异常/前后置，缺项不得开始写用例）+ 数据依赖与 Mock 策略（Mock 只隔离外部边界，不得 Mock 被测逻辑本身）+ 测试数据工厂 Builder（自描述、无魔法数字、覆盖式 overrides）+ 三类用例逐类补齐表（正向主路径与组合场景、异常按声明类型逐一对且断言副作用、边界取下界/上界/刚越界三点与空集合与并发幂等）+ 门槛与豁免（新增业务方法必须有用例、Bug 修复先写一条先失败后通过的回归用例、核心业务路径 100% 覆盖、确实不可测的纯配置与生成代码标注豁免并写明理由）。其失败处理五条同时并入 run-tests 的适用条件与失败处理表；栈相关的 TypeScript 样板（约 3.4KB）不并入——判据不是样板代码）",
+        "assets/library/L0-universal/skills/contract-test/SKILL.md（删除，判据并入 skills/integrate-modules/SKILL.md 新增的 Step 6a：契约唯一源 SPEC-BE/OpenAPI + 契约缺失时先从代码提取实际接口生成契约 + 五组断言表（正向请求/严格模式即响应不含契约外字段/状态码矩阵 201-400-401-404 且 500 不泄露内部信息/违反契约的请求三类/错误响应键集合全局一致且 message 指出出错字段）+ 违反项处置（更新契约需双方同意、破坏向后兼容必须走版本升级 v1→v2、版本冲突以 Git 最新合入为准、环境不可用时用 Mock Server 如 Prism 模拟）。核心理念「契约是服务间的法律合同」保留；只验契约不做跨模块联调时按 Step 6a 单跑，不必走 7 Phase）",
+        "skills/run-tests（description 改为「测试计划、用例构造与执行报告」并登记兼容别名 /create-test；触发条件新增三条；产出契约的产出物与产出自检纳入用例与三类齐备）与 skills/integrate-modules（description 登记契约判据与兼容别名 /contract-test；触发条件新增别名与「只验契约时只执行 Step 6a」）",
+        "agents/test-runner.md（frontmatter skills 去掉 create-test 与 contract-test；绑定技能三条改指 run-tests Step 1a/Step 2-4 与 integrate-modules Step 6a）、commands/integrate.md（4 处：环节 7 入口与下一步与 Suggested prompt 改 /run-tests、契约测试判据改指 Step 6a）、skills/harness-analyze/SKILL.md（2 处处置建议挂接）、skills/spec-delta/SKILL.md（1 处）、templates/briefing-skeletons.md（4 处 7·1 trigger）与 templates/docs/PROJECT-LIVE.md（5 处）、L2-project/agents/project-tester.md（可用技能名单三条）、references/sdd-gates-checklist.md（2 处）、references/stage-agent-skill-map.md（7·1 行 skill 与 command、6·2 行 skill 列）、manifest.json（components.L0.skills 去掉两个名字）、README.md",
+        "README.md 连带修两处既有缺陷：①「旧名（已失效）」表补齐 G5/G4/G3 退役的四个旧名（/merge-conflicts、/security-review、/create-test、/contract-test），原表只有三项而正文新增的兼容别名不进表就等于用户照旧名敲 → Skill not found 且无处可查；② trigger 枚举动漏了 platform-profile（「其余 15 个」实为 16 个），现为「其余 14 个中 12 个同名」并与磁盘集合对齐。两处各配一条新断言兜住复发：readme-trigger-enum-covers-skills（集合差，不只比总数）与 compat-aliases-in-readme-retired-table（别名清单从各 skill 触发条件行反推，不另立名单）",
+        "tools/sync-component-counts.mjs（连带修一处真实缺陷：commands 计数锚点的替换串把 CRLF 写成裸 LF，跑一次即在整份 CRLF 账本里造出 1 行混合 EOL；改为捕获原 EOL 回填）"
+      ],
+      "action": "L0 冗余聚类合并 G3（测试面）：create-test 并入 run-tests、contract-test 并入 integrate-modules，L0 skills 29→27。升级动作：① 存量项目的 .qoder/skills/create-test/ 与 .qoder/skills/contract-test/ 按 U.4 两态判定处置——未改过则整目录删除，改过则保留并提示两目录已在 v9.0.0 分别并入 run-tests Step 1a 与 integrate-modules Step 6a，请用户自行确认后删除，不静默删用户定制；② 回刷 run-tests、integrate-modules、test-runner agent 与 references/ 两份表（环节 7·1 的触发写法已改为 /run-tests）；③ 旧 /create-test 与 /contract-test 转为兼容别名，但运行时没有别名层，按键宏与自建文档必须改指新名（对照表见 README「旧名（已失效）」）；④ 跑 harness-verify 期望 status: PASS 且 component_counts 给 skills=27/27。计数联动由 tools/sync-component-counts.mjs 单源生成，不手改。",
+      "_note": "方案 §4.2 的「31→22」表在本组只支持两次 L0 删除（测试行 9→6 的算术把 4×L1-test 与 web-e2e-test/hc-tdd-cycle 一起算了，实际 L0 侧 −2）；只做表内指定的合并，不为凑数发明第三处。环节 7·1 与 7·2 现同属 run-tests 一个 skill，两步的职责靠 Step 1a 与 Step 2-4 分段，不靠两个 skill 名。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "change",
+      "assets": [
+        "skills/create-architecture/SKILL.md（新增《与内置架构能力的分工（编排层）》一节：C4 图源建模交给内置 architecture-visualization:c4model、\"当前架构到底是什么\"的取证交给 architecture-visualization:system-modeler；本 skill 保留内置给不了的部分——业务目标与约束、每级必须含哪些业务元素的验收口径、选型对比、ADR 纪律、质量门禁。Step 2 头部标注\"本节是验收口径不是绘图教程\"；description 宣告编排角色）",
+        "skills/architecture-governance/SKILL.md（同结构分工节：证据背书的架构风险与质量评审（质量属性、技术债账、风险登记、fitness function、补救方案）交给内置 architecture-visualization:risk-quality-reviewer；本 skill 只保留四个腐化信号的阈值判定（继承 >3 层、对象类型 >5 种、文件 >500 行、函数 >50 行）、P0/P1/P2 定级与 PASS/FAIL 二元结论、接触即迁移的处置节律；description 同步宣告）",
+        "skills/migrate-legacy/SKILL.md（分工节：遗留系统理解与建模交给内置 architecture-visualization:legacy-system-visualizer、依赖与变更影响面交给 architecture-visualization:dependency-impact-analyzer；Step 1.2 的 find/grep 就地降级为\"内置不可用时的兜底\"；本 skill 保留并存配置、逐模块 ≤500 行小步迁移、特征测试先行、每步可回滚；description 由一行扩为含职责清单与编排角色）",
+        "三处统一的禁令句「这些是内置能力，不要复刻」+ 未安装时的降级标注口径（只在内置不可用时手画，并在新文档开头标注未用内置能力，使装回插件后能直接换轨）。引用内置一律写「插件全名:目录名」限定式，不写裸目录名；不写 /plugin 一类未经实测的命令名",
+        "skills/platform-profile/SKILL.md（补一条平台事实：插件带来的 skill 调用名是 插件名:目录名 而非裸目录名——本组引用写法成立的前提，按\"平台事实只在 platform-profile 承载\"的口径落在这里）",
+        "计数不动：G6 不删组件、不改 manifest roster 与 finalCounts，L0 skills 仍 27。方案要求的另一半 context-handoff「缩窄为写 PROJECT-LIVE 分区」经实测在 v6.0.0 即已满足（正文与 description 早已只写「任务上下文」分区，CONTEXT.md 仅存于降级条款），故本组不改其正文，只补一条防回潮哨兵断言",
+        "连带修 Task 5.2 的一处漏改：commands 9→8 时只改了 roster 与组件概要行，README 指令说明与 SKILL.md 的 description、规范第 5 条三处散文句仍写\"9 个项目命令\"（第四处入口模型段当时已改对）。旧闸门 component-summary-lines-match-disk 的锚点是 \"N skills / 8 agents / M commands\" 那个形状，结构上看不见这类句子 → 新增 command-count-prose-matches-disk 按**语义形状**判（对 manifest.guidanceDesign 的编年体句\"新增第 7 个项目命令\"给字段级窄豁免，那是当时真值不许改），并给 sync-component-counts.mjs 补三条同形状锚点；该形状**故意不进取值回扫 RESIDUAL**，因为回扫不认识账本编年体，会把 guidanceDesign 永久报成残留、一屏假 🔴 废掉这个信号"
+      ],
+      "action": "架构类三 skill 改编排层（不删组件，升级动作只有回刷）：① 重跑阶段 A 或用 /harness-upgrade 回刷 .qoder/skills/ 下的 create-architecture、architecture-governance、migrate-legacy、platform-profile 四个目录（六类组件仍按 SHA256 两态保护，用户改过则只报差异不覆盖）；② 历史 ARCH 文档与治理报告**不回改**，自下一次产出起由内置插件承担图的生成，历史手写稿与新产出冲突时以新链路为准；③ 未安装 architecture-visualization 插件的机器不会静默退化：三个 skill 走各自兜底口径并显式标注\"未用内置建模能力／未用内置评审能力／未用内置测绘能力\"，见到该标注即知该装插件；④ 跑 harness-verify 期望 status: PASS 且 component_counts 各维不变（skills=27/27）——本组的验收不在计数，在 tools/checks/22 的 skill-merge-g6-archviz-orchestration（内置引用齐 + 编排层声明 + 禁令 + 分工表）与 skill-merge-g6-context-narrowed。",
+      "_note": "与 G4 同一条裁定的第二次应用：内置已提供的能力不在库侧重建，本库只保留内置做不了的差集。取证口径：改动前全库对 architecture-visualization 的引用 = 0 处（这正是\"重复建设\"的直接证据），改动后 = 11 处 / 3 个文件，方案指派的 5 个内置能力全部点名。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "change",
+      "assets": [
+        "L0 agents 8 → 4（§4.2 收敛，处置方式是从 L0 **移出**而非删除）：planner / developer / test-runner / security-auditor 四个专职专家经 git mv 移入 assets/templates/L2-project/agents/（git 历史保留，文件未删），L0 只留 architect / ui-to-code / ops-agent / spec-review-agent。移出的判据是实测出来的两条：① 落盘派发入口只有 docs/PROJECT-LIVE.md「测试执行」区块一处（已改写为「测试执行角色主导」），改动后其余命中全部位于库级文件（references 叙述、README/SKILL/manifest 的名单与角色映射、以及这四个文件自身的正文），落盘资产集内 0 处，项目永远看不到；② 专家角色本就由提示词内联合成（platform-profile §一 与 SKILL.md 映射表口径），四个 agent 的 skills 绑定是阶段 B 的派遣目标而非阶段 A 的依赖",
+        "全库 11 个 agent 文件（L0 4 + L2 7）新增 ## subagent 工具面边界 三条：不能嵌套派生（工具面无 Agent）、不能向用户发卡（无 AskUserQuestion）、派遣纪律不在本文件（唯一权威源 skills/platform-profile/SKILL.md §一，只声明受约束、不复述条款——该契约刚被平台实测改写过，复述即制造第二事实源）",
+        "四个被移出的文件各自在 H1 下自陈「v9.0.0 起为可选装配（不在 L0）」并写明未装配时的等价路径，使\"可选\"与\"死码\"在文件内可判别",
+        "manifest.components.L0.agents 收至 4；新增 components.L2.agents 登记 7 名 + components.L2.optionalAgents 单列 4 名；componentCounts.L2_agents 3 → 7",
+        "连带修的既有缺陷（新哨兵 phase-b-expected-count-table-matches-disk 抓到）：references/phase-b-protocol.md 的 B.6 期望计数表 skills 行仍写 31（5.3 五组合并后为 27）、B.6 第 3 步仍写 commands 不等于 9（终值 8），两处一并改正",
+        "phase-a-init 换名前对账的逐维精确相等（a !== b）改为「仅 commands 精确、其余下限」，与 harness-verify Check 2 同谓词：可选装配使 .qoder/agents/ 文件数合法地大于 L0 默认值，旧判据会让二次初始化 die(reconcile-failed)。由 phase-a-reconcile-matches-verify-predicate 钉住两处不再分叉"
+      ],
+      "action": "存量项目升级动作（不删用户任何东西）：① 重跑阶段 A 或 /harness-upgrade 回刷 .qoder/agents/——按 SHA256 两态保护，用户改过的 agent 只报差异不覆盖；② 已装有 planner/developer/test-runner/security-auditor 四个专职专家的项目**不需要删除**，它们自此是\"可选装配已生效\"状态，harness-verify Check 2 与 phase-a-init 对账对 agents 均为下限校验（4+ 判 PASS）；③ 需要专职专家的项目在阶段 B 的建议清单第 6 行确认装配，模板复制自 assets/templates/L2-project/agents/；④ 跑 harness-verify 期望 status: PASS 且 component_counts.agents 期望值为 4（实际数可 ≥4）。",
+      "_note": "验收不靠计数靠形状：tools/checks/23 六条断言分别判 搬层真落地（磁盘/manifest/账本三方同集合）、三条边界全覆盖、五处散文计数与磁盘同值、两份装配账（A 复制表 + B 期望表）与磁盘同值、落盘态零派发入口、两处校验谓词同源。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "remove",
+      "assets": [
+        "assets/library/L0-universal/commands/integrate.md 与 commands/iterate.md（删除）：按判据「命令只在承载独立于 skill 的编排步骤时才存在」两者都不成立——/integrate 是 integrate-modules skill 的 1:1 外壳（其正文第 10 行自陈「具体执行规则与约束以该 skill 为准，命令不复制 skill 正文」），/iterate 是环节 9 的第三份副本（手册 9·1–9·5 已含三类判定与分支 step_gate、bugfix 七步在 9·3，四个分支 skill 完整承载，命令正文没有前两处都没有的步骤）。反例留档：live-refresh 是 3 步同步唯一规范、check-project 承载装配概要渲染、harness-* 三件是框架运维入口、start-dev 无 skill 双胞胎，四者均保留",
+        "独有内容真并入宿主而非随文件消失：integrate 的「破坏性操作确认清单（5 项模板）」与「归档合并主干」迁入 skills/integrate-modules/SKILL.md 第 8 步，合并指派 branch-workflow，未闭环问题默认不合并、需用户显式豁免；同处补 /run-tests 环节 7 衔接",
+        "manifest.json（instructions 删 /integrate 与 /iterate 两键、components.L0.commands 收至 6、triggerMode 8→6 并去掉两名、componentCountsNote 去掉钉死的命令数改为指向名单长度）",
+        "退役名去向按「新版无别名层、敲旧名直接 not found」口径写进 README 旧名表：/integrate → /integrate-modules；/iterate → 手册 9·1 分诊提示词（分支 /spec-delta、/hc-tdd-cycle、/code-simplification，收尾 /retrospective）",
+        "落盘态指向全部改指真载体（本组最危险的失败模式不是删不掉，是删了入口忘改指向）：手册 6·1-6·3 与 9·1/9·3 的可复制提示词、PROJECT-LIVE 母本同代行、stage-agent-skill-map 环节6/9 行与统计表、sdd-gates-checklist、sdd-artifacts.yaml 的 iteration 条目、harness-next 速查表、phase-a-checklist 复制表与人工核对项、phase-b-protocol B.3/B.6、SKILL.md 与 README 的入口模型段，共 60+ 处；6·1-6·3 提示词前缀改 /integrate-modules，9·3 改 /hc-tdd-cycle，9·1 降级为自然语言（harness-verify 只按「^可复制提示词：」取整段，不要求前导斜杠 token）",
+        "连带修的既有漂移：references/stage-agent-skill-map.md 统计表 Command 总数仍写 9（磁盘 8）、Skill 总数仍写 31（磁盘 27）——该表当时无任何断言覆盖，补 stage-map-summary-counts-match-disk 哨兵并把两行计数纳入 sync 锚点"
+      ],
+      "action": "存量项目升级动作：① 删除项目内 .qoder/commands/integrate.md 与 iterate.md（harness-verify 对该目录为精确相等校验，留着会报 commands 计数不符）；② 重跑阶段 A 或 /harness-upgrade 回刷 .qoder/ 骨架，再让 3 步同步按新 briefing-skeletons 重渲 AGENTS.md 与 docs/PROJECT-LIVE.md 的 workflow 区（6·1-6·3、9·1、9·3 的提示词只有重渲才会换指向）；③ 之后环节 6 用 /integrate-modules、环节 9 说「迭代一轮」走手册 9·1。用户改过的命令文件按 SHA256 两态保护，只报差异不覆盖",
+      "_note": "验收形状：tools/checks/24 七条断言分别判 名单与三方计数同集合（含本注不钉数字）、引擎归属单源、integrate 独有内容真落地、零活引用、退役名有 README 去向、环节 9 路由与三类判定仍活、统计表计数与磁盘同值。commands 终值 6。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "remove",
+      "assets": [
+        "L1 技术栈层三个栈级 lint 占位 hook 删除（Task 5.6，§4.4「半装配」收口）：assets/library/L1-techstack/{python,typescript,java}/hooks/{python-lint,eslint-check,checkstyle}.hook.ps1。三文件正文只有一行 Write-Host 提示且指向不存在的命令 /harness:assemble，两份 settings 模板都不注册它们 → 磁盘有文件、注册表无条目、执行器为零；而 react/go 两栈连占位件都没有（manifest 里 go.hooks 早已是 []），于是「声明与磁盘」两种缺口并存。裁决取删声明而非补 hook，三条依据：① §4.5 明令 hooks「保持 10 个，不缩减」，按字面即不许新增栈级 hook；② 能力无缺口——harness.mjs 的 hookPreCommitLint 已按栈探测并直接运行 eslint / ruff check / golangci-lint run / mvn checkstyle:check 四条命令，首个命中即止、探测不到显式跳过；③ 补一个 python-lint.hook.ps1 只会在同一个 git commit 上挂出第二个 lint 门禁，谁先失败取决于注册顺序，即第二事实源",
+        "techstack-commands.json：删 _lintHook 说明键与 6 个栈级 lintHook 键（python/typescript/react/java-spring/go/vue），新增 _lintOwner 单源指针写明 lint 门禁承担者是 pre-commit-lint；各栈 lint 字段全部保留——它服务指令集与 /harness-next 速查的命令预填，连它一起删会让预填退化成占位符",
+        "manifest.components.L1.{python,typescript,java}.hooks 收为 []，五栈同形；L0 hooks 名单与 componentCounts.L0_hooks 仍为 10（本组只删 L1 声明，不许顺手动 L0 门禁）",
+        "references/phase-b-protocol.md B.3 第 3 步重写：由「读 lintHook → 将真实命令注入 L1 hook 脚本执行体（替换 ps1/sh 中的占位段）→ 注入成功才注册 → 缺失不注册」改为「L0 十个 hook 整批注册 + 阶段 B 不为技术栈注册任何 hook + 栈级 lint 归 pre-commit-lint 自探测 + 注册口径不完整即不注册」；v8.1.1 注升为 v9.0.0 并去掉「装配 L1 技术栈 hook（如 python-lint / eslint-check / checkstyle）」；「宁缺毋假」纪律保留",
+        "指令面收口：hook-registry.md 的技术栈填充点小节、HOOKS-ASSEMBLY.md 两处（历史段与约束段）不再并列三个栈级 hook 名，改为「注册表里没有的就不存在」的收口陈述（过去时）；README 库维护约定的编码口径条同步为「库内 .ps1 / .sh 归零」",
+        "连带：hook-single-entry 去掉 L1-techstack 豁免（孪生残留由「L0 口径 0 / L1 孤儿 3」变全库真值 0），hook-twin-instructions-retired 去掉 L1 整目录豁免；新增 tools/checks/25 七条断言：磁盘真值 / manifest 名单收空 / 注入源键收净且各栈 lint 字段仍在 / B.3 指令面不再教注入 / lint 门禁双向实证（文档交出归属前先证明接收方真含四条命令）/ 落盘态零 hook 身份引用 / 时态陈旧检测",
+        "⑥ 的一次自我修正留档：hook 身份引用判据的第一版写成「裸词 + 同行有 hook 字样」，被「pre-commit-lint 跑 mvn checkstyle:check」这类正当句子稳定假阳性——checkstyle 既是 hook 名也是真实工具名。终版只认 hook 标识形态（反引号名 / JSON 串名 / <name>.hook. 文件名）"
+      ],
+      "action": "存量项目升级动作：① 若曾照旧版 B.3 手工装配过栈级 lint hook，删除项目内 .qoder/hooks/ 下的 python-lint / eslint-check / checkstyle 脚本并从 .qoder/settings.json 移除其注册项（三者从未进入阶段 A 的注册清单，只有手工装配过的项目才会有）；② 重跑阶段 A 或 /harness-upgrade 回刷 .qoder/techstack-commands.json 与两份 hooks 模板；③ 确认 .qoder/settings.json 仍注册 pre-commit-lint 且 if 条件为 Bash(git commit*)；④ 跑 harness-verify 期望 status: PASS。组件计数不变（finalCounts 不变，hooks 仍 10）",
+      "_note": "半装配的定义性判据：声明面（techstack-commands / manifest / B.3）、磁盘面（占位文件）、执行面（settings 注册 + harness.mjs 分支）三方必须同真同假。本组把三方对齐到「无栈级 hook」，并由 checks/25 的第 5 条双向锁住归属改写。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "refactor",
+      "assets": [
+        "提示词手册步骤真合并（Task 5.7，§5.2）：环节 6 的 6·1 模式选择与预检 + 6·2 联调执行 + 6·3 报告归档与收尾 → 6·1 联调一次到底；环节 8 的 8·1 上线检查与部署执行 + 8·2 健康检查与上线记录 → 8·1 上线一次到底。裁决判据 = 判据共享同一同步终点且组内无独立决策点（方案 §5.2 复验后确认安全的那两组）；手册与骨架 briefing-skeletons.md 双侧同步收净——只改一侧会造成骨架 3 步 / 手册 1 步，而项目侧 rule_merge_parity 要到落盘之后才红。全链 29 步 → 26 步，分布 3/2/2/6/4/1/2/1/5",
+        "质量承重墙按方案更正后的名单原样保留：3 道主门禁不变（implement / Ship Decision / release 仍各占一步）；8 个对抗复核宿主 1·1／1·2／2·2／3·1／3·2／5·4／7·1／7·2 一步未并（名单从骨架『需内联专家清单的步骤』那一行读取，不在闸门里抄录）；7·1 与 7·2 保持两步——合并会自删「失败用例全部带进 7·2」这条交接约束（自己移交给自己即失效），只按方案提级 7·2 轻通道阈值的确认口径",
+        "判据零丢失的可证伪口径：合并前把 198 条判据（去重 195、仅出现 1 次的 192 条）冻结成 tools/fixtures/criteria-baseline.json（含两个源文件的 sha256 与逐步明细），合并后逐条等量在场、零新增零改写。被压缩的只有提示词「执行要点」的过程细节——它们本来就在 integrate-modules / deploy skill 的编排里，且旧环节 6 与环节 8 的 step_gate 全量并入合并块的执行契约，落盘信息不减少；手册环节6／环节8 的两块「旧版细粒度步骤说明」折叠区随本次收口删除（其正文断言\"合并为 6·1／6·2／6·3\"，再合并一次后就成了假话，出处改由本账本承载）",
+        "🔴 度量纠偏两处（都会复发）：① spec Task 5.7 的判据抽取按行首「- [ ] 」勾选形状，实测在现版手册命中 0 行——v8.4.0 起自检标准是提示词框内的散文句，照它冻结会得到空基线、V15 从此对任何判据丢失永久绿灯；② 环节号不许从步骤标题散文猜——「4·1 UI 路径复检（消费环节1 决策卡）」同时含 4·1 与环节1，按散文取会把 4·1 算进环节 1（实测分布错成 4/2/2/5/…，与不变式对不上才暴露）",
+        "🔴 方案 §5.2 的两处不自洽按判据落地、不照抄标语：①「仅出现 1 次的独有判据其宿主禁止合并」不可满足（198 条里 192 条独有，按字面任何合并都违规），落成三条可实现不变式——判据多重集相等 + 8 宿主互不吸收（吸收别人也红）+ 2 条跨步指涉判据留命名宿主；②「可见 15 / 实际 17」与其表格逐行目标求和（=17）差 2，任何一致读法都补不平，闸门改钉磁盘真值分布 26，不钉标语数字",
+        "🔴 合并与字数带的冲突是量出来的不是猜的：harness-verify 的 prompt_length_bounds 两侧早已机检（160 下限 + 1200 硬上限，方案里\"只校下限\"那句是 Phase 3 之前的旧账），而 6·1+6·2+6·3 原文合计 2215 字、8·1+8·2 合计 1255 字 → 逐字并段必然静默越界。出路只有把过程细节下沉宿主 skill：合并后 6·1 = 1195 字、8·1 = 1023 字；全库 26 步实测 595-1200 字、中位 1008，17/26 步已超 900 目标带（这条账记进骨架「字数带」一节，是 Task 5.9 手册瘦身的主要落点）",
+        "计数与指向清扫：16 处活声明 29→26（含两处逐环节分布串、两处不变式 环节N=k 串）；被吸收步骤号 6·2／6·3／8·2 在活文档零引用（create-proposal 的并行派发范式改指 6·1，stage-agent-skill-map 环节6 三行并一行、环节8 两行并一行，骨架会话形态表两行同步）；账本三处（migration-map 全文、manifest.json:6、README「八、版本与升级」以下）按原史保留不改写",
+        "闸门 tools/checks/26-step-convergence.mjs 七条：判据多重集相等（退役必须在 fixture.retired 登记，且登记后全库零出现，否则红）／宿主互不吸收／合并组双侧收净且与基线 absorbedInto 同源／被吸收步骤号零活引用（零豁免——代价是骨架含义行也不许写这些步骤号，出处只留在本账本）／十类步骤总数声明与磁盘同值且每类必须命中 ≥1（锚点死了本身判红）／字数带两侧在源在判／三处渲染口径同说「环节全量 + 环节4/5/9 路径步骤折叠」"
+      ],
+      "action": "存量项目升级动作：① 重跑阶段 A 或 /harness-upgrade 回刷 docs/PROJECT-LIVE.md 与 .qoder/briefing-skeletons.md（两份必须同批回刷，只刷一份会让 rule_merge_parity 红在骨架↔手册步骤对账上）；② 若项目手册已被手工改写过环节6／环节8，把自建的 6·2／6·3／8·2 区块内容并入 6·1／8·1 对应段，并核对自检线条款一条不丢（本次口径 = 198 条判据多重集相等，项目内可按同形状重跑一次抽取自证）；③ 跑 harness-verify 期望 status: PASS 且 prompt_length_bounds 与 rule_merge_parity 双绿；④ 组件计数不变（finalCounts 不变：手册步骤数不是组件维度，rules/skills/agents/commands/hooks/scripts 六维一律未动）",
+      "_note": "本组的定义性判据：减步骤的收益只能来自折叠渲染与判据同终点的真合并，不许来自删验收线。判据多重集相等是唯一能证伪「看起来还在」的口径——三步并一段时，肉眼的「内容都搬过来了」与真实的「198 条一条不少」之间差一个集合运算。另记：fixture 的两个计划字段（absorbedInto/retired）由人手工登记、重新生成时继承，闸门 ③ 判二者同源，防止偷偷改计划绕开断言。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "refactor",
+      "assets": [
+        "提示词权威源单点化（Task 5.8，§5.5）：新增 assets/templates/manual-static.md（手册抬头 + 9 个环节引言/尾注 + 26 个步骤扫读壳，是**源**不是产物）与 tools/build-manual.mjs（渲染器）。assets/templates/docs/PROJECT-LIVE.md 的 workflow 区自此为纯生成物：手工改它会被 tools/checks/27 的 manual-is-build-output 判红。此前骨架:102 一直声称\"母本提示词与骨架逐字一致、骨架是唯一可编辑源\"，但这件事在库里**没有任何闸门证明**——项目侧 Check 7c 只比落盘的两份，不比库里这两份；实测 26/26 零漂移纯属没人动过，本组把\"没坏\"变成\"坏不了\"",
+        "26 段提示词全量换轨到 §5.3 形状 B（骨架与母本同批）：八个标签依次为 这一步要为你拿到 / 为什么要单独做（新增，答\"跳过会怎样\"）/ 我需要提供的材料 / 我会交付到 / 请按下面顺序做，每步做完给我一眼再继续 / 红线（绝对不能做）/ 怎样算做完（请逐条打勾）/ 做完之后。旧六段标签（输入物/产出物/参考模板/执行要点/注意事项/自检标准/完成后）随 v9.0.0 一并退役，不留双轨——老项目必须重跑阶段 A 回刷。母本框外扫读字段同步改名为 你要做的事 / 你会拿到 / 建议怎么用，并**删除框外 输入物 字段**：材料的唯一出处改为框内「我需要提供的材料」，两处各写一份就是第二事实源",
+        "§5.3 两条硬规则转为机器校验：① 任何一行 ≤60 字（实测换轨前 177 行超宽、最长 243 字，是 5·3 一行塞下交付审核五大类 20 项 + 4 个阈值造成的）；② 禁词射程从\"仅提示词代码框内部\"扩到 #### 步骤标题 + 框外粗体扫读字段（harness-verify 的 prompt_plain_language 射程已改，实测框外漏过 ui-to-code agent / Red Line / dispatching-parallel-agents / S0）。6 块「旧版细粒度步骤说明」折叠区整段删除（库内迁移日志，出处只留在本账本）；1·1 的 6 位专家清单按 §5.5 内联规范原样恢复（曾被当成\"过程细节\"误删）",
+        "判据一条未丢且可证伪：5.7 冻结的 198 条判据在换形状后逐条等量在场（tools/criteria-baseline.mjs 改为双形状解析——散文式 `自检标准：A；B。` 与列表式 `- [ ] X` 规范化到同一形态，否则 5.8 一落地就是 198 条整体假丢失，满屏红会埋掉真正的丢失）。checks/27 用**拆分覆盖**替代多重集相等：允许把一条拆成几条，但每个 ≥4 字原子必须在场，且不许出现基线里没有的判据",
+        "🔴 度量纠偏三处（都会复发，已写进 checks/27 文件头）：① 段解析正则带 m 标志时终止条件**不能写 `$`**——`$` 在标签行行尾就成立，多行段被截成空，实测判据从 198 掉到 23；只能用 (?![\\s\\S]) 判串尾。② reshape 只认精确标签 `执行要点：`，而 4·5 的源标签是 `执行要点（这一步需要你亲手做的 5 个动作）：`（方案 §5.3-3 早点名过这个变体），于是那 5 个动作整段消失——已补\"旧段每条 ≥16 字片段必须能在新段找到\"的全量保全审计。③ 构建器**绝不能读母本自己的步骤区块**：读了\"输出 == 现盘\"就成了恒真式，V21 等于没写",
+        "🔴 本批最重要的一条：dev-time 96 条全绿时，落盘的 harness-verify 红了 4 条（prompt_params / prompt_plain_language / expert_panel_inline / prompt_length_bounds）。同一个谓词的两份实现必须由第三方判据咬住——已在 checks/27 ⑨ 镜像一份\"参数清单声明的 {占位} 必须出现在该步正文\"。中途还把 参数清单 剪枝去迁就正文，那是**削弱契约来迎合文案**（删声明 = 同步期不再为该步绑定真实路径），已回退为\"恢复原声明 + 把缺的占位符合并成一条 bullet\"",
+        "闸门 tools/checks/27-prompt-single-source.mjs 九条：手册代码框 == 骨架提示词（双向对账，多一块少一块都红）/ 手册 == build-manual 实跑输出（真跑子进程，不用标记文件自证）/ 26 步形状统一为 B 且八字段齐备 / 行宽 ≤60 / 判据拆分覆盖（按 fixture.absorbedInto 归并吸收池）/ 材料段带真实路径 / 迁移日志折叠区为 0 / 校验器禁词射程已扩 / 参数占位符镜像断言"
+      ],
+      "action": "存量项目升级动作（v9.0.0 破坏性，提示词标签无兼容层）：① 重跑阶段 A 或 /harness-upgrade，一次性回刷 docs/PROJECT-LIVE.md、.qoder/briefing-skeletons.md 与 .qoder/scripts/harness-verify.mjs 三件——只回刷其中一部分会让 prompt_selfcontained 按新标签查旧手册，26 步全红；② 若项目手册被手工改过（分区标记仍是 managed-dynamic，手工改会被覆盖），把自建的步骤提示词并入骨架后重跑构建；③ 跑 harness-verify 期望 status: PASS，重点看 prompt_selfcontained / prompt_plain_language / prompt_params / rule_merge_parity 四条；④ 组件计数不变（finalCounts 不变，手册步骤数不是组件维度）。",
+      "_note": "本组的定义性判据：**声称\"只有一份源\"必须同时给出\"另一份是生成物\"的证明**——即一个渲染器 + 一条等值断言。只有前者是文档口径，只有后者是在比两份手工维护的拷贝。另记 §5.3 的\"字数带不含专家清单\"这一豁免今天**未实现**：本批选择守住全量 1200 硬上限（1·1 含 6 位专家内联清单压到 1198 字），因此把该豁免记在这里而不是偷偷放宽闸门；真要按 §5.3 排除专家清单，必须同时改 harness-verify 与 checks/26 ⑥ 并加第三方判据。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "refactor",
+      "assets": [
+        "手册结构按 §5.4 处置表瘦身（Task 5.9a）：删除「遥测与历史」整个分区（权威源本就是 .qoder/harness-profile.json，历史看 git log，页脚保留一行\"最后同步\"）；删除规则命中遥测（telemetry.ruleHits 与其 profile 字段——无用户消费者，新版有官方 better-harness）；「装配概要」从项目概况移除，组件计数改由 /check-project 现算（该处硬编码计数正是历史上 7 副本漂移的源头）；折叠渲染说明/不变式/分区语义等机器契约从手册首屏退出，规范源只留在 .qoder/briefing-skeletons.md",
+        "任务上下文从 docs/PROJECT-LIVE.md 拆出为独立文件：新增 assets/templates/docs/项目交接.md 模板（ai 语义，手工修正保留），phase-a-init 落盘它并纳入对账 required 清单；手册侧只留一行链接。三处消费方同批改口径：live-refresh 的分区清单与同步步骤、context-handoff 的写入目标、harness.mjs 的会话开场指引。判据条目「结论已落到任务上下文…」因此改名，走 tools/fixtures/criteria-baseline.json 的 renamed 登记（旧文本必须全库消失、新文本必须在宿主在场，由 checks/26 ① 双向把守）——改名登记是 V15 唯一合法的跨改写通道，不登记就只剩\"整体假红\"或\"偷偷重冻基线\"两条坏路",
+        "手册顶部新增进度表（环节/步骤/状态/交付路径/下一步），由 tools/build-manual.mjs 从骨架现算生成：步骤清单与交付路径不另存副本，所以它不可能与骨架脱节；状态列取自静态壳的标题（模板初态，运行期由 /live-refresh 改写）。名词与路径速查按 §5.4「保留并强化」补入 项目交接/过关检查点/定稿锁定 等条目",
+        "🔴 ≤45KB 未达成，且**不是靠放宽闸门糊过去的**：实测 §5.4 授权的机器内容总共只有约 1.2K 字符，全部删除后手册仍 96KB，因为 26 段内联提示词正文占全文约六成。也就是说 §5.4 的「≤45KB」与 §5.5/5.8 的「母本是骨架的渲染快照、打开手册即可复制提示词」不能同时成立，唯一出路是让提示词退出手册改为「取词入口」——那是产品取舍，已记为 harness-verify 的 manual_size_budget WARNING 持续显形，并把闸门改成判\"非提示词部分 ≤45KB\"（这条现在成立），而不是改预算数字",
+        "真实使用模拟（新目录跑阶段 A + 走手册 + 活体敲 hook）顺带暴露并修掉的工程缺陷：未注册 hook 子命令静默 exit 0（改为说明后放行）；harness-verify 只探 3 条 manifest 路径导致直跑形态集体假红（增加 profile.skillRoot）；Check 7b 锚在已不存在的 `- **输入物**` 行上=死检永不告警（改扫全区路径且跳过 {占位}）；live_doc_integrity 用 includes() 判分区，11 个重复 section-end 照样 PASS（改为开合各一）；phase-a-init 从不创建手册引用到的 docs/test/ 与 references/。构建器另有两处自伤：每构建一次多留一行 section-end；{{PROMPT}} 替换漏换行导致 26 个提示词围栏全部未闭合——都由新闸门暴露",
+        "闸门 tools/checks/28-manual-restructure.mjs 八条（telemetry 三侧同删 / 装配概要移出且 /check-project 真承接 / 交接拆分且三消费方同口径 / 机器契约下沉 / 进度表列齐并覆盖 26 步 / 速查表未被削 / 体积预算记账未放宽 / 全库无\"5 分区\"过时叙述）。其中\"结构变了、叙述没跟着变\"这条是新增的判据类型：分区从 5 个变 3 个后，4 处文档与校验器自己的通过信息都还在说 5——旧叙述对新项目就是假契约"
+      ],
+      "action": "存量项目升级动作：① 重跑阶段 A 或 /harness-upgrade 回刷 docs/PROJECT-LIVE.md，并确认新增落盘 docs/项目交接.md（老项目的任务上下文内容需人工从旧手册分区迁过去一次——迁移前它在 PROJECT-LIVE.md 的 ai 分区里，同步不会自动搬）；② 删除项目文档里对「遥测与历史」分区的引用；③ 跑 harness-verify 期望 status: PASS，live_doc_integrity 应显示 3/3 分区；④ manual_size_budget 与 verify_stamp 两条 WARNING 属已知项，前者待产品决策，后者需真实会话由 Stop hook 回写。组件计数不变（rules/skills/agents/commands/hooks/scripts 六维未动）。",
+      "_note": "本组的定义性判据：搬走一块内容要同时改\"模板、生成物、校验器、消费方、叙述\"五处，少一处就是假契约——前四处机器可判，第五处（旧数量/旧路径的说法）也要有断言，否则新项目读到的是过期世界图。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "refactor",
+      "assets": [
+        "黑话清零（Task 5.9b，§5.1）：用户可读源里 11 个内部坐标系词全部改平语并按 §5.1 对照表落词——门禁→检查点（主门禁→主检查点、质量门禁→质量检查点、门禁阈值→检查点阈值 …）、冻结→定稿锁定、红队→找茬小组、五轴→五角度体检、Prove-It→先证明再改。改名前实测骨架+静态源+母本+AGENTS 四份源里共 114 处，其中 门禁 42／冻结 47 是最大两块。三条范围决定写进闸门文件头：① 禁词表与契约定义行必须能点名被禁写法（沿用本库 V11 的 DEAD 豁免，不另造一套）；② 用户可读源判\"零出现\"；③ 其余落盘资产里的机制词判**棘轮**（天花板 52、只降不升）——因为 SYNC_DATA / managed-dynamic 是真实存在的机器契约名、platform-profile 的职责就是点名\"平台没有专家团/Quest\"，硬判零出现等于逼文档含糊其辞",
+        "判据条目被改到的 6 条走 tools/fixtures/criteria-baseline.json 的 renamed 登记，由 checks/29 ③ 双向校验：旧文本全库零残留（扫描用空白容忍正则，因为判据是规范化无空格形态而库里写 \"9 项检查点\"）、新文本必须在判据集合里、且不许登记基线里没有的无主映射。这是 V15 唯一合法的跨改写通道——没有它，改名要么让基线整体假红、要么逼人重冻基线洗白",
+        "AGENTS.md.template 按 §5.4/§4.5 瘦身：删「可用能力」与「Memory 索引」两节（手工镜像内置能力清单是纯漂移源），并删「Harness 自维护状态」整节——它是 harness-profile 与手册页脚之外的第三份拷贝（信息成熟度/已装配组件/最近同步/最近校验/待补充清单），违反 §5.1 原则二\"一文一义\"；改为 4 行指路，权威源是 .qoder/harness-profile.json、人读进度看手册顶部进度表。模板 159 行 → 119 行（上限 120，官方口径 200+ 行即 finding）",
+        "消费方跟着结构改（漏一处就是新项目一初始化就红）：harness-verify 的 agents_fields 必填节去掉两节、加入\"自维护状态在哪看\"；sync-component-counts 的 AGENTS 概要锚点随该节消失成永久 no-hit → 按同一处置删锚并记因；checks/22 的组件概要行下限从 4 降到 3（装配概要已随 §5.4 移出手册）——上一版只改了提示文案没改判据，这次两处一起改",
+        "闸门 tools/checks/29-jargon-lean.mjs 四条：用户可读源零黑话 / 机制词棘轮 / 判据改名双向闭合 / AGENTS 节与行数。"
+      ],
+      "action": "存量项目升级动作：① 重跑阶段 A 或 /harness-upgrade 回刷 AGENTS.md（老项目里的「可用能力」「Memory 索引」「Harness 自维护状态」三节属手工镜像，回刷即消失；如曾在这些节里手写项目内容，请先把它并进 项目简介/关键约束）；② 术语改名只动措辞不动语义，历史文档里的\"冻结/门禁/红队\"字样无需回改（账本按原史保留）；③ 跑 harness-verify 期望 status: PASS 且 agents_fields 全绿；④ 组件计数不变。",
+      "_note": "本组的定义性判据：删一个用户可见章节，必须同时改\"模板、校验器必填项、计数联动锚点、下限常量\"四处；少改一处就是要么新项目红、要么锚点静默 no-hit。另：棘轮（天花板只降不升）是\"暂时做不到零\"时的正确表达，比把判据改成永远为真诚实。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "add",
+      "assets": [
+        "吸收上游 UI 设计引擎（Task 5.11，E16/E17 / §5.8）：新增 assets/library/L0-universal/skills/ui-ux-pro-max/（46 文件、1.28MiB）。目录名与 frontmatter name 都取 ui-ux-pro-max（**不用** ui-ux-pro-max-design，避免被同名用户级技能遮蔽；内置版仅在需要 logo/CIP/banner/slides 时调用）。收录 SKILL.md + data/ 14 表 + data/stacks/ 22 项 + references/ + scripts/（裁掉 tests/ 与 fixtures/）；排除 google-fonts.csv(730KB，改按热度切 top-60)、google-font-licenses.json(423KB)、phosphor-icons-upstream.json(805KB)、ui-styling/(5.8MB 含 54 个 .ttf)、brand/design-system/design/banner-design/slides、cli/docs/screenshots/.github。实测数据行 styles 88（其中 active 50）/colors 192/typography 74/charts 25 与上游宣称一致；无二进制（.ttf/.otf/.woff/.png/.pyc 均 0）",
+        "许可证与溯源：新增 data-provenance.json 逐条记录 45 收录件与 22 排除项及各自理由，并明写\"上游代码 MIT 但 data 负载非纯 MIT，字体商用须核对许可证\"；SKILL.md 同步留一行提示。⚠️ 已知不完美：data/catalog-summary.json 里的 sha256 是上游**整包**指纹，裁剪后不再自洽（SKILL.md 与台账都标注\"勿用于校验\"）；上游 LICENSE 全文未随包复制（不在收录清单内），署名只记在台账字段",
+        "Python 检索器三条实测结论（不靠\"Node 跨平台所以没问题\"）：本机 python3 命中 WindowsApps Store 别名，exit=49 且零输出，而 python=3.12.4 可用；故 SKILL.md 明写 python3 失败即**降级直读 CSV 不报错**、hooks 永不依赖 Python、并记录探测过的两条真实命令结果。裁剪后 --domain google-fonts 返回 File not found 属预期，已改指 data/google-fonts-top60.csv",
+        "🔴 字体表裁剪踩到一处取样偏差：按\"前 60 行\"切得到的是**字母序**前 60（ABeeZee…Alumni Sans SC），而这张表本就有 Popularity Rank 列——按字母序取 top 等于随机取样。已改为按热度升序取前 60（首名 Roboto），并把裁剪口径写进 data-provenance.json 的 fontSliceRule，防止下次又按行序切",
+        "台账联动：manifest.components.L0.skills 加入 ui-ux-pro-max、componentCounts.L0_skills 27→28；README 概要行与指令对照段、phase-a-checklist 两处、phase-b-protocol B.6 表、stage-agent-skill-map 统计行、sync-component-counts 全部跟到 28。名单入册用的是**行内插入**（该数组多值一行），上一版按\"追加新行\"写会把前一项的逗号重复成 `,,` 直接写坏 JSON——靠\"解析失败即回滚\"的护栏才没留下伤",
+        "UI 引擎换轨的引用侧收口（部分，随 5.10 完成）：环节 1·3 与环节 4 的引擎引用由内置版改指吸收版；四路决策树、Figma/参考图/外部工作台三条路径的取消属 Task 5.10，本条目不含",
+        "删恒真自验（Task 5.12 Step 5，N4）：build-panel 的 V2「bundle 内标记 N 次、产物内 M 次，要求 M==N」中 N 实测可为 0 → 0==0 恒过；V5「产物字节 ≈ 模板+bundle，±5%（约 ±425KB）」比的是本工具刚写出去的同一个文件，构造即成立且容差宽到吞得下真实截断。两条删除，真兜底保留 V1(引擎标记)/V3/V4/V6(SYNC_DATA 成对)/V7(无 BOM)。checks/19 的 panel-selfverifies 断言随之**反向**：既要求真自验齐备，也要求 V2/V5 不回潮——留着假项，\"自验 7 项全绿\"这句话就没有信息量",
+        "删体积带来的维护税（Task 5.12 Step 4）：SKILL.md 两条执行禁忌（8MB bundle 严禁 powershell -Command 内联、内容验证严禁 ripgrep 类工具）与 README 的 Git LFS 要求一并删除——体积由 §6.3 的引擎外置与图种裁剪治本（Task 5.12①②③，尚未执行），本不该靠禁令治标。注意：禁令删除与 bundle 瘦身是**同一件事的两半**，5.12②③ 落地前库内 bundle 仍 8.46MB"
+      ],
+      "action": "存量项目升级动作：① 重跑阶段 A 或 /harness-upgrade，让 .qoder/skills/ 多出 ui-ux-pro-max（28 个 skill），并把 README/phase-a-checklist 等口径同步到 28；② 面板若曾手工拼接过，重跑 node .qoder/scripts/build-panel.mjs 完整拼接一次，新自验为 V1/V3/V4/V6/V7 五项（V2/V5 已删，旧\"7 项全绿\"的说法不再适用）；③ 跑 harness-verify 期望 status: PASS 且 component_counts skills=28/28；④ Python 不可用的项目无需处理：UI 引擎脚本自带\"直读 CSV\"降级，hooks 不依赖 Python。",
+      "_note": "本组的两条通用判据：① 从上游\"按行序取前 N 行\"不叫裁剪，先确认表里有没有排序依据列，否则切出来是随机样本；② 自验项必须能被证伪——与自身比较、或断言两侧都可能为 0 的检查，等于把\"响亮失败\"改回\"静默成功\"，删掉并让闸门反向盯住它不许回潮。"
+    },
+    {
+      "_of": "9.0.0",
+      "type": "remove",
+      "assets": [
+        "UI 单路线落地（Task 5.10，§5.7 / E13-E15）：取消四条设计路径与\"先选路再执行\"的结构。环节 4 由 6 步收敛为 2 步——4·1 UI 设计与定稿（G2 验收卡）、4·2 还原核对与归档（G3 基准建立）；1·3 去掉「UI 路线决策卡」只留交互原型工程。全链 26→22 步，分布 3/2/2/2/4/1/2/1/5。裁决依据不是\"少一条路更清爽\"，而是三套阈值彼此不可调和（Figma 要求一致性≥95%、参考图要求视觉差异<5%、内置路径只要求\"我的视觉判断已通过\"），拼成一份线性 checklist 后用户无法作答任何一行",
+        "随路线一起消失的能力面（逐项 grep 到 0 才算删净）：`profile.ui.designRoute` 与 `profile.ui.evidence` 字段、docs/spec/UI-路径决策-{业务}.md 产物与 sdd-artifacts 声明、references/design-source/ 目录约定、SPEC-UI 模板的 Figma 源节点追溯字段与 B/C 路径验证分支、千问办公与 OpenDesign 全链（不留旁路文档）、以及 ui-design skill 的 Step0 三段式复检（47 行）与 B/C/D 三条宏步骤协议（86 行）",
+        "判据处置逐条登记，可复核：30 条随被删路线**退役**（写入 tools/fixtures/criteria-baseline.json 的 retired，含\"为什么可以不做\"的理由）；17 条**搬运**到新宿主（absorbedInto：4·2→4·1、4·6→4·2）。闸门同步收紧而不是放松：checks/26 ① 要求退役判据全库不得再现，checks/27 ⑤ 的拆分覆盖先剔除退役项再比原子——否则要么用旧世界的验收线卡新世界，要么给\"悄悄删验收线\"开门",
+        "手册与母本侧：环节 4 的 4 个步骤区块与 1·3 一并重写（进度表、扫读壳、名词表随 build-manual 从骨架再生成）；环节 4 不再有折叠渲染（单路线无分叉），Backend-Only 仍整环节跳过。手册体积 96KB→76KB（内联提示词仍占约六成，≤45KB 待\"提示词是否退出手册\"的产品决定，见 manual_size_budget WARNING）",
+        "G2/G3 的阈值单源纪律：4·2 的视觉相似判定**引用** implement-feature 的既有口径（阶段 2 视觉：像素级还原 / 截图 / 差异分析 / 相似度阈值），门禁表与手册都不得另写数字——门禁表若出现新发明的阈值即判双源。三次可见验收闸门 G1（原型可点）/G2（设计定稿）/G3（还原核对基准）进入 sdd-gates-checklist，通过记录必须带截图证据文件路径，不接受\"已完成\"字样",
+        "🔴 闸门自己也被这次改动纠出一处假红：checks/26 ① 的\"退役判据全库不得再现\"扫到了 fixtures 基线件自己（退役条目的键就是旧文本），把账本当活引用。已按 libFind 排除 tools/ 的同一原则把基线件与开发侧目录剔出扫描范围——豁免要放在\"认识账本\"的那一层，不能为它开一条通用后门"
+      ],
+      "action": "存量项目升级动作：① 重跑阶段 A 或 /harness-upgrade 回刷 docs/PROJECT-LIVE.md（环节 4 从 6 块变 2 块、进度表新增）与 .qoder/briefing-skeletons.md，两份必须同批，否则 rule_merge_parity 红在骨架↔手册对账；② 手工删掉项目内 .qoder/harness-profile.json 的 ui.designRoute / ui.evidence 两个键，并删除 docs/spec/UI-路径决策-*.md（该产物已不存在，留着会让判据指向空文件）；③ references/design-source/ 若曾用于 B/C 路径，归档到 docs/changes/ 后不再作为输入约定；④ 曾照旧版做过路线选择的团队：新流程只有一条路，无需重选，直接走 4·1 定稿；⑤ 跑 harness-verify 期望 status: PASS。组件计数变化见下一条（agents 4→3 随 ui-to-code 删除，与 5.4b 同批）。",
+      "_note": "本组的定义性判据：删一条能力要同时数清三处——声明面（profile 字段/产物清单/模板分支）、磁盘面（agent 文件/目录约定）、执行面（skill 宏步骤/手册步骤）。只删手册 = 技能还在教四路；只删技能 = 手册还在挂四块验收卡。本次先做手册+技能两处，agent 与 profile 字段在 5.4b 同批收口。"
+    },
+    {
+      "_of": "9.1.2",
+      "type": "remove",
+      "assets": [
+        "交付面收敛：删除开发侧工装目录 tools/（205 条回归断言 checks/、判据基线快照 fixtures/criteria-baseline.json、手册构建器 build-manual.mjs、度量产地 dump-baseline.mjs、等价性配方 phase-a-equiv.mjs、面板引擎构建工程 panel-build/ 源码与 lock、以及 tools/baseline.json 本身）。随库分发的能力零影响：阶段 A 必装清单 REQUIRED_ASSETS 不含 tools/，5 个落盘脚本没有任何一处把 <skillRoot>/tools/ 当路径去读（本轮实测），且本库的活体等价配方一直跑在\"不含 tools/ 的安装面\"上（27 PASS/0 FAIL）——它既是\"tools/ 与交付无关\"的证据，也是这次误报逃过全部测试的原因。",
+        "恢复方式（唯一途径，本条为不可再生产物留路）：git checkout c4dbbd3 -- tools。最后一次仍含 tools/ 的提交即 c4dbbd3，该提交下 refactor-check 0 failing / 205 run、判据基线缺失 0/新增 0/独有判据消失 30。",
+        "动因（真实故障，非洁癖）：项目侧 harness-verify 的 tool_names 判据扫描 .qoder/skills/**，把安装副本内 tools/baseline.json 记录的宿主不存在的工具名计数（SearchReplace 之类纯数据键行，行内不可能带宣告词，故反面教材豁免对它无效）当成指令面，于是每一个装了本库的项目每轮 Stop 都多一条假 FAIL；而库侧同名判据 checks/03 走 libFind，lib.mjs 显式排除 ./tools/。两侧扫描域不一致属本库主导缺陷类\"改了声明没改消费方\"的新变体。",
+        "有意未做的一件事：没有改 harness-verify 的扫描域、也没有改任何阈值来让这条红消失——那样会把病根留在原地（幽灵名在 assets 里也有命中，今天只是靠同行恰好带\"不存在/已删\"宣告词才没报错；同一假设在校验器里出现在 5 处：行 165/757/868/928/961）。移出工装是让两侧口径一致的最保守做法；代价自本版起库内不再有自动回归网，已在 README §七 与本条明示。"
+      ],
+      "action": "存量项目升级动作：① 删除项目内 .qoder/skills/better-coding/tools/（安装副本里的开发侧拷贝，运行零依赖；本工作区实测该目录 209 文件 / 2.4M）；② 重跑阶段 A 或 /harness-upgrade 回刷 .qoder/briefing-skeletons.md、.qoder/commands/live-refresh.md 与 docs/PROJECT-LIVE.md（三处关于构建期工装的表述已改口径）；③ 删完跑 harness-verify 期望 status: PASS，且 tool_names 行回显\"幽灵工具名=0\"；④ 组件计数六维未动（rules 15 / skills 26 / agents 3 / commands 6 / hooks 10 / specTemplates 11 / scripts 5），分发集仍 234 文件（≈3.5MB）。",
+      "_note": "版本号 9.1.2 = 补丁级：无组件计数变化、无随库能力变化，只移出非交付目录并同步 4 处文档口径。本条目不复制被删工装正文（那是第二份事实源），只给 git 恢复坐标。判据基线自 v9.0.0 起全程零变更，本批亦未新增 retired/renamed/absorbedInto 任何一项。"
+    },
+    {
+      "_of": "9.1.1",
+      "type": "change",
+      "assets": [
+        "\"Batch 6 裁定批（D7/D8/D10/D12/D13/D15）+ Batch 4 整体收口。判据基线零变更：缺失 0 / 新增 0 / 独有判据消失 30。\"",
+        "\"🔴 D7 撤销「整文件 ≤45KB」目标 —— 被删原文逐字留存：骨架 §四 体积段「手册整文件体积目标 ≤45KB（v9.0.0 实测约 76KB；差额主要是 22 段内联提示词，是否让提示词退出手册属产品决定，见 harness-verify 的 manual_size_budget），超限则把「执行要点」的过程细节下沉区块折叠说明。」；落盘校验器旧行「if (size > budget) warnRow('manual_size_budget', `手册 ${…}KB > §5.4 目标 ${…}KB（差额 ${…}KB）：机器分区与迁移日志已删，剩下的体积主要是 ${STEP_BODIES.size} 段内联提示词（约占六成）——要再降只能让提示词退出手册、改为「取词入口」，那是产品取舍，需用户拍板`);」。撤销理由不是没做到而是两条结构互斥（22 段内联提示词实测占全文 65%）；保留的「非提示词部分 ≤45KB」把 45KB 这个数原样搬用，一个字未放宽，且从 WARNING 升为 checkRow 硬判据（收紧方向）。\"",
+        "\"D15 字数带「不含专家清单」三方同源（骨架声明 + harness-verify + checks/26 ⑥），并新增 word-band-expert-panel-exemption-single-source 比较两份字面：EXPERT_PANEL 正则与 EXPERT_PANEL_RULE 语义哨兵。只比正则会留下\\\"两边正则相同但一边拿它判下限\\\"这种更阴的分叉。实测 1·1 全量 1179 → 剔除 303 字清单段后 876；同时实测出骨架 §五 声明的 8 个内联触点里只有 1·1 真有统一格式清单段（落差写进断言 PASS 消息持续显形，未静默）。\"",
+        "\"D10：hook_stubs 的 PASS 文案现算\\\"实现里没有阻断出口\\\"的已注册 handler（活体 5 个：pre-merge-review / post-edit-format / audit-log / session-start-context / sync-detector）；找不到 harness.mjs 时报不可知而非猜 0。pre-commit-lint 不计桩的裁定不变。\"",
+        "\"D12：--fast 措辞三处同代（hook-registry.md、校验器 usage 注释、--help 输出），并实测带与不带的输出行集合 34 vs 34、diff 为空。\"",
+        "\"D13：新增 tools/checks/45-landed-scripts-smoke.mjs 五条，让 5 个落盘脚本在默认套件里各起一次真进程；hook-ask-card.mjs 经实测是纯模块（standalone 跑它必然 0 输出），故其冒烟改为载入模块真调 guardCard，避免一条永绿的假冒烟。同批修 checks/33 被批量替换吃掉的 msg 键（{ ok, 0: \\\"…\\\" } 是合法对象字面量，node --check 判不出），并给运行器加\\\"缺 msg 视同失败\\\"不变式——它在当前库上恰好只命中那一条。\""
+      ],
+      "action": "存量项目升级动作：① 重跑阶段 A 或 /harness-upgrade 回刷三件随库分发的资产——.qoder/scripts/harness-verify.mjs（体积判据换对象、hook_stubs 回显放行分支、字数带豁免）、.qoder/briefing-skeletons.md（体积与字数带两段口径）、.qoder/hooks/hook-registry.md（--fast 去歧义）；② 注意 manual_size_budget 由 WARNING 变 FAIL 级：判的对象从整文件换成非提示词部分，实测存量三本手册 27.2–27.6KB（预算 45KB）均有余量，若你的项目曾手工往手册里塞过大量非提示词内容会首次显红，处置是把过程细节下沉折叠说明而不是抬预算；③ 库侧新增的 checks/45 五条落盘脚本冒烟与 checks/26 的字数带同源判据不随库分发，项目无需动作；④ 组件计数六维未动（rules 15 / skills 26 / agents 3 / commands 6 / hooks 10 / specTemplates 11 / scripts 5），本批只改判据口径与文案；⑤ 跑 harness-verify 期望 status: PASS，且 verify 侧新增可读到 manual_size_budget 的 SKIP 分支（无手册的项目不再被判通过也不被判失败）。",
+      "_note": "版本号 9.1.1 = 补丁级（用户已裁过的 D1 先例：结构或计数变化走 minor，本批两者皆无，只换判据口径与补断言）。本条目按\"删判据只走合法通道并留被删原文\"执行：被撤的「整文件 ≤45KB」原文两条逐字留在下方 assets 第 1 项，未改动既有任何条目，判据基线（tools/fixtures/criteria-baseline.json）全程零变更，未做任何重冻结。"
+    },
+    {
+      "_of": "9.1.0",
+      "type": "remove",
+      "assets": [
+        "TDD 退场（统一实施 spec Batch 1–2）：本库不再教学/派发 TDD，只采用 SDD 流程。删除 L0 skill assets/library/L0-universal/skills/hc-tdd-cycle/SKILL.md（1 文件 / 5,308 B，垂直切片红-绿-重构循环），L0 skills 27→26、分发集 235→234 文件。被删组件的原文全文见该文件在 git 中的最后一次提交（本条目不复制正文，避免第二份事实源）",
+        "裁决按\"取消 TDD ≠ 取消测试\"执行，四类被\"TDD\"一词压在一起的东西分别处置：T1 组件=删；T2 顺序律（implement-feature 的\"每层先写测试再写实现\"、testing-principles 的\"先写测试（TDD）\"）=改为规格验收驱动，其\"每层必须有编译+测试证据\"那一半本就是 always_on 规则 verification-with-evidence 规则 4，未新造承担者；T4 话术层=清零（活文本命中 62→0，由 checks/42 的 tdd-branding-ratchet 常驻防回潮）",
+        "🔴 T3 明确保留，不随 TDD 退场：缺陷修复的复现纪律「复现测试先失败后通过、全量回归无新增失败、无偶发失败（重复 3 次一致）」仍在手册 9·3（briefing-skeletons 与其生成物母本）、run-tests Step 1a 第 5 步、sdd-gates-checklist 的「Bugfix 门禁」节。它不是 TDD —— 缺陷即行为偏离规格，复现测试就是把规格里已写下的期望编成可执行断言，属\"从规格导出验收\"。SPEC-TEST 产物与 10 章 / 4.1 六项检查点形状一并保留不动，故判据基线的合法变更记录为空",
+        "指向改写与组件删除同批收净（本库主导缺陷类型是\"只改声明不改消费方\"）：manifest.components.L0.skills 与 triggerMode、三个 L2 agent 的 skills 名单与绑定技能行、commands/harness-next 三处、sdd-gates-checklist 的门禁 2 责任枚举与「TDD 循环门禁」整节（改名「规格验收节律门禁」，五 Gate 改为判据/实现/验证/回归/收口）、stage-agent-skill-map 的 9·3 行与快速通道行、sdd-artifacts.yaml 的 code 产物 instruction、库根 SKILL.md 的 tags/入口模型/分诊行、README 现行指令表删行并追加旧名表去向行",
+        "别名层处置（用户裁定）：/tdd → /hc-tdd-cycle 整条映射删除，不留指向新宿主；新版无别名层，敲 /hc-tdd-cycle 与 /tdd 都直接 Skill \"...\" not found。防回潮职责转移给 checks/42 棘轮（其正则含 \\/tdd 分支），删映射不等于放弃检测",
+        "闸门侧新增：checks/43（G2/G3 留痕不得指向手册生成物，实测 5 处已修）、checks/42 两条（TDD 品牌棘轮 + Prove-It 实物锁）、checks/42 三条补盲（agent skills 名单 / 别名表右列 / README 现行指令表反向对账）、checks/32 示例形状耦合、checks/40 三条预览.html 自包含判定、checks/07 初态三视图结构与非同代图例判定、checks/44 变异 runner 常驻哨兵。判据基线全程零变更（缺失 0 / 新增 0 / 独有判据消失 30）"
+      ],
+      "action": "存量项目升级动作：① 删除 .qoder/skills/hc-tdd-cycle/（阶段 A 的 >= 对账谓词看不见这类陈旧残留，故由 harness-verify 的 retired_component_residue 检查项按 manifest.retiredComponents 名单显式判 FAIL 并点名）；② 若曾按阶段 B 可选装配过 developer / test-runner / project-tester 三个 agent，回刷其 frontmatter skills 字段与「绑定技能」列表（模板侧已同步）；③ 重跑阶段 A 或 /harness-upgrade 以回刷 .qoder/scripts/ 与手册 workflow 区（母本是 build-manual 生成物，必须重生成而非手改）；④ 缺陷修复流程不变，仍走手册 9·3 的复现测试纪律",
+      "_note": "版本号 9.1.0 由用户裁定（minor）。finalCounts 与 finalCountsNote 随 sync-component-counts 更新属正当改写：该字段自述\"与 manifest.componentCounts 一致，作为升级校验终值\"，且 upgrade-ledger-counts-match-manifest 要求账本↔manifest↔磁盘三方相等；留在 27 会让存量项目升级后被判\"缺一个组件\"。真正的历史账本是本数组各版本条目，本条目只追加、未改动任何既有条目"
+    },
+    {
+      "_of": "9.2.0",
+      "type": "change",
+      "assets": [
+        "形状 B 换双视角域（骨架新增 §〇）：代码框是「用户复制后发给 AI」的正文，框内标签一律用户口吻——这一步要为你拿到→这一步我要拿到、我需要提供的材料→我能提供的材料、我会交付到→请交付到；其余五段标签（为什么要单独做 / 参考格式 / 请按下面顺序做，每步做完给我看一眼再继续 / 红线（绝对不能做）/ 怎样算做完（请逐条打勾））与「做完之后」收尾行未改名。框外扫读域（步骤名 / 你要做的事 / 你会拿到 / 建议怎么用）仍是 AI 对读者口吻，同一短语框外正确、框内即错，故两域物理分段、不再逐字照抄（旧「你要做的事 = 同一句」的渲染口径已改为「标签换第二人称、正文保持人称中性」）",
+        "22 段提示词逐条按本环节要求重写，非批量替换：首行写成本步的真实输入与目标（1·1「我有一个想法，先帮我做成一份 MRD」替掉要求 AI 说出用户想法的旧首行；2·1 把「架构设计三合一」展开为系统骨架+选型留痕+部署容量；1·3 点名 PRD 第 4 章；5·4 把前置条件「契约先定稿锁定」写进首行；9·1 与 9·3 无斜杠命令，首行改为用户开场句）；「这一步我要拿到」改为本步结束时用户手里能核对的产物（6·1 从复述三段流程改为「Mock 全部换成真实调用 + 主模块契约测试全绿 + 联调记录与归档可查」；7·1/7·2/8·1/9·2 删掉写给读者看的「细节走 xxx skill」并换成本步产物）",
+        "纠正 4·2 合格线的同步来源错误：「异常分支可触达」「不是单 HTML」是 1·3 交互原型的判据，与本步「逐页还原核对 + 差异清单裁定 + G3 基准」无关，已换为「每页都有视觉相似判定与截图存证」「差异清单逐条经我裁定且已闭环」，条目数不变、未删任何既有判据",
+        "闸门同批改（本库主导缺陷类型是「只改声明不改消费方」）：harness-verify 的 NEED 八段字面量换名——不改则用户按新契约写对反被 22 步判红；Check 7b 输入段扫描键名同步——漏改会让 inInput 永不置真、staleness 判据静默零告警；新增 prompt_person_view（FAIL 级，射程=22 个提示词框内正文，PERSON_BAN 三条 + 首行「说出你的想法」单判，步骤名被引用时合法）",
+        "引用面同批：assets/templates/docs/PROJECT-LIVE.md 的 22 个代码框与「你要做的事」字段由确定性回刷脚本从骨架重渲（库内不再有 build-manual，按 §六 授权的回刷路径）、SKILL.md description 与概述两处八段枚举、README 现行能力表、manual-static.md 抬头注释、commands/live-refresh.md 渲染细则、commands/harness-next.md 的同源枚举与内联渲染模板，全部改到新标签。migration-map 既有条目内的旧标签原文保留——那是 v8.4.0/v9.0.0 的历史账，不是活文案"
+      ],
+      "action": "存量项目升级动作（破坏性，提示词标签无兼容层，与 v9.0.0 换轨同处理）：① 重跑阶段 A 或 /harness-upgrade，一次性回刷 .qoder/briefing-skeletons.md、docs/PROJECT-LIVE.md 的 workflow 区与 .qoder/scripts/harness-verify.mjs 三件——只回刷其中一部分会让 prompt_selfcontained 按新标签查旧手册，22 步全红；② 若项目手册的提示词被手工改写过，把手改内容并入骨架对应块再重渲（母本是生成物，手改会被覆盖）；③ 跑 harness-verify 期望 status: PASS，重点看 prompt_selfcontained 与 prompt_person_view 两条；④ 组件计数六维未动（rules 15 / skills 26 / agents 3 / commands 6 / hooks 10 / specTemplates 11 / scripts 5），本批只改提示词文案与判据字面量",
+      "_note": "版本号走 minor（9.1.2 → 9.2.0）：八个标签的字面量集合变了，旧手册在新校验器下必红，属不向后兼容的契约变化，按 D1 先例「结构变化走 minor」判定。本条目只追加，未改动任何既有历史条目"
+    },
+    {
+      "_of": "9.2.1",
+      "type": "change",
+      "assets": [
+        "撤回一条假平台事实（platform-profile §八）：旧文写「改 hook 注册后必须重开会话才生效」。实测是 phase-a-init 会话中途写入 settings.json，当轮零日志、**下一轮起** UserPromptSubmit/PostToolUse/PreToolUse 全部触发且 PreToolUse 的 block-dangerous 真返回 exit 2 拦下命令 → 激活只有 ≥1 轮延迟，不需要重开；只有 custom agents 仍需重开会话。旧断言的成因是拿一个「同轮探针」的假阴性立了律。配套写进两条纪律：不得用写入当轮的探针判 hook 坏；SessionStart / InstructionsLoaded 确实只在新会话出现（由 heartbeat.jsonl 与 rules.stamp 落戳自证），故「本会话没这两条日志」不能证明注册失败",
+        "三道 git 门禁不再静默空转（harness.mjs）：pre-commit-lint / pre-push-test / pre-merge-review 先探 .git 再探技术栈，项目根无 .git 时显式输出一行「无守卫对象，跳过（不阻断，本门禁在本项目零拦截力）」并 return 0。此前静默 return 0 与「门禁真的跑过了」在日志里长得一模一样。反向已验：建了 .git 的探针项目里同一命令照常走到技术栈探测，守卫没有把门禁吞掉",
+        "解开 stop-verify 自锁（harness.mjs）：hook 把 lastVerify 定点回写进 profile 却按设计不写文档，于是回写成功的**下一次 Stop 必然**被自己的产物判 live_profile_drift FAIL——实测每个新装项目第二轮都复现一次误唤醒。现当 FAIL 集合恰为 {live_profile_drift} 时改 stdout 说明成因与补救动作并 exit 0（不唤醒）；任何其它 FAIL 照旧 exit 2 唤醒。⚠️ 只降「打断」不降「判据」：harness-verify 仍判 FAIL、verify.stamp 仍记 exit=1、AI 手动跑校验照样看见那条红，footer 补刷职责仍在同步侧",
+        "hook-registry.md 三处修：① 首行加目录职责声明（.qoder/hooks 只放文档，脚本放这里永不执行——新版无 hooks 目录自动发现）；② 修死指针——原文让项目侧读者去看 HOOKS-ASSEMBLY.md 的专项说明节，但该文件从不随阶段 A 落盘（实测全库 find 只命中库内两份），改为「项目内读 .qoder/rules/ask-card-option-quality.md、库内读 <skillRoot>/assets/templates/hooks/HOOKS-ASSEMBLY.md」；③ 给 heartbeat 与 rules-stamp 两行注明确用途（后者是「什么真进了常驻上下文」的唯一可靠清点），并同步 stop-verify 与三道 git 门禁的新行为到主表",
+        "platform-profile §三 补四条官方成文而本档缺失的事实：settings 有三处合并位置（用户级 / 项目共享 / 项目本机 settings.local.json，本库未用第三种）且设置页面板读的是用户级、列出≠执行；matcher 与 if 的成文规则（if 写作 ToolName(arg_glob)，arg_glob 用 glob 匹配工具参数 → Bash(git commit*) 合法，证据级由 [实测] 升为 [文档+实测]）；退出码三态契约与 exit 0 时 stdout 可控字段（continue/stopReason/suppressOutput/systemMessage/decision/reason/hookSpecificOutput）；asyncRewake + rewakeMessage 与 hookSpecificOutput.additionalContext 属「文档没有但实测可用」，勿按文档去改坏它",
+        "目录裁定（用户确认，不做）：不把 .qoder/scripts/ 的脚本搬进 .qoder/hooks/。实测代价——引用 .qoder/scripts 共 225 处 / 65 个文件，只搬 harness.mjs 与 hook-ask-card.mjs 两个真事件脚本也要改 97 处引用 + settings.json 的 12 条命令 + manifest/finalCounts/校验器三处计数口径，而收益只有目录名贴切、零功能变化；且 scripts/ 里 6 个文件有 4 个本就不是 hook 代码（校验器、面板拼接、契约比对、安装器），全搬进「事件目录」反而制造四处新的错位。机制上两种放法都能跑（官方自己一处写 ~/.qoder/hooks/*.sh、一处写 ./scripts/check.sh），所以这只可能是可读性取舍，而可读性已由注册表首行的职责声明兑现"
+      ],
+      "action": "存量项目升级动作：① 重跑阶段 A 或 /harness-upgrade 回刷三件——.qoder/scripts/harness.mjs（git 门禁前置探测 + stop-verify 唤醒例外）、.qoder/hooks/hook-registry.md（目录职责声明 + 死指针修正 + 主表同步）、.qoder/skills/platform-profile/SKILL.md（§三 补四条、§八 撤回旧断言）；② 无新增/删除资产，组件计数六维未动（rules 15 / skills 26 / agents 3 / commands 6 / hooks 10 / specTemplates 11 / scripts 5）；③ 跑 harness-verify 期望 status: PASS，v9.2.0 引入的 prompt_person_view 照常在场（总行数仍 35）；④ 若你的项目根确实没有 git 仓库，升级后第一次跑 git 命令会看到三行「零拦截力」声明——那是本批把既有事实显式化，不是新故障",
+      "_note": "补丁级 9.2.1：无新增资产、无计数变化、无提示词契约变更；修的是 hook 面的事实错误与静默失效。stop-verify 的唤醒例外只作用于「FAIL 集合恰为一条自造滞后」，判据本身一字未改，故不构成判据基线变更"
+    },
+    {
+      "_of": "9.5.0",
+      "type": "change",
+      "assets": [
+        "profile 新增 git 权威块（harness-profile.template.json + phase-a-init 注入 GIT_* 九个令牌；可空位在模板里刻意不带引号 → 漏注入当场炸成 profile-invalid-json）：mode 是用户决策位（none/local/remote，未问到即 pending，装机与同步都不得代填），repo/repoRoot/gitVersion/trunk/remote/identityConfigured/gitattributesPinned/probedAt 为探测位；manifest#truthSources.projectCurrentState 的字段枚举同步扩列 git，取值域与四条「不代做」边界新立 manifest#gitGovernance 单源",
+        "阶段 A 不再无条件在项目根写 .gitattributes（P2-20 → S3）：改为「已找到仓库（含逐级上溯）」或「profile.git.mode ∈ {local,remote}」才写，否则一个字节不写并打 [gitattributes] 跳过 行说明改由谁写。🔴 残余窗口如实入台账：用户手工 git init 且在被拦前发生过 checkout → 被 core.autocrlf 改写的字节后补还原不了，v9.4.0 的无条件写没这个窗口；换上去的是两层即时守门（pre-commit-lint 见仓库无钉 exit 2 + 判据 git_ready 把「有仓库无钉」判 FAIL）",
+        "新增判据 git_ready（harness-verify，36→37 行，归「项目状态」组）：八格矩阵无未定义格——有仓库缺钉=FAIL；无仓库按 mode 三档分说（none=按你选择、pending=PASS(SKIP 未决策)、已选建仓未钉=WARNING 给「先钉后 init」顺序）；身份未配最低 WARNING 且绝不因此降级 FAIL；profile.git 与磁盘实探不一致时点名漂移。为此在校验器新增 node:child_process 导入（只探一次 git config，4s 超时）",
+        "harness.mjs：hasGitRepo（只看项目根一层）换成 findGitRoot 逐级上溯 + gitFace 汇总现场事实 + pinCovers（承认祖先仓库的 .gitattributes 对本子树同样生效，git 会合并祖先 attributes）。修的是实测缺陷：仓库建在父目录时三道 git 门禁集体误报「本项目零拦截力」而它们其实有守卫对象。三道门禁文案按 mode 三档分说；pre-commit-lint 增加钉在场前置检查（exit 2）",
+        "/branch-workflow 补 Step 0（建仓与前置四查：仓库在场性 / git 身份 / 主干名实探 / 行尾钉与忽略表，含「先钉后 git init」三步命令块与三条不代做边界）与 Step 9（换远程 set-url / 加第二远程 / 改主干名 / 令牌绝不写进 remote URL）；全文写死的 origin 与 main 改取 <远端>/<主干>（Step 0 实探回填 profile.git.trunk），mode=local 时 pull/push/删远程分支各步显式跳过；触发条件补「项目还没有版本库」「换个远程仓库」「主干不叫 main」",
+        "新增 .gitignore 模板资产 assets/templates/gitignore/（common + node/python/java/go 共 5 份，分发集 234→239）：common 的密钥六项逐字对齐 code-security-basics『.gitignore 必须包含』，另加本框架自己的瞬态件（.qoder/logs/、.qoder-init.lock/、.init-staging/、.scaffold/、*.bak）。**库内直读、不随阶段 A 落盘**——不落盘就不进 A.2 清单与 reconcile 8 维，避免第三次「落盘面与账本脱账」；写入者是 Step 0",
+        "stop-verify 首跑自锁修复（S9，与 v9.2.1 的 live_profile_drift 例外同族）：verify.stamp 改为「跑校验前先落 phase=started 行、跑完补带真实退出码的收尾行」。v9.4.0 S3 把「有心跳无 stamp」升 FAIL 之后，每台新装机首个 Stop 必判红且附一条自相矛盾的处置建议（「确认 node 在系统 PATH → 重启 Qoder」），而 hook 能弹窗恰证 node 可达（实测本轮就发生：首个 Stop 报 FAIL，同轮 SessionStart 心跳与 rules.stamp 均在档）。verify_stamp 现见本次 started 行即判 PASS 并说明收尾行待补；真故障（有心跳而文件从不存在）照旧 FAIL。附带新可见故障形状：started 长期无收尾行 = 校验器中途崩或被超时杀",
+        "S8 数字脱账：stop-verify 提示语里硬写的「完整 36 行」删除（本版即 36→37 会当场说谎），改指路径不带数。明确不采用「从输出里数行数动态拼回」——那会把一个装饰性数字换成跨脚本耦合（校验器先打印总数、hook 再解析，两侧都得改）",
+        "AGENTS.md 模板「运行时前置」的 Git 行改为引用 profile.git（不复述档位与结论，复述即第三份拷贝），并写明四条不代做边界与改档/建仓/换远程的入口；references/phase-a-checklist.md 同步：A.1 补 [git-probe] 行、A.2 内部执行序第 10 步改按需写、A.2 新增「按需写且由判据守」的产地面说明、die 原因枚举不新增（本版未加新令牌）",
+        "⚠️ 实施口径：本版只在 Windows 实测（git 2.52、core.autocrlf=true 出处为 Windows 用户目录下的 `.qoder-cn/bin/git/etc/gitconfig`、本机 git 身份实测为空）；非 Windows 侧与 macOS/Linux 的 autocrlf 行为一律标未实测。D1-D4 待裁定项按实施 spec 的正文默认值落地（none 为允许终态、首批 gitignore 模板 4 栈+common、S9 并入本批、接受 S3 的残余窗口），用户改判即回退对应条目【发布脱敏说明：本条为 v9.5.0 历史台账，原文此处写的是实测机器的完整用户目录路径，因含本机用户名在公开分发前替换为上述中性写法，事实本身（哪个文件、什么配置）未改】"
+      ],
+      "action": "存量项目升级动作：重跑阶段 A 或 /harness-upgrade 回刷四件（.qoder/scripts/harness.mjs、.qoder/scripts/harness-verify.mjs、.qoder/scripts/phase-a-init.mjs、根 AGENTS.md 的运行时前置一节）；回刷后 profile 会被补齐 git 块（**只补不覆**——已有 git 键的项目一律不动，因 mode 是用户决策位）。⚠️ 升级路径已知缺陷（未修，见 README §七）：整份重建会把已按 ARCH 推导过的项目面板 SYNC_DATA 换成模板占位，升级请走 --skip-panel + --repush-scripts-only 组合；本版 git 探测位于预检段、在该模式下同样执行，但钉写入与探测结论的落点各有前提：--repush-scripts-only **不写 profile**，所以 profile.git 的探测值会保持上次装机的读数、可能与磁盘漂移——此时 git_ready 会点名「profile.git.repo 与磁盘实探不一致」，要刷新就跑一次完整阶段 A（实测代码位置：钉写入在主流程换名之后，不受该模式开关约束）",
+      "_note": "动因是用户两轮实测追问：① 「初始化后根目录为什么多了一个 .gitattributes」→ 暴露「装机无条件写一份无仓库项目里没人核的 git 配置文件」；② 「框架该不该管 git、管本地还是线上、能不能让用户选、以后怎么改」→ 实测出五项空白（36 项判据 0 条覆盖 git、仓库判定不上溯、主干名写死 main、无人发 .gitignore、全库无一处讲身份配置）。本版把「git 方式」升格为用户的一次决策 + 机器的一个权威事实位，并给承重资产（行尾钉）配上即时门禁与判据双层守卫，替换掉此前的单点无条件写。提示词面一字未加（实测 6·1 提示词 1194 字、距 1200 硬上限只剩 6 字，加一句即 FAIL），手册侧改动全部落在框外扫读字段。"
+    },
+    {
+      "_of": "9.6.0",
+      "type": "change",
+      "assets": [
+        "A.5 汇报两段制（references/phase-a-checklist.md：首屏模板照录用户定稿的目录树+四核心文件+下一步，实测 1678 字 / 37 行；新增 A.5-② 明细模板五节固定落 .qoder/logs/init-report.md，由 AI 写；A.5-③ 复跑/升级场景；新增五条\"发之前自查\"含 12 个禁用 token 清单与白名单剔除口径）",
+        "SKILL.md 执行序第 4 步换形（\"必须含三项披露：customized_skipped/profile_preserved/stubs\" → 三件白话事 + 明细指针；脚本 stdout 与 harness-verify 行文案一字未改——I2 换载体不减披露）；A.4 人工核对项同步（否则它还在要求原始 token 回显）；A.4.5 步骤 2 的分工计数行改进明细第 3 节",
+        "禁词表射程延伸（briefing-skeletons §三：新增\"再延伸一格 = 会话汇报\"，覆盖阶段 A/B 汇报与同步报告；沿用同一份词表与白名单，不新建第二份）",
+        "形状 B 新增可选材料槽（§一 标题与模板块 + §六 母本声明 + commands/harness-next.md 段序声明与样例块共四处；槽属框内正文、非第九个标签段，八个标签与段序不变；启用范围写死为仅 1·1，护栏 (d)）",
+        "1·1 提示词改写（骨架 + 母本 PROJECT-LIVE.md 逐字同步）：{一句话想法} 上移首行；材料槽预填「无」（空态写成词——实测 {} 对 placeholder_scan 与绑定正则 \\{[^{}]+\\} 双双不可见，且对 AI 读作\"漏填\"会去翻目录）；删掉\"项目代号：用于…文件名\"这行悬空材料；参考资料行改为只认用户点名路径",
+        "专家面板权威裁决（create-proposal/SKILL.md：候选池三参数、Q1-Q4 四问并成两问、取值优先级三档写死，裁决掉 :100「执行时以 profile 裁剪」⟂ :110「以提示词为准」这对互斥；架构专家关注点解掉与 MRD 红线的冲突；token 三档触发条件去掉已删的 Q3 引用；Step3 自检补两条）",
+        "护栏换形（骨架 §五 (a)(b)(c) + (d) 材料槽范围；实测证据照录：内联关注点与默认表 6/6 行不一致且无任何判据守措辞 → 改\"实际名单登记进 MRD 头部/§8.1\"；§五 新增字数豁免命门警告：豁免只认「请分配…位专家」单行 + 连续 - 行，改形状即 421 字全计入并撞破 1200）",
+        "MRD-template §8.1/§8.2（§8.1 改登记面：实派名单/与候选池差异/经确认的代号，mrdPanelMode 改白话；§8.2 砍掉全库第三份关注点列并允许按实派名单增删行）；§三 禁词表首行的硬编码\"6 位\"同步改写",
+        "代号确认口径统一（骨架参数绑定表 {项目代号} 来源行、naming-convention 需求文档行、panel-engine-rebuild 项目名优先级 ② 档窗口收窄、stage-agent-skill-map 1·1 的 step_gate 列补两个确认点；写回既有字段 profile.project.name，不新增字段）",
+        "§四 实测数字刷新（1·1 全量 1525 / 豁免 421 / 计容 1104，越 900 目标带 14/22→15/22、0 步越 1200、母本非提示词 28KB 改前改后一致）；同时校正三处上一批遗留脱账（旧 1179/303/876、旧中位 937、旧\"最长 1171 字（5·2）\"——实测 5·2=1190、最长是 6·1 的 1194），EXPERT_PANEL_RULE 字面句未触及"
+      ],
+      "action": "重跑阶段 A 即可（本批全是文档与文本面，无脚本改动、无新增分发文件）；旧项目升级走 /harness-upgrade 回刷 L0 通用层，再 /live-refresh 重渲手册 1·1 块。⚠️ 装机后首屏必须按 A.5-① 五条自查，明细文件缺失或首屏命中禁用 token 都算本批未落地。",
+      "_note": "判据行仍 37（12|8|17）；阈值 160/1200/900/300/45KB/8000 一个没动；1·1 距硬顶只剩 96 字是已知代价，已记进 spec §5 D3，后续再加字必须先在面板段（豁免）内找位置。未验证：真实宿主 Stop 后的留痕补判、checks/26 与 checks/28 的库侧同源（工装不随库分发，字面同步只能人工保证）、非 Windows 平台。"
+    },
+    {
+      "_of": "9.6.1",
+      "type": "change",
+      "assets": [
+        "A.5 整节重写为「按事实生成的六槽形状」（references/phase-a-checklist.md）：A.5-⓪ 记为何推翻固定模板（真实测两次撞假：19 行树在聊天里糊成一行；面板拼接失败时固定树里\"双击即开\"是假话）｜A.5-① 六槽取数规则（结论行=打印串+status+stat；结构树=应落盘清单 ∩ 磁盘 stat；核心文件=树∩四份产物；没做成的事=差集+非 PASS 行+未验证项；下一步按态给；明细指针＝模板里唯一固定文本）｜A.5-② 结论行真值表五行（面板失败必须点名面板，不得被泛化句盖掉）｜A.5-③ 明细五节沿用、措辞去条数｜A.5-④ 18 种失败/未完成态的人话对照表（14 枚举 + 前置串 + 面板失败 + 回滚 + 门槛发卡）｜A.5-⑤ 呈现规范五条（树进 text 围栏逐字符照抄、加粗与 - 保留、占位符不代填、结论先行禁三类导语、不给门禁道数）｜A.5-⑥ 复跑口径（含\"AGENTS.md 自填 ≠ 用户定制\"）｜A.5-⑦ 渲染示例并明写禁止照抄",
+        "新增判据 report_reason_coverage（harness-verify，**37→38 行**，归\"库一致性\"组并已登记 AUDIENCE.library）：静态对账同一份 phase-a-checklist.md 里的 die() 原因枚举行与 A.5-④ 白话表，缺人话即 FAIL 并点名缺哪条；文件取不到按 SKIP 口径「本轮不判，不等于已通过」；两侧皆为仓库文本、不依赖被检运行产物，故不属于第一轮闭不上的自锁类。单行格式沿用 checkRow（stop-verify 按正则抓 FAIL 行）",
+        "SKILL.md 执行序第 4 步重写为\"按事实生成、模板只管形状\"（先判态再落笔、三件没全好不许 ✅、未验证不得写成通过、说法取 A.5-④）；第 1 步的\"输出令牌唯三\"改准为\"三主令牌 + 一前置串\"，A.2 枚举行同步承认前置串不属枚举、不合并",
+        "A.4 人工核对项重写为形状核验（结论行可推导、树可被 stat 证实、未验证条数等式、呈现规范五条、明细五节）并新增一条\"白话覆盖判据必须 PASS\"；A.4.5 步骤 2 的旧引用 A.5b 改为 A.5-③",
+        "消除三处写死数字的脱账点：A.4 的\"机器覆盖项现 11 项\"（早已不成立，改为本文不写条数）、harness-verify 注释里的\"第 37 行\"（改为\"新增时是第 37 行\"）、A.5-① 标题的\"实测 1678 字 / 37 行\"（随固定模板一并作废）；v9.6.0 的两条字数/行数自检断言标为作废，改集合断言",
+        "报告射程指针化（不复述即无双源）：骨架 §三 延伸格补\"射程不止口径也含形状与排版\"，commands/harness-assemble.md B.7 与 commands/live-refresh.md 同步报告各加一条指向 A.5-⑤ 的指针；SKILL.md:109 的\"会话首屏\"措辞改为\"第一条输出\"",
+        "manifest.runtime.probeContract 口径统一（终检残留扫描抓到的第三处）：那句自称令牌面唯三同时写在两处的话其实有三处，SKILL.md、phase-a-checklist.md 之外 manifest 也抄了一遍；三处现统一为三主令牌 + 一前置串，并在该节补上实测机制事实（脚本用 process.execPath 自证解释器，剥掉子进程 PATH 注入不出 runtime-missing，只能由宿主侧第 0 步判定）。"
+      ],
+      "action": "重跑阶段 A 即可（本批只改文档面 + 校验器加一行判据）。旧项目走 /harness-upgrade 回刷 L0 与脚本，再看 report_reason_coverage 是否 PASS。⚠️ 装机后若报告仍出现固定文案、导语、或描述了磁盘上不存在的东西，即为批未落地。",
+      "_note": "判据 37→38（分组 12|8|17 → 12|8|18）；阈值 160/1200、900/300、45KB、8000 一个没动；1·1 提示词一字未改（计容仍 1104，距硬顶 96 字）；copied=122、分发 239、组件六维不变；6 个落盘脚本中 5 个逐字节未动，harness-verify 的差异仅限新判据 + AUDIENCE 两处。未验证：AI 真机是否按六槽渲染（属宿主行为，只能文本自检 + 人复核）；库侧 checks/* 无本行同源副本；非 Windows。"
+    },
+    {
+      "_of": "9.7.0",
+      "type": "add",
+      "assets": [
+        "新增 L0 规则 assets/library/L0-universal/rules/harness-runtime-gates.md（41 行，扩展名 .md、trigger: model_decision）：承接 AGENTS.md「运行时前置」外迁的框架故障模式细节 —— Node 门槛与零落盘原因码、宿主 spawn 不到解释器时 hook 以退出码 127 静默空转（阻断契约只认 2）、rules_loaded_stamp / verify_stamp 两条心跳与 24h 宽限期、git 档位与「先钉后 init」及其残余窗口、四条 neverAutomated 边界、出问题的四步排查顺序。因为它不是 always_on，不进 8000 字常驻预算 —— AGENTS.md 那边减掉的常驻量是真减，不是左右搬运。"
+      ],
+      "action": "老项目跑一次阶段 A 或 /harness-upgrade 补齐该文件即可（缺它时 component_counts 判红并回显同一句处置）；这次补齐动作受定制保护，不会改写你编辑过的 AGENTS.md。",
+      "_note": "L0_rules 15→16、落盘 .qoder/rules 16→17、copied 122→123、分发集 239→240。⚠️ 校验器读的期望值在库内 manifest 里，未补齐的老项目会因此多一条红 —— 这是裁定 R4「只管新项目」的已知代价，S8 只补处置话术、不放宽判定（缺件仍 FAIL）。"
+    },
+    {
+      "_of": "9.7.0",
+      "type": "change",
+      "assets": [
+        "AGENTS.md 模板换形：文件首行下新增代际机器标记 harness:agents-schema:2（新判据据此门控）；「运行时前置」由 7 行 829 字压成 2 行，且阈值改为 {{NODE_MIN}} 第 4 个模板 token（取 manifest#runtime.nodeMinMajor，phase-a-checklist A.2 的 token 枚举行随之改，漏改即脱账）；Setup 命令 / 测试说明 两表上方各加 harness:auto:commands[Test] 机器标记；「规范优先级」四层清单改为按 Qoder 实际装载序的三层（补用户级规则层、删去「L1 覆盖 L0」这种不成立的运行时含义，明写 L0/L1/L2 只是装配批次），「规范冲突处理」首条同步去掉层级序措辞；monorepo 就近优先那句加「Qoder 侧只验证过根目录会被注入、嵌套未验证」的限定。",
+        "阶段 A 执行器 phase-a-init.mjs：新增命令表代填（一优先 package.json 的 scripts + lockfile/packageManager 名，二优先栈信号文件 → 项目内 techstack-commands.json；裁定 R2 把「脚本不猜项目内容」收窄为「不猜语义」）；含「【」或任一中日韩字符的值一律判不可用 —— 禁止把 _fallback 的占位串当命令写进去（会被 Check 1 判红）；解析不到 / 表已非初态 / 命令映射不可用三类一律进未代做清单并点名原因（不 die、不让阶段 A 零落盘）。目录扫描 SKIP_NAMES 加 .qoder 与 docs（框架自有且可直接发现，官方评审把这类目录清单列为反模式）；空目录不再输出「（0 项：）」残句；agentsSelfFilled 归因探针改「两把指纹取或」（树前导句 + harness:auto:commands），避免把脚本代填的命令表说成用户定制；sync-scope 中 buildCommands 代做成功后从 derivable 摘除；顺带修一处存量回显缺陷 —— sync-scope 日志把相对字面量喂给 rel()，调用目录不等于项目根时会打印出指向别处的假路径（文件其实写在正确位置）。",
+        "校验器 harness-verify.mjs：agents_fields 必需节 8→10（补 运行时前置 / 禁区，此前把安全整节删掉也判不出来）且判定由子串匹配改标题匹配（命名规范 按设计只作 bullet 存在，进 BULLET_ONLY 例外表），回显计数由数组算出，作废硬写的「10/10 sections present」；新增 agents_context_budget（AGENTS.md 非空行套 Qoder better-harness 官方四档：≤80 PASS、81-180 WARNING、>180 FAIL，带线出处随回显给出）与 agents_command_fill（profile 记 buildCommands=filled 时核对 Setup≥3 格、测试≥1 格且无【__ 或未注入 token；两张表的机器标记被改写则 WARNING 显形、不判红）；两条一律按 harness:agents-schema:2 门控，缺标记走 PASS (SKIP) 并计入「未验证」—— 不得改用 profile.skillVersion 推断，老项目重跑阶段 A 会把它刷成库版而 AGENTS.md 仍是旧版式；component_counts 补 S8 缺件处置话术（件数现算，不写死）。两条新判据已登记 AUDIENCE.project。",
+        "AGENTS.md 不并入 always_on_budget 的 8000 字常驻预算：实测该组现占 5780/8000，AGENTS.md 正文约 3100 字，并入即让每个现存项目当场 FAIL；改为由 agents_context_budget 单独立限。四个既有阈值（8000 / 45KB / 160-1200 / 900-300）一个没动。"
+      ],
+      "action": "新项目重跑阶段 A 即得新版式。已装项目**不必**为 AGENTS.md 做任何事：定制保护 + 代际门控使新判据对旧版式一律 SKIP。确实要换新式只能 --overwrite-customized，那是真覆盖，须先手工备份。",
+      "_note": "判据 38→40（分组 12|8|18 → 14|8|18）；组件计数 rules 15→16。装机实测：copied=123、命令表 5 格填成可复制真命令、目录节 6 条 → 4 条且无空目录残句、运行时前置显示 Node ≥ 18。裁定 R1（占位与空节保持现状）⇒ 本版不引入任何把空节/待检测判红的判据，官方评审 C 评级里「生成内容未经人工确认」这项**仍未解**，属已知且被接受的上限；本版同时留下两条待实测项：真实宿主会话里 AGENTS.md 的注入字节数变化、以及老项目 /harness-upgrade 全序列实跑。"
+    },
+    {
+      "_of": "9.8.0",
+      "type": "add",
+      "assets": [
+        "assets/templates/scripts/harness-verify.mjs（新判据 sync_freshness：docs 承重交付物 mtime 晚于 profile.sync.lastSyncAt 即 FAIL，粒度=两侧无时间分量时退到按天比；归 AUDIENCE.project，分组 14|8|18 → 15|8|18，判据 40→41；SKIP 串以「SKIP: 」裸开头，不得自带 PASS ( 外壳，否则二次包裹会让数「未验证」的正则漏计）",
+        "assets/templates/scripts/harness.mjs（新子命令 hook auto-finalize + patchProfileFinalize：PostToolUse 命中 docs/prd/MRD*｜PRD*.md 时定点回写 maturity.mrd/prd 与前插 history，回读校验不过整段放弃；stop-verify 加「同一 fp 只唤醒一次」与 HARNESS_SYNC_REWAKE=0 降级；头注释 10 个 hook → 11 个）",
+        "assets/templates/hooks/settings.json.template 与 settings.linux.json.template（PostToolUse 数组各加一条 auto-finalize，两份逐字段一致）",
+        "assets/library/L0-universal/hooks/hook-registry.md（主表加行 + 默认启用清单 + 「唯一例外」改写为「唤醒例外清单」两条）",
+        "references/phase-b-protocol.md（L0 hook 数 10 → 11 两处）",
+        "assets/templates/harness-profile.template.json + assets/templates/scripts/phase-a-init.mjs + references/phase-a-checklist.md（S4b 新令牌 {{INIT_STAMP}}：装机把 profile.sync.lastSyncAt 写成不带时区的本地时间戳。原因＝纯日期会让「装机当天跑完 1·1」这一主场景下的同日漏记隐形，V1 首跑正是如此暴露；人读的 footer 与 AGENTS.md 仍用纯日期 {{SYNC_DATE}}，phase-a-checklist 第 5 步的 token 枚举行随之补录）",
+        "manifest.json（componentCounts.L0_hooks 10→11、componentCountsNote 顺带修掉陈旧的 rules=15 表述、description 前缀本批摘要）"
+      ],
+      "action": "把「交付物已落盘但账本没改」从看不见变成当场红：新增 sync_freshness 判据与 auto-finalize 登记 hook。新项目重跑阶段 A 即得；老项目缺 auto-finalize 注册会被 component_counts 判红并由新话术点名怎么补（判定强度不放宽：缺件仍 FAIL）。",
+      "_note": "刻意划出的边界：脚本不写 maturity.arch（panel_topo_lag 是前向消费者，一写就自造 FAIL）、不写 knownDocs（等于自己按掉 sync-detector 的提醒）、不写 sync.lastSyncAt 与 footer（那是同步真跑过的凭证）、不碰手册步骤状态 emoji 与面板拓扑（属语义判断，撞 v9.7.0 R2「脚本不猜语义」）。同步的语义部分仍归 AI，由 Stop 唤醒负责拽回。"
+    },
+    {
+      "_of": "9.8.0",
+      "type": "change",
+      "assets": [
+        "assets/templates/briefing-skeletons.md 与 assets/templates/docs/PROJECT-LIVE.md（22 段提示词逐字镜像同步改：4 处仪式性定稿闸门 :181/:288/:390/:556 重写，14 处「自动同步进度／自动同步项目状态文档」归一为祈使句「执行 3 步同步」，契约形状行 :64 补「不等我确认…参数已回填」）",
+        "assets/templates/rules/harness-continuous-sync.md（强制检查点节加 1 行裁决：同步不以任何用户确认为前置，「等我定稿」只约束下游文档产出）",
+        "assets/library/L0-universal/commands/live-refresh.md（新增「定稿 ≠ 同步 ≠ 进下一环节」唯一定义节：三概念表 + 定稿不是封条 + 内容裁定照旧问 + 未闭环风险的表达方式 + maturity.mrd 赋值规则）",
+        "SKILL.md（提问优先级裁决第 2 条补「可以定稿了吗」属礼仪式确认禁止；步骤骨架补定稿不前置一句）",
+        "assets/library/L0-universal/spec-templates/ 9 份（MRD/PRD/ARCH/SPEC-BE/FE/UI/TEST/DDL/API 状态行补注：三值由该步清单驱动、清单全过即写已批准/已冻结，由产出方落盘时直接写、不等用户口令）",
+        "references/sdd-gates-checklist.md（L0 前置条件单元格补「冻结由磁盘事实成立，不由口令成立」）"
+      ],
+      "action": "拆开「定稿锁定」压着的两件事：① 内容口径冻结（质量与安全决策，仍须用户裁定）② 流程位推进（手册状态 / maturity / {路径} 回填 / 3 步同步 = 机械事实，自动成立）。R-B 用户原话：全 22 步交付物默认自动定稿，「用户直接复制下一环节提示词进入下一环节，就代表了默认定稿上一环节的产物」；要改会直接对话，改完必须再触发一次同步。R-D：不自动开跑下一环节，但下一环节提示词必须已回填好。",
+      "_note": "刻意保留不动的人工闸门（它们是内容与安全裁定，不是定稿门槛）：1·1 项目代号与实派名单、1·3 页面口径提问与「没经我确认就进入环节 2」、4·2 差异清单逐条裁定、5·2 分层放行、7·2 严重问题接受、8·1 部署前逐项确认、9·1 分诊未确认不开工、9·5 未经确认不得改规则与技能。另有 4 个中间步（5·1/9·1/9·3/9·4）契约写「无需同步」，故 sync_freshness 的监控清单刻意不含 docs/项目交接.md 与 docs/changes/ 非归档目录，两边口径一致。"
+    },
+    {
+      "_of": "9.9.0",
+      "type": "change",
+      "assets": [
+        "manifest.json（新增 loadBearingFiles 作为承重文件名单唯一事实源；contextBudget 新增 projectGrownRules；description 前缀本批摘要）",
+        "assets/templates/scripts/phase-a-init.mjs（S1 必备件对账改读该名单，读不到即 die(manifest-field-missing) 不静默退回硬编码；S3 落盘前自动两跳纠名、改名前后逐字节比对、精确名与大小写变体并存时只报告不改；摘要新增一行 [case] case_fixed=N）",
+        "assets/templates/scripts/harness-verify.mjs（S2 新判据 filename_case 41→42 归 AUDIENCE.project ⇒ 分组 16|8|18；S5 prompt_params 标签改动态回溯并新增「占位与真值并写」红；S6 路径正则补顿号；S7 常驻预算 detail 拆框架自有/项目自长；S8 verify_stamp 按 audit 留痕分流并把断言改成候选原因；S9-D9 maturity_vs_disk 补反向断言）",
+        "assets/templates/scripts/harness.mjs（S9-D8 hook 的 history 追加改为独立成行、逗号贴住上一元素——真环境里曾写成行首逗号）",
+        "assets/templates/rules/harness-continuous-sync.md（常驻加 1 行：路径逐字照抄 + 禁止删后整文件重写）",
+        "assets/library/L0-universal/commands/live-refresh.md（新增三节：常驻预算顶格处置次序 / 双写者与整文件重写禁令 / footer 最近校验三态）",
+        "assets/library/L0-universal/rules/project-domain-glossary.md（一句顶格处置指引，禁删列省字）；SKILL.md 边界#7 同口径一句 + version；references/phase-a-checklist.md（摘要字段与 A.5 硬禁 token 各加 case_fixed，12→13）"
+      ],
+      "action": "新项目重跑阶段 A 即得全部整改；历史项目一律不回刷（用户裁定）。filename_case 只看磁盘真名，不依赖代际标记，对任何版本的项目都是同一事实。",
+      "_note": "立据来自两处真环境证据：① Work008 装机一小时后 AGENTS.md 被 AI 用小写路径删+建漂成 agents.md，而全库 AGENTS 类判据走 exists/能否打开判定 ⇒ 全程绿灯；② 同项目那次 MRD 3 步同步的完整会话记录复验出 8+1 条缺陷（其中 auto-finalize 的 history 逗号形状是 v9.8.0 自己写的 bug）。修完必须满足：认真绑定判绿、双写判红、装机当天 verify_stamp 不再谎报故障、纠名只改名不改一个字节。"
+    },
+    {
+      "_of": "9.10.0",
+      "type": "change",
+      "assets": [
+        "assets/templates/scripts/harness-verify.mjs（S0-a 新判据 byte_hygiene：一律 Buffer 直读，断言装机产物里 双回车 0 / BOM 0 / frontmatter 首行严格 ^---\\r?\\n；S0-b 把既有 frontmatter_valid 的读法从 readText 换成原始字节——readText 做 \\r\\n→\\n 归一，恰好把 \\r\\r\\n 治成合法形状，于是 v9.9.0 那 4 个双回车文件在 42 条判据下全绿、宿主却整段读不到 frontmatter；S0-c filename_case 增加「项目级 skill 目录里 SKILL.md 真名」子句，刻意用存在才核而不并入 manifest#loadBearingFiles——那张表还被 phase-a-init.mjs:607 当作落盘必达对账，用户级安装形态下该路径合法缺席，入表等于让阶段 A 自己判死；S3 新判据 apps_single_source；S4 新判据 binding_stale ⇒ 判据行 42→45，归组 18|9|18）",
+        "assets/templates/briefing-skeletons.md 与 assets/templates/docs/PROJECT-LIVE.md（逐字镜像同改：1·2 的「前序产出」行不再挂应用清单，拆成独立的「本轮应用清单」行，值段只准照抄应用名；1·3 的「应用分类结论」指向 MRD 应用维度章，不再就地复述类型与做/跳结论）",
+        "assets/templates/briefing-skeletons.md『参数绑定表』（新增第 4 列「机检」，31 行全填；7 个参数标 机检＝项目代号/应用清单/应用名/应用/MRD路径/PRD路径/ARCH路径，其余 24 行标 未纳入；{应用清单} 与 {应用名}/{应用} 两行的数据源改指 profile.project.apps）",
+        "assets/library/L0-universal/commands/live-refresh.md（新增「应用清单与已可绑必当轮绑」一节：apps 的元素形状与写入时机、提示词值段四类尾巴反例、参数对账三义务的第 ③ 条；表与代码 READY 谓词双向对账的口径说明）",
+        "assets/library/L0-universal/skills/create-proposal/SKILL.md（Step 0 第 3 步与 Step 2B 第 2 步、附带写回行：应用清单当场写回 project.apps；旧文档里的 appTypes 从未实现、无读者，就地作废）",
+        "assets/templates/scripts/phase-a-init.mjs（S6 在 sync-scope 生成处登记 project.apps 的四桶归属：由模板自带初态 []，不进 aiDecided 也不进 notDerivable）",
+        "SKILL.md（version 9.9.0→9.10.0；「持续自维护」段补一句应用清单权威源与值段禁复述；description 本批不动，瘦身单独挂账）；manifest.json（version/buildDate/description 同步；loadBearingFiles 保持 7 件、componentCounts 与 finalCounts 均不变）；README.md 与 references/phase-a-checklist.md（profile 初态快照与字段表补 project.apps、纠正 appTypes 误写）"
+      ],
+      "action": "把「应用清单」从散文抬成字段：权威落 profile.project.apps，提示词值段只照抄名字，分类与做/跳结论留在 MRD 那一章；同时给校验器换上一副比宿主更严的读法（字节层体检），并补上「早该回填的参数不得继续占位」这条此前无人认领的门禁（Work009 实测下游提示词里 {项目代号} 6 处 + {MRD路径} 1 处该绑未绑）。另入账一件事：v9.9.0 落盘后发现的 4 个双回车文件（SKILL.md/live-refresh.md/harness-continuous-sync.md/project-domain-glossary.md）已按字节修复并逐字节校验（少掉的字节数＝行数、抹掉全部 \\r 前后内容相同），修复本身不改已发布的 9.9.0 历史条目。",
+      "_note": "历史项目一律不回刷（沿 R-E）：profile 缺 project.apps 键时 apps_single_source 走 SKIP 不崩、阶段 A 也不代填该键；binding_stale 在旧骨架（无「机检」列）时同样 SKIP。立据全部来自 Work009 真环境：① skill 清单显示 \"- better-coding: ---\"（双回车导致 frontmatter 整段读不到，而 42 条判据全绿）；② 同一事实在手册一页里被写四遍四种措辞（:195/:197/:201/:248）；③ profile.project.name 早已是用户确认的 notehive，下游可复制提示词仍有 7 处占位未回填。阈值 8000/45KB/160-1200/900-300 一个没动，常驻面（always_on 规则）本批零新增文字。"
+    },
+    {
+      "_of": "9.10.0",
+      "type": "profile-field",
+      "assets": [
+        "harness-profile.json 新增 project.apps：数组，每项 { \"name\": 应用名, \"type\": \"Backend-Only | Full-Stack\", \"source\": \"MRD 章号 + 日期\" }；阶段 A 初态为 []（＝应用分类尚未产出，此时 apps_single_source 判「未验证」而非「已通过」）。它是应用清单的唯一权威源：提示词 {应用清单}/{应用} 值段、docs/prd/PRD-{应用}.md 的文件名、逐应用 PRD 在场性都从这里取。appType 降级为派生镜像（单应用场景必须与 apps[0].type 逐字相同；仍是手册分支折叠依据，本批不改折叠逻辑）"
+      ],
+      "action": "写入方＝1·1 Step 0（/create-proposal）；读取方＝harness-verify 的 apps_single_source 与 binding_stale、以及手册渲染。hook 不写它（auto-finalize 刻意只写 maturity.mrd/prd 与 history）。",
+      "_note": "多应用真来了的时候，appType 单值装不下、旧文档承诺的 appTypes 又从未实现——这是 Work009 里 AI 只能在提示词里即兴复述分类的根因。"
+    }
+  ],
+  "finalCounts": {
+    "rules": 16,
+    "skills": 26,
+    "agents": 3,
+    "commands": 6,
+    "hooks": 11,
+    "specTemplates": 10,
+    "scripts": 5
+  },
+  "finalCountsNote": "finalCounts 为 SKILL 库 L0 口径（与 manifest.componentCounts 一致；hooks=11 自 v9.8.0 起含 hook auto-finalize —— 该维度数的是 .qoder/settings.json 里注册的 `harness.mjs hook <名>` 去重集合，heartbeat 与 rules-stamp 不带 hook 故不计，与 hook-registry.md 主表行数（13）不同口径），作为升级校验终值；其中 rules=16 不含自维护 harness-continuous-sync.md（位于 assets/templates/rules/），故落盘后 .qoder/rules 实为 17、harness-verify 的 rules 期望值也为 17（v9.7.0 由 15/16 抬到 16/17，+1 来自新增 L0 规则 harness-runtime-gates.md；v8.5.0 前为 17/18，因 documentation-sync 并入 spec-before-code、mock-switch-convention 下沉 integrate-modules），口径差 1 属预期而非漏改；hooks 维度为 hook 注册数（数 settings.json 里的 harness.mjs hook 子命令），自 v9.0.0 起库内不再有 hook 脚本文件（13 个 .ps1/.sh 孪生已随 Task 3.4 删除，3 个从未注册的栈级 lint 占位脚本已随 Task 5.6 删除），该口径与落盘文件数解耦；skills=26（v9.0.0 起 +1 新增 platform-profile 平台能力事实单源、−1 create-module-skeleton 下沉 L1 的跨栈门禁；Task 5.3 各聚类组继续收敛（G3：−2 即 create-test 并入 run-tests Step 1a、contract-test 并入 integrate-modules Step 6a；G5：−1 merge-conflicts 并入 branch-workflow Step 4a；G4：−1 security-review 拆给内置 security-scan 与 spec-aligned-review 规格轴），终值以本块为准）与 phase-a-init 对账均排除 SKILL 自身目录 .qoder/skills/better-coding（只计含 SKILL.md 且非 better-coding 的目录）；v9.0.0 起脚本层进台账：scripts=5 = assets/templates/scripts/ 下 .mjs 文件数（harness / hook-ask-card / phase-a-init / harness-verify / build-panel），三平台同一语言、整批复制到项目 .qoder/scripts/，specTemplates 与 scripts 之外的模板类文件仍不进六类计数",
+  "backup": "升级前 .qoder/ 备份至 .qoder/.backup/（沿用现有协议）"
+}

@@ -1,0 +1,57 @@
+{
+  "stack": "typescript",
+  "skeletonSkill": "ts-node-scaffold",
+  "dirs": [
+    "src/config",
+    "src/routes",
+    "src/controllers",
+    "src/services",
+    "src/repositories",
+    "src/schemas",
+    "src/types",
+    "src/utils",
+    "tests"
+  ],
+  "configs": [
+    {
+      "path": "package.json",
+      "body": "{\n  \"name\": \"__MODULE_PATH__\",\n  \"private\": true,\n  \"version\": \"0.1.0\",\n  \"type\": \"module\",\n  \"scripts\": { \"dev\": \"tsx src/index.ts\", \"build\": \"tsc --noEmit\", \"test\": \"vitest run\" },\n  \"port\": \"__PORT__\"\n}\n"
+    },
+    {
+      "path": "tsconfig.json",
+      "body": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\", \"module\": \"ESNext\", \"moduleResolution\": \"bundler\",\n    \"strict\": true, \"noUncheckedIndexedAccess\": true, \"outDir\": \"./dist\", \"rootDir\": \"./src\",\n    \"esModuleInterop\": true, \"skipLibCheck\": true, \"baseUrl\": \".\", \"paths\": { \"@/*\": [\"./src/*\"] }\n  },\n  \"include\": [\"src/**/*\"], \"exclude\": [\"node_modules\", \"dist\"]\n}\n"
+    }
+  ],
+  "codeFiles": [
+    {
+      "path": "src/config/index.ts",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nexport const config = {\n  port: Number(process.env.PORT ?? '__PORT__'),\n  displayName: '__DISPLAY_NAME__',\n};\n"
+    },
+    {
+      "path": "src/index.ts",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nimport { config } from './config/index.js';\n\nexport function bootstrap(): void {\n  console.log('__PROJECT_NAME__ listening on', config.port);\n}\nbootstrap();\n"
+    },
+    {
+      "path": "src/types/index.ts",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nexport interface HealthResponse { status: 'ok'; displayName: string }\n"
+    }
+  ],
+  "verifyPaths": [
+    "package.json",
+    "tsconfig.json",
+    "src/index.ts",
+    "src/config/index.ts",
+    "src/types/index.ts"
+  ],
+  "declChecks": [
+    {
+      "path": "src/config/index.ts",
+      "mustContain": "export const config"
+    }
+  ],
+  "nextSteps": [
+    "安装依赖：pnpm install（或 npm install）",
+    "本地开发：npm run dev",
+    "提交前：npm run build && npm test"
+  ]
+}

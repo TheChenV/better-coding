@@ -1,0 +1,26 @@
+# Go 栈（叠在 common.gitignore 之上）
+bin/
+build/
+dist/
+vendor/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# 依赖与覆盖率
+go.work
+go.work.sum
+coverage.out
+coverage.html
+.golangci-lint.cache
+
+# 本地配置与密钥（Go 项目常把连接串放这里）
+config.local.*
+*.local.yaml
+*.local.yml
+secrets/
+*.pem

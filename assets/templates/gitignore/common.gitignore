@@ -1,0 +1,37 @@
+# 通用基线（任何技术栈都必带）——写 .gitignore 时先拼这份，再拼栈级模板
+# 来源：密钥六项逐字对齐 assets/library/L0-universal/rules/code-security-basics.md『.gitignore 必须包含』；
+# harness 瞬态段是本库自己的产物，只有本库知道自己该忽略什么。
+# ⚠️ 不忽略 docs/PROJECT-LIVE.html：它是交付物要留历史，diff 噪声已由 .gitattributes 的
+#    `-diff binary linguist-generated` 处理（见 README 库维护约定）。
+
+# —— 密钥与凭据（缺一项即 P0）——
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+credentials.json
+# 常见凭据文件（托管平台/云厂商/包管理器令牌）
+.id_rsa
+*.ppk
+.npmrc
+.pypirc
+netrc
+*_service_account*.json
+secrets/
+
+# —— Harness 瞬态（换机器/换会话即失效，提交上去只会互相踩）——
+.qoder/logs/
+.qoder-init.lock/
+.qoder/.init-staging/
+.scaffold/
+*.bak
+
+# —— 操作系统与编辑器噪声 ——
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+!.vscode/settings.json

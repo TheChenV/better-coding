@@ -1,0 +1,55 @@
+{
+  "stack": "python",
+  "skeletonSkill": "python-fastapi-scaffold",
+  "dirs": [
+    "src/__MODULE_PATH__/api/v1",
+    "src/__MODULE_PATH__/core",
+    "src/__MODULE_PATH__/models",
+    "src/__MODULE_PATH__/schemas",
+    "src/__MODULE_PATH__/services",
+    "tests/unit",
+    "alembic/versions"
+  ],
+  "configs": [
+    {
+      "path": "pyproject.toml",
+      "body": "[project]\nname = \"__MODULE_PATH__\"\nversion = \"0.1.0\"\nrequires-python = \">=3.11\"\ndependencies = [\"fastapi>=0.110\", \"uvicorn[standard]>=0.27\"]\n"
+    },
+    {
+      "path": "requirements.txt",
+      "body": "fastapi>=0.110\nuvicorn[standard]>=0.27\npytest>=8.0\n"
+    }
+  ],
+  "codeFiles": [
+    {
+      "path": "src/__MODULE_PATH__/__init__.py",
+      "body": "\"\"\"__DISPLAY_NAME__ 包入口（Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.）\"\"\"\n"
+    },
+    {
+      "path": "src/__MODULE_PATH__/core/config.py",
+      "body": "# Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nfrom dataclasses import dataclass\n\n\n@dataclass(frozen=True)\nclass Config:\n    display_name: str = \"__DISPLAY_NAME__\"\n    port: int = __PORT__\n"
+    },
+    {
+      "path": "src/__MODULE_PATH__/main.py",
+      "body": "# Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\nfrom fastapi import FastAPI\n\nfrom src.__MODULE_PATH__.core.config import Config\n\nconfig = Config()\napp = FastAPI(title=\"__DISPLAY_NAME__\")\n\n\n@app.get(\"/health\")\ndef health() -> dict[str, str]:\n    return {\"status\": \"ok\", \"displayName\": config.display_name}\n"
+    }
+  ],
+  "verifyPaths": [
+    "pyproject.toml",
+    "requirements.txt",
+    "src/__MODULE_PATH__/__init__.py",
+    "src/__MODULE_PATH__/core/config.py",
+    "src/__MODULE_PATH__/main.py"
+  ],
+  "declChecks": [
+    {
+      "path": "src/__MODULE_PATH__/core/config.py",
+      "mustContain": "class Config"
+    }
+  ],
+  "nextSteps": [
+    "建虚拟环境并安装：uv pip install -r requirements.txt",
+    "本地跑：uvicorn src.__MODULE_PATH__.main:app --reload --port __PORT__",
+    "测试：pytest"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "stack": "java",
+  "skeletonSkill": "java-module-skeleton",
+  "dirs": [
+    "src/main/java/__MODULE_PATH__/controller",
+    "src/main/java/__MODULE_PATH__/service",
+    "src/main/java/__MODULE_PATH__/repository",
+    "src/main/java/__MODULE_PATH__/entity",
+    "src/main/java/__MODULE_PATH__/vo",
+    "src/main/java/__MODULE_PATH__/config",
+    "src/main/resources/db/migration",
+    "src/test/java/__MODULE_PATH__/service"
+  ],
+  "configs": [
+    {
+      "path": "src/main/resources/application.yml",
+      "body": "server:\n  port: __PORT__\nspring:\n  application:\n    name: __DISPLAY_NAME__\n  jpa:\n    hibernate.ddl-auto: validate\n"
+    },
+    {
+      "path": "pom.xml",
+      "body": "<project xmlns=\"http://maven.apache.org/POM/4.0.0\">\n  <modelVersion>4.0.0</modelVersion>\n  <groupId>__MODULE_PATH__</groupId>\n  <artifactId>__PROJECT_NAME__</artifactId>\n  <version>0.1.0</version>\n  <packaging>jar</packaging>\n</project>\n"
+    }
+  ],
+  "codeFiles": [
+    {
+      "path": "src/main/java/__MODULE_PATH__/config/ApplicationConfig.java",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\npackage __MODULE_PATH__.config;\n\n/** 占位配置入口：证明包路径正确且可编译。 */\npublic final class ApplicationConfig {\n    private ApplicationConfig() { }\n}\n"
+    },
+    {
+      "path": "src/main/java/__MODULE_PATH__/vo/HealthResponse.java",
+      "body": "// Copyright (c) __YEAR__-__DATE__ Qoder. All rights reserved.\npackage __MODULE_PATH__.vo;\n\npublic record HealthResponse(String status, String displayName) { }\n"
+    }
+  ],
+  "verifyPaths": [
+    "pom.xml",
+    "src/main/resources/application.yml",
+    "src/main/java/__MODULE_PATH__/config/ApplicationConfig.java",
+    "src/main/java/__MODULE_PATH__/vo/HealthResponse.java"
+  ],
+  "declChecks": [
+    {
+      "path": "src/main/java/__MODULE_PATH__/vo/HealthResponse.java",
+      "mustContain": "package"
+    }
+  ],
+  "nextSteps": [
+    "编译：mvn -q compile",
+    "测试：mvn test",
+    "启动：mvn spring-boot:run（需在 pom 里补 spring-boot 插件）"
+  ]
+}

@@ -1,0 +1,22 @@
+# RepoWiki 结构计划 —— 库内直读模板，阶段 A 与阶段 B 都不落盘
+# 用法：要定制 wiki 结构时，由 AI 把本文件内容写入 <项目根>/.qoder/repowiki/wiki_plan.yaml（已存在则不覆盖）。
+# ⚠️ 改完必须重跑一次 wiki/knowledge 构建才生效——平台没有定时再生成。
+# 约束的唯一权威源是 .qoder/skills/platform-profile/SKILL.md §十，本文件只给骨架、不复制上限数字。
+# 🔴 不要写 scope.include / scope.exclude：该能力平台尚未实现（会被解析→告警→忽略），
+#    要控制文件范围请如实告诉用户"这版不支持"，别留一份看着生效、其实什么都不改的配置。
+version: 1
+repowiki:
+  # 预设模板名，只认这两个值；留空 = 不用预设，由模型自行组织
+  template: ""
+  notes:
+    - text: ""
+      author: ""
+  # documents 是白名单：一旦写了就按这份结构严格组织 wiki（parent 留 "" = 顶层；只允许一层嵌套）
+  documents:
+    - title: ""
+      goal: ""
+      parent: ""
+knowledgecard:
+  notes:
+    - text: ""
+      author: ""

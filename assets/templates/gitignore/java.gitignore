@@ -1,0 +1,43 @@
+# Java / JVM 栈（叠在 common.gitignore 之上）
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.properties
+build/
+out/
+gradle/
+.gradle/
+bin/
+gen/
+generated/
+
+# 测试与覆盖率
+jacoco.exec
+coverage/
+*.orc
+test-output/
+
+# IDE 与本地配置
+*.iml
+*.ipr
+*.iws
+.idea/
+.settings/
+.project
+.classpath
+.factorypath
+.vscode/
+local.properties
+
+# 运行时落盘（日志/上传目录/本地密钥库）
+logs/
+*.log
+uploads/
+keystore/
+*.jks
+*.keystore

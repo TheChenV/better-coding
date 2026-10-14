@@ -1,0 +1,135 @@
+{
+  "_comment": "better-coding hooks 注册模板（Linux/Mac；组件版本以 .qoder/harness-profile.json 的 skillVersion 为准，本文件不复制版本号）。与 settings.json.template 同构：全部 hook 只有一个可执行入口 node .qoder/scripts/harness.mjs，平台不再分别拉起 powershell.exe / bash 孪生脚本（M3①）。注册表：.qoder/hooks/hook-registry.md。契约：stdin JSON 输入；exit 2 阻断。",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook block-dangerous",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "if": "Bash(git commit*)",
+            "command": "node .qoder/scripts/harness.mjs hook pre-commit-lint",
+            "timeout": 60
+          },
+          {
+            "_comment": "全量测试耗时较长时可改为后台模式：增加 \"asyncRewake\": true 与 \"rewakeMessage\" 字段",
+            "type": "command",
+            "if": "Bash(git push*)",
+            "command": "node .qoder/scripts/harness.mjs hook pre-push-test",
+            "timeout": 60
+          },
+          {
+            "type": "command",
+            "if": "Bash(git merge*)",
+            "async": true,
+            "command": "node .qoder/scripts/harness.mjs hook pre-merge-review",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "_comment": "选择卡契约 v10 守卫（配套规则 .qoder/rules/ask-card-option-quality）。默认警告模式：exit 0 + additionalContext 注入提醒；设环境变量 ASK_CARD_GUARD_BLOCK=1 切硬阻断（stderr + exit 2，劣质卡片不渲染）。纯确定性启发式 H1-H7 + H10-H13，无 LLM/文件IO/网络",
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook ask-card-guard",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "_comment": "sync-detector 从 UserPromptSubmit 改挂本事件：按 tool_input.file_path 直接判定新文档/规格漂移，不再每轮 git status 猜测（§7.6）",
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook post-edit-format",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook audit-log",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook sync-detector",
+            "timeout": 10
+          },
+          {
+            "_comment": "v9.8.0 S5：交付物一落盘就把磁盘事实登记进 profile 并宣告「定稿自动成立、3 步同步不等用户口令」。只写 maturity.mrd/prd 与 history，刻意不写 knownDocs / lastSyncAt / footer / 面板（坏处逐条见 .qoder/hooks/hook-registry.md）",
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook auto-finalize",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook audit-log",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "asyncRewake": true,
+            "rewakeMessage": "Harness 校验未通过，请处理以下问题后再结束会话",
+            "command": "node .qoder/scripts/harness.mjs hook stop-verify",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook audit-log",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "_comment": "心跳证明 hook 通道在跑：rules.stamp 的集合差断言必须先确认心跳存在，否则 stamp 为空分不清「规则没加载」与「hook 没注册」。session-start-context 与 Windows 侧同口径挂本事件（E12；.sh 侧曾是阶段 A 占位桩，E5，已随单语言入口消失）",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs heartbeat",
+            "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs hook session-start-context",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "InstructionsLoaded": [
+      {
+        "_comment": "规则层自证通道：宿主每加载一个指令/规则文件即触发，写 .qoder/logs/rules.stamp。未注册时该事件整体不发 → stamp 缺失 ≠ 规则没加载（§1.7）。payload 键名为 file_path/memory_type/load_reason，不是 source/loadReason",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .qoder/scripts/harness.mjs rules-stamp",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
