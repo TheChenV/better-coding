@@ -5,3 +5,6 @@ node_modules/
 *.bak
 .DS_Store
 Thumbs.db
+
+# 维护者本地档案，不随发布分发（机器零依赖，实测删除后判据仍 PASS）
+CHANGELOG.md

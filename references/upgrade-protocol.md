@@ -36,7 +36,7 @@
 ### U.2 变更清单生成
 
 0. **优先读取迁移映射**（v4.0.0+）：若 SKILL 根存在 `migration-map.json` 且其 version 高于项目 profile.skillVersion，按其 `migrations` 逐项生成动作（remove-replaced-by-builtin / rename / merge / rule-merge / rule-trigger-downgrade / hook-rewrite / add / remove / rewrite / change / profile-field，以 migration-map 实际使用的类型为准），并以 `finalCounts` 为校验终值
-1. 对比两个版本间的资产变更（SKILL 维护 CHANGELOG 或 diff assets 目录）
+1. 对比两个版本间的资产变更（唯一事实源：`migration-map.json` 的 `migrations` 数组；也可 diff assets 目录）
 2. 列出本次版本间：
    - 新增的组件（rules/skills/agents/commands/hooks）
    - 修改的组件（内容变更）
