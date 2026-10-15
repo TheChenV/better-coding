@@ -2,6 +2,22 @@
 
 > 一句话定义：better-coding 将 Harness 组件库一键封装进你的项目（`.qoder/` + `docs/`），植入 3 步持续自维护机制，让 AI 按规格开发、按门禁交付，框架文件自己维护自己。
 
+## 怎么装（30 秒）
+
+1. 把本仓库放进你项目的 `.qoder/skills/better-coding/`。🔴 **目录名必须正好是 `better-coding`**——Qoder 按目录名识别技能，改名就认不出来：
+
+   ```bash
+   git clone https://github.com/TheChenV/better-coding.git 你的项目/.qoder/skills/better-coding
+   ```
+
+2. 在该项目里对 AI 说一句 **「用 better-coding 初始化这个项目」**。这是阶段 A：零提问装配，落盘 `.qoder/`（规则/技能/子代理/命令/hooks/脚本）+ `docs/`（提示词手册与可视化面板）。
+
+3. 之后按 SDD 九环节推进（需求澄清 → 架构 → 模块规格 → 实现 → 联调 → 测试 → 上线 → 迭代），每一步在 `docs/PROJECT-LIVE.md` 里都有可直接复制的提示词；框架自己维护自己——3 步同步 + 46 条机器判据兜底。
+
+前置要求：**Node ≥ 18**（脚本层三平台同一语言，不依赖 Python/PowerShell）。当前版本号以 `manifest.json` 的 `version` 为唯一事实源，本文件不复制数字。
+
+> 💡 网络提示：在部分网络环境下 `git clone` 需要代理。命令行走不通时，也可以直接下载 ZIP 后把根目录改名为 `better-coding` 放进 `.qoder/skills/`。
+
 ## 〇、谁是当前状态的事实源
 
 > v9.3.0 S8 成文。此前这三件事在库里从未写明，全靠读者从散落表述里推。补一份新说明就是第三份拷贝，所以这里只回答「看哪一处」。
